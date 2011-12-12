@@ -5,7 +5,7 @@ gem 'rails', '3.1.3'
 # Bundle edge Rails instead:
 # gem 'rails',     :git => 'git://github.com/rails/rails.git'
 
-gem 'sqlite3'
+gem 'pg'
 
 
 # Gems used only for assets and not required
@@ -30,7 +30,23 @@ gem 'jquery-rails'
 # To use debugger
 # gem 'ruby-debug19', :require => 'ruby-debug'
 
+group :development do
+  gem 'pry'
+  gem 'rails_best_practices'
+end
+
 group :test do
   # Pretty printed test output
-  gem 'turn', '~> 0.8.3', :require => false
+  #gem 'turn', '~> 0.8.3', :require => false
+  gem 'capybara'
+  gem 'factory_girl_rails'
+  gem 'database_cleaner'
+  gem 'guard-rspec'
+  gem 'libnotify'
+  gem 'rb-inotify'
+  gem 'spork', '> 0.9.0.rc'
+  gem 'guard-spork'
+  gem 'launchy'
 end
+
+gem 'rspec-rails', :group => [:test, :development]
