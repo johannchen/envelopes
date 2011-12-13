@@ -1,4 +1,7 @@
 Envelops::Application.routes.draw do
+  root :to => 'sessions#new'
+  resources :users, :sessions
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
