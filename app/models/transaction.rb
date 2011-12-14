@@ -1,3 +1,3 @@
 class Transaction < ActiveRecord::Base
-  belongs_to :envelop, :account, :user
+  belongs_to :envelope, :account, :user
 end
