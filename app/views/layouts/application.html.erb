@@ -1,18 +1,42 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Envelops</title>
+  <title>Envelopes</title>
   <%= stylesheet_link_tag    "application" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
 </head>
 <body>
+  <header>
+    <h1>Envelopes</h1>
+    <nav>
+      <ul>
+        <li>
+          <a href="">Envelopes</a>
+        </li>
+        <li>
+          <a href="">Transactions</a>
+        </li>
+        <li>
+          <a href="">Accounts</a>
+        </li>
+        <li>
+          <a href="">Reports</a>
+        </li>
+        <li>
+          <a href="">Feedback</a>
+        </li>
+      </ul>
+    </nav>
+  </header>
   <div class="notice">
     <% flash.each do |name, msg| %>
       <%= msg %>
     <% end %>
   </div>
 <%= yield %>
-
+  <footer>
+    <p></p>
+  </footer>
 </body>
 </html>
