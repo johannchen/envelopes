@@ -14,10 +14,11 @@ describe "Logins" do
       page.should have_content("Signed up!")
     end
 
-    it "Log in", :focus => :true do
+    it "Logs in" do
+      user = Factory(:user)
       visit root_url
-      fill_in "Email", :with => "johannchen@example.com"
-      fill_in "Password", :with => "secret"
+      fill_in "Email", :with => user.email 
+      fill_in "Password", :with => user.password
       click_button "Log In"
       page.should have_content("Logged in!")
     end
