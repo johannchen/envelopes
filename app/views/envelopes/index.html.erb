@@ -1,0 +1,56 @@
+<h1>Envelopes</h1>
+<section id="envelopes">
+  <ul class="tabs">
+    <li><a href="#monthly_envelopes">Monthly</a></li>
+    <li><a href="#annual_envelopes">Annual</a></li>
+  </ul>
+  <div id="monthly_envelopes">
+    <table class="list">
+      <tr>
+        <th>Envelopes</th>
+        <th>Monthly Budget</th>
+        <th>Current Amount</th>
+        <th>Status</th>
+      </tr>
+  <% @monthly_envelopes.each do |envelope| %>
+      <tr>
+        <td><%= envelope.name %></td>
+        <td><%= envelope.budget %></td>
+        <td></td>
+        <td></td>
+      </tr>
+  <% end %>
+    </table> 
+  </div>
+  <div id="annual_envelopes">
+    <table class="list">
+      <tr>
+        <th>Envelopes</th>
+        <th>Annual Budget</th>
+        <th>Current Amount</th>
+        <th>Status</th>
+      </tr>
+  <% @annual_envelopes.each do |envelope| %>
+      <tr>
+        <td><%= envelope.name %></td>
+        <td><%= envelope.budget %></td>
+        <td></td>
+        <td></td>
+      </tr>
+  <% end %>
+    </table>
+  </div>
+</section>
+
+<section id="recent_transactions">
+  <table class="list">
+  <% @recent_transactions.each do |t| %>
+    <tr>
+      <td><%= t.date %></td>
+      <td><%= t.envelope.name %></td>
+      <td><%= t.description %></td>
+      <td><%= t.amount %></td>
+    </tr>
+  <% end %>
+  </table>
+</section>
