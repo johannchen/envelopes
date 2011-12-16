@@ -36,7 +36,7 @@ describe "Envelopes" do
     end
     it "edits annual budget" do
     end
-    it "adds new envelope", :focus => :true do
+    it "adds new envelope" do
       visit envelopes_path
       click_link "Add Envelope"
       fill_in "Name", :with => "Shopping"
