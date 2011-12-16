@@ -1,0 +1,17 @@
+<%= form_for(@envelope) do |f| %>
+  <div class="field">
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :budget%>
+    <%= f.text_field :budget %>
+  </div>
+  <div class="field">
+    <%= f.radio_button :monthly, 1 %>
+    <%= f.label :monthly, "monthly" %>
+    <%= f.radio_button :monthly, 0 %>
+    <%= f.label :annual, "annual" %>
+  </div>
+  <div class="actions"><%= f.submit "Save" %></div>
+<% end %>

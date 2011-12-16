@@ -36,7 +36,15 @@ describe "Envelopes" do
     end
     it "edits annual budget" do
     end
-    it "adds new envelope" do
+    it "adds new envelope", :focus => :true do
+      visit envelopes_path
+      click_link "Add Envelope"
+      fill_in "Name", :with => "Shopping"
+      fill_in "Budget", :with => "400"
+      choose "envelope_monthly_1"
+      click_button "Save"
+      page.should have_content("Shopping")
+      page.should have_content("400")
     end
   end
 
