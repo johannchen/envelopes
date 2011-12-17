@@ -7,34 +7,34 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-  <header>
-    <h1>Envelopes</h1>
-    <nav>
-      <ul>
-        <li>
-          <a href="">Envelopes</a>
-        </li>
-        <li>
-          <a href="">Transactions</a>
-        </li>
-        <li>
-          <a href="">Accounts</a>
-        </li>
-        <li>
-          <a href="">Reports</a>
-        </li>
-        <li>
-          <a href="">Feedback</a>
-        </li>
-      </ul>
-    </nav>
-  </header>
+  <div class="topbar">
+    <div class="topbar-inner">
+      <div class="container">
+        <h3>Envelopes Budget</h3>
+        <ul class="nav">
+          <li><%= link_to 'Envelopes', envelopes_path %></li>
+          <li><%= link_to 'Transactions', transactions_path %></li>
+          <li><%= link_to 'Accounts', accounts_path %></li>
+          <li><a href="#">Reports</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
   <div class="notice">
     <% flash.each do |name, msg| %>
       <%= msg %>
     <% end %>
   </div>
-<%= yield %>
+  <div id="main">
+    <div class="container">
+      <div class="row">
+        <div class="span12">
+          <%= yield %>
+        </div>
+        <div class="span4"></div>
+      </div>
+    </div>
+  </div>
   <footer>
     <p></p>
   </footer>
