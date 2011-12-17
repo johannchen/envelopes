@@ -1,0 +1,29 @@
+<h1>Transactions</h1>
+<div class="toplinks">
+  <ul>
+    <li></li>
+    <li><%= link_to 'Record Expense', new_transaction_path %></li>
+    <li><%= link_to 'Add Income', new_transaction_path(:income => :true) %></li>
+  </ul>
+</div>
+<div id="transactions">
+  <table class="list">
+    <tr>
+      <th>Date</th>
+      <th>Type</th>
+      <th>Description</th>
+      <th>Amount</th>
+      <th>Action</th>
+    </tr>
+  <% @transactions.each do |t| %>
+    <tr>
+      <td><%= t.date %></td>
+      <td></td>
+      <td><%= t.description %></td>
+      <td><%= format_amount(t) %></td>
+      <td></td>
+    </tr>
+  <% end %>
+</table>
+<%= paginate @transactions %>
+</div>
