@@ -4,22 +4,26 @@ describe "Envelopes" do
   let(:user) { Factory(:user) }
 
   describe "Overview" do
-    it "displays monthly envelopes" do
-      e1 = Factory(:envelope, :user => user)
-      e2 = Factory(:envelope, :name => "Home", :user => user)
-      visit envelopes_path
-      page.should have_content(e1.name)
-      page.should have_content(e1.budget)
-      page.should have_content(e2.name)
-    end
-    it "displays annual/irregular envelopes" do
-      e1 = Factory(:envelope, :monthly => :false, :name => "Tax", :user => user)
-      e2 = Factory(:envelope, :monthly => :false, :name => "Birthday", :user => user)
-      visit envelopes_path
-      click_link "Annual"
-      page.should have_content(e1.name)
-      page.should have_content(e1.budget)
-      page.should have_content(e2.name)
+    context "with many envelopes" do
+      let(:e1) { Factory(:envelope, :user => user) }
+      let(:e2) { Factory(:envelope, :name => "Home", :user => user) }
+      let(:e3) { Factory(:envelope, :monthly => :false, :name => "Tax", :user => user) }
+      let(:e4) { Factory(:envelope, :monthly => :false, :name => "Birthday", :user => user) }
+      it "displays monthly envelopes" do
+        visit envelopes_path
+        page.should have_content(e1.name)
+        page.should have_content(e1.budget)
+        page.should have_content(e2.name)
+      end
+      it "displays annual/irregular envelopes" do
+        visit envelopes_path
+        click_link "Annual"
+        page.should have_content(e3.name)
+        page.should have_content(e3.budget)
+        page.should have_content(e4.name)
+      end
+      it "edits budget in place" do
+      end
     end
     it "displays recent transactions" do
       t1 = Factory(:transaction, :user => user)
@@ -31,11 +35,7 @@ describe "Envelopes" do
     end
   end
 
-  describe "Edit Budgets" do
-    it "edits monthly budget" do
-    end
-    it "edits annual budget" do
-    end
+  describe "Add Envelope" do
     it "adds new envelope" do
       visit envelopes_path
       click_link "Add Envelope"
@@ -45,6 +45,8 @@ describe "Envelopes" do
       click_button "Save"
       page.should have_content("Shopping")
       page.should have_content("400")
+    end
+    it "adds envelope label" do
     end
   end
 
