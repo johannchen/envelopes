@@ -4,10 +4,11 @@
     <li></li>
     <li><%= link_to 'Record Expense', new_transaction_path %></li>
     <li><%= link_to 'Add Income', new_transaction_path(:income => :true) %></li>
+    <li><a href="#upload_transactions">Upload Transactions</a></li>
   </ul>
 </div>
 <div id="transactions">
-  <table class="list">
+  <table>
     <tr>
       <th>Date</th>
       <th>Type</th>
@@ -20,10 +21,19 @@
       <td><%= t.date %></td>
       <td></td>
       <td><%= t.description %></td>
-      <td><%= format_amount(t) %></td>
+      <td><%= format_amount(t.amount) %></td>
       <td></td>
     </tr>
   <% end %>
 </table>
 <%= paginate @transactions %>
+</div>
+
+<div id="upload_transactions">
+  <%= form_tag({:action => :upload}, :multipart => true) do %>
+    <%= file_field_tag 'File' %>
+    <%= label_tag 'Account' %>
+    <%= select_tag :account_id, options_from_collection_for_select(Account.all, :id, :name) %>
+    <%= submit_tag 'Upload' %>
+  <% end %>
 </div>

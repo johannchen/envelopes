@@ -2,11 +2,11 @@ require 'spec_helper'
 
 describe "Transactions" do
   let(:user) { Factory(:user) }
+  before { visit transactions_path }
   describe "Transaction History" do
     before { 26.times { Factory(:transaction, :user => user) } }
 
     it "paginates every 10 transactions by default" do
-      visit transactions_path
       page.should have_no_link("Prev")
       page.should have_link("Next")
       click_link "Next"
@@ -29,13 +29,12 @@ describe "Transactions" do
   describe "Record Expense" do
     it "records expense and stay on the same form" do
       Factory(:envelope)
-      visit transactions_path
       click_link "Record Expense"
       fill_in "Date", :with => Date.today
-      fill_in "Description", :with => "Toyota"
+      fill_in "Name", :with => "Toyota"
       fill_in "Amount", :with => "500"
       select "Auto"
-      fill_in "Note", :with => "car loan payment"
+      fill_in "Description", :with => "car loan payment"
       click_button "Save"
       page.should have_content("Successfully recorded expense!")
       page.should have_content("Toyota")
@@ -45,7 +44,6 @@ describe "Transactions" do
 
   describe "Add Income" do
     it "adds income without allocation", :focus => :true do
-      visit transactions_path
       click_link "Add Income"
       fill_in "Date", :with => Date.today
       fill_in "Description", :with => "UCD"
@@ -60,5 +58,21 @@ describe "Transactions" do
   end
 
   describe "Upload Transactions with account" do
+    let(:account) { Factory(:account) }
+    context "with a valid csv file" do
+      it "uploads transactions from csv file", :focus => :true do
+        click_link "Upload Transactions"
+        attach_file "File", "/home/vadmin/Downloads/history.csv"
+        select account.name
+        click_button "Upload"
+        page.should have_content "Successfully uploaded transactions!"
+      end
+      it "creates envelope when envelope does not exist" do
+      end
+    end
+    context "with a invalid csv file" do
+      it "generates error message" do
+      end
+    end
   end
 end

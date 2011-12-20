@@ -1,9 +1,9 @@
 module TransactionsHelper
-  def format_amount(transaction)
-    if transaction.income 
-      "+" + number_to_currency(transaction.amount) 
+  def format_amount(amount)
+    if amount < 0 
+      "+" + number_to_currency(amount.abs) 
     else
-      number_to_currency(transaction.amount)
+      number_to_currency(amount)
     end
   end
 end

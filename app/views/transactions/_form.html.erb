@@ -4,6 +4,10 @@
     <%= f.text_field :date %>
   </div>
   <div class="field">
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
     <%= f.label :description %>
     <%= f.text_field :description %>
   </div>
@@ -15,13 +19,9 @@
     <%= f.label :envelope %>
     <%= f.collection_select :envelope_id, Envelope.all, :id, :name %>
   </div>
-  <div class="field">
-    <%= f.label :note %>
-    <%= f.text_field :note %>
-  </div>
   <% if params[:income] %>
   <div class="field">
-    <%= f.hidden_field :income, :value => :true %>
+    <%= hidden_field_tag :income, :true %>
   </div>
   <% end %>
   <div class="actions"><%= f.submit "Save" %></div>
