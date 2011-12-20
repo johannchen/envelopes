@@ -46,7 +46,7 @@ describe "Transactions" do
     it "adds income without allocation", :focus => :true do
       click_link "Add Income"
       fill_in "Date", :with => Date.today
-      fill_in "Description", :with => "UCD"
+      fill_in "Name", :with => "UCD"
       fill_in "Amount", :with => "1000"
       click_button "Save"
       page.should have_content("UCD")
@@ -60,12 +60,18 @@ describe "Transactions" do
   describe "Upload Transactions with account" do
     let(:account) { Factory(:account) }
     context "with a valid csv file" do
-      it "uploads transactions from csv file", :focus => :true do
+      before do
         click_link "Upload Transactions"
-        attach_file "File", "/home/vadmin/Downloads/history.csv"
+        #TODO: put test file in test folder
+        attach_file "transaction_file", "/home/vadmin/Downloads/history_valid.csv"
         select account.name
         click_button "Upload"
+      end
+      it "uploads transactions from csv file", :focus => :true do
         page.should have_content "Successfully uploaded transactions!"
+        page.should have_content "Breakpoint"
+      end
+      it "displays progress bar while uploading" do
       end
       it "creates envelope when envelope does not exist" do
       end

@@ -25,9 +25,16 @@ class TransactionsController < ApplicationController
 
   def upload
     require 'csv'
-    csv_text = IO.read(params[:file].tempfile.path)
+    # Heroku has tempfile class, which can access for the duration of the request
+    csv_text = IO.read(params[:transaction_file].tempfile.path)
     csv = CSV.parse(csv_text, :headers => true)
-    #csv.each do |row|
-    #end
+    csv.each do |row|
+      t = row.to_hash 
+      t["account_id"] = params[:account_id]
+      #TODO: check if creation fail
+      Transaction.create!(t.symbolize_keys)
+    end
+
+    redirect_to transactions_path, notice: "Successfully uploaded transactions!"
   end
 end

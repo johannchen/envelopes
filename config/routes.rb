@@ -2,10 +2,10 @@ Envelops::Application.routes.draw do
 
   root :to => 'sessions#new'
   resources :users, :sessions, :envelopes
+  resources :accounts 
   resources :transactions do
     put 'upload', :on => :collection
   end
-  resources :accounts 
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
