@@ -19,6 +19,10 @@
     <%= f.label :envelope %>
     <%= f.collection_select :envelope_id, Envelope.all, :id, :name %>
   </div>
+  <div class="field">
+    <%= f.label :account %>
+    <%= f.collection_select :account_id, Account.all, :id, :name %>
+  </div>
   <% if params[:income] %>
   <div class="field">
     <%= hidden_field_tag :income, :true %>

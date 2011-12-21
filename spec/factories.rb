@@ -21,7 +21,6 @@ FactoryGirl.define do
     date Date.today
     description "Toyota Car Loan"
     amount 500
-    income :false
     account
     envelope
     user
