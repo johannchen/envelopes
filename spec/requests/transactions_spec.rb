@@ -94,4 +94,21 @@ describe "Transactions" do
     it "assigns envelope in dropdown" do
     end
   end
+
+  describe "Transer Between Envelopes" do
+    it "transfers money between two envelopes", :focus => true do
+      t1 = Factory(:transaction, :envelope_name => "Auto", :amount => 800)
+      t2 = Factory(:transaction, :envelope_name => "Home", :amount => 1500)
+      visit transfer_envelopes_path
+      fill_in "Date", :with => Date.today 
+      fill_in "Description", :with => "Need more money in Auto"
+      fill_in "Amount", :with => "200"
+      select "Home", :from => "From"
+      select "Auto", :from => "To"
+      click_button "Transfer"
+      page.should have_content("Successfully transfer money")
+      page.should have_content("1000")
+      page.should have_content("1300")
+    end
+  end
 end

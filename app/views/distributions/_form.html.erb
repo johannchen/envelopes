@@ -11,5 +11,15 @@
     <%= f.label :amount %>
     <%= f.text_field :amount %>
   </div>
+
+  <%= fields_for :transactions do |t| %>
+    <% @envelopes.each do |e| %>
+    <div class="field">
+      <%= t.label e.name %>
+      <%= t.text_field e.name %>
+    </div>
+    <% end %>
+  <% end %>
+
   <div class="actions"><%= f.submit "Save" %></div>
 <% end %>

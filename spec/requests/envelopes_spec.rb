@@ -24,12 +24,21 @@ describe "Envelopes" do
       it "edits budget in place" do
       end
     end
-    it "displays recent transactions" do
-      t1 = Factory(:transaction, :user => user)
-      page.should have_content(t1.date)
-      page.should have_content(t1.envelope.name)
-      page.should have_content(t1.description)
-      page.should have_content(t1.amount)
+
+    context "with no transaction" do
+      it "hides recent transactions", :focus => true do
+        page.should have_no_content("Recent Transactions")
+      end
+    end
+    
+    context "with transactions" do
+      it "displays recent transactions" do
+        t1 = Factory(:transaction, :user => user)
+        page.should have_content(t1.date)
+        page.should have_content(t1.envelope.name)
+        page.should have_content(t1.description)
+        page.should have_content(t1.amount)
+      end
     end
   end
 
@@ -47,8 +56,4 @@ describe "Envelopes" do
     end
   end
 
-  describe "Transer Between Envelopes" do
-    it "transfers money between two envelopes" do
-    end
-  end
 end

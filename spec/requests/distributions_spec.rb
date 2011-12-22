@@ -8,7 +8,7 @@ describe "Distributions" do
     end
     context "with envelopes" do
       it "allocates money to envelopes", :focus => true do
-        auto = Factory(:envelope)
+        auto = Factory(:envelope, :name => "Auto", :budget => 600)
         home = Factory(:envelope, :name => "Home", :budget => 1000)
         paycheck = Factory(:transaction, :name => "UCD", :amount => 1000)
         visit new_distribution_path
@@ -19,7 +19,9 @@ describe "Distributions" do
         fill_in auto.name, :with => 400
         fill_in home.name, :with => 200
         click_button "Save"
-        page.should have_content("$400.00")
+        page.should have_content("Successfully distributed money")
+        page.should have_content("200")
+        
       end 
     end
   end

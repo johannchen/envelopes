@@ -18,14 +18,14 @@
       <tr>
         <td><%= envelope.name %></td>
         <td><%= envelope.budget %></td>
-        <td></td>
+        <td><%= envelope.current_amount %></td>
         <td></td>
       </tr>
   <% end %>
     </table> 
   </div>
   <div id="annual_envelopes">
-    <table class="list">
+    <table>
       <tr>
         <th>Envelopes</th>
         <th>Annual Budget</th>
@@ -36,7 +36,7 @@
       <tr>
         <td><%= envelope.name %></td>
         <td><%= envelope.budget %></td>
-        <td></td>
+        <td><%= envelope.current_amount %></td>
         <td></td>
       </tr>
   <% end %>
@@ -45,15 +45,18 @@
   <div id="add_envelope"><%= render 'form' %></div>
 </section>
 
+<% if @recent_transactions.present? %>
 <section id="recent_transactions">
-  <table class="list">
+  <h3>Recent Transactions</h3>
+  <table>
   <% @recent_transactions.each do |t| %>
     <tr>
       <td><%= t.date %></td>
-      <td><%= t.envelope.name %></td>
+      <td><%= t.envelope.name if t.envelope.present? %></td>
       <td><%= t.description %></td>
       <td><%= t.amount %></td>
     </tr>
   <% end %>
   </table>
-</section>
+  </section>
+<% end %>
