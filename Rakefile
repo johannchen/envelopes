@@ -4,4 +4,4 @@
 
 require File.expand_path('../config/application', __FILE__)
 
-Envelops::Application.load_tasks
+Envelopes::Application.load_tasks

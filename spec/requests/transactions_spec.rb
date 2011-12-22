@@ -59,7 +59,6 @@ describe "Transactions" do
       click_button "Save"
       page.should have_content("UCD")
       page.should have_content("$1,000.00")
-      page.should have_link("allocate")
     end
     it "allocates specific amount to envelopes" do
       

@@ -1,7 +1,7 @@
-Envelops::Application.routes.draw do
+Envelopes::Application.routes.draw do
 
   root :to => 'sessions#new'
-  resources :users, :sessions, :envelopes
+  resources :users, :sessions, :envelopes, :distributions
   resources :accounts 
   resources :transactions do
     put 'upload', :on => :collection

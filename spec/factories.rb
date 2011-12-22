@@ -19,8 +19,10 @@ FactoryGirl.define do
 
   factory :transaction do
     date Date.today
-    description "Toyota Car Loan"
+    name "Toyota"
+    description "Car Loan"
     amount 500
+    allocated false
     account
     envelope
     user

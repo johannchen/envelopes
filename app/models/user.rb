@@ -6,4 +6,5 @@ class User < ActiveRecord::Base
   has_many :envelopes 
   has_many :accounts
   has_many :transactions
+  has_many :distributions
 end
