@@ -1,0 +1,14 @@
+<h1>Transfer</h1>
+<%= form_tag :action => :create do %>
+  <%= label_tag "Date" %>
+  <%= text_field_tag "Date" %>
+  <%= label_tag "Description" %>
+  <%= text_field_tag "Description" %>
+  <%= label_tag "Amount" %>
+  <%= text_field_tag "Amount" %>
+  <%= label_tag "From" %>
+  <%= select_tag "From", options_from_collection_for_select(Envelope.all, :id, :name) %>
+  <%= label_tag "To" %>
+  <%= select_tag "To", options_from_collection_for_select(Envelope.all, :id, :name) %>
+  <%= submit_tag "Transfer" %>
+<% end %>
