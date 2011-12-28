@@ -3,7 +3,7 @@ class Envelope < ActiveRecord::Base
   belongs_to :user
 
   def current_amount
-    transactions.sum("amount")
+    transactions.sum("amount").to_f
   end
 
 end
