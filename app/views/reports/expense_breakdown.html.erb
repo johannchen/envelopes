@@ -1,0 +1,17 @@
+<h1>Expense Breakdown</h1>
+<div id="expense_breakdown">
+  <table>
+    <tr>
+      <th>Envelope</th>
+      <th>Amount</th>
+      <th>%</th>
+    </tr>
+  <% @envelopes.each do |e| %>
+    <tr>
+      <td><%= e.name %></td>
+      <td><%= number_to_currency(e.expense) %></td>
+      <td></td>
+    </tr>
+  <% end %>
+  </table>
+</div>
