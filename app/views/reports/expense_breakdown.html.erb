@@ -10,8 +10,9 @@
     <tr>
       <td><%= e.name %></td>
       <td><%= number_to_currency(e.expense) %></td>
-      <td></td>
+      <td><%= number_to_percentage(e.expense/@total * 100, :precision => 0) %></td>
     </tr>
   <% end %>
-  </table>
+ </table>
+ <p>Total: <%= number_to_currency(@total) %></p>
 </div>
