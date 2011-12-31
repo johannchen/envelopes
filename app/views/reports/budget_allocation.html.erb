@@ -1,0 +1,18 @@
+<h1>Budget Allocation</h1>
+<div id="budget_allocation">
+  <table>
+    <tr>
+      <th>Envelope</th>
+      <th>Amount</th>
+      <th>%</th>
+    </tr>
+  <% @envelopes.each do |e| %>
+    <tr>
+      <td><%= e.name %></td>
+      <td><%= number_to_currency(e.budget) %></td>
+      <td><%= number_to_percentage(e.budget/@total * 100, :precision => 0) %></td>
+    </tr>
+  <% end %>
+ </table>
+ <p>Total: <%= number_to_currency(@total) %></p>
+</div>

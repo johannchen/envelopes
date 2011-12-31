@@ -27,4 +27,12 @@ FactoryGirl.define do
     envelope
     user
   end
+
+  factory :envelope_with_transactions, :parent => :envelope do
+    after_create do |envelope|
+      FactoryGirl.create(:transaction, :envelope => envelope)
+      FactoryGirl.create(:transaction, :amount => -400, :envelope => envelope)
+      FactoryGirl.create(:transaction, :amount => -50, :envelope => envelope)
+    end
+  end
 end

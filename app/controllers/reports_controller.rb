@@ -9,4 +9,9 @@ class ReportsController < ApplicationController
 
   def expense_vs_budget
   end
+
+  def budget_allocation
+    @envelopes = Envelope.all
+    @total = Envelope.total_budget_by_month
+  end
 end

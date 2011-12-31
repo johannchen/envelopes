@@ -2,6 +2,7 @@ Envelopes::Application.routes.draw do
 
   get "reports/expense_breakdown" 
   get "reports/expense_vs_budget"
+  get "reports/budget_allocation"
 
   root :to => 'sessions#new'
   resources :users, :sessions, :envelopes, :distributions, :transfers
