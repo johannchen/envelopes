@@ -2,11 +2,14 @@ require 'spec_helper'
 
 describe "Transactions" do
   let(:user) { Factory(:user) }
-  let(:transaction) { Factory(:transaction) }
-  before { visit transactions_path }
+  let(:transaction) { Factory(:transaction, :user => user) }
+  before do 
+    login(user)
+    visit transactions_path 
+  end
 
   describe "Transaction History" do
-    it "paginates every 10 transactions by default" do
+    it "paginates every 10 transactions by default", :focus => true do
       26.times { Factory(:transaction, :user => user) } 
       page.should have_no_link("Prev")
       page.should have_link("Next")
