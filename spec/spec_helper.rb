@@ -25,6 +25,10 @@ Spork.prefork do
     # config.mock_with :mocha
     # config.mock_with :flexmock
     # config.mock_with :rr
+    #
+
+    config.include IntegrationSpecHelper, :type => :request
+
     config.mock_with :rspec
     config.treat_symbols_as_metadata_keys_with_true_values = true
     config.filter_run :focus => true

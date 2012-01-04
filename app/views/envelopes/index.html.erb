@@ -17,12 +17,13 @@
   <% @monthly_envelopes.each do |envelope| %>
       <tr>
         <td><%= envelope.name %></td>
-        <td><%= envelope.budget %></td>
-        <td><%= envelope.current_amount %></td>
+        <td><%= number_to_currency(envelope.budget) %></td>
+        <td><%= number_to_currency(envelope.current_amount) %></td>
         <td></td>
       </tr>
   <% end %>
-    </table> 
+</table> 
+<p>Total Monthly Envelopes <%= number_to_currency(@monthly_total_budget) %></p>
   </div>
   <div id="annual_envelopes">
     <table>
@@ -35,12 +36,13 @@
   <% @annual_envelopes.each do |envelope| %>
       <tr>
         <td><%= envelope.name %></td>
-        <td><%= envelope.budget %></td>
-        <td><%= envelope.current_amount %></td>
+        <td><%= number_to_currency(envelope.budget) %></td>
+        <td><%= number_to_currency(envelope.current_amount) %></td>
         <td></td>
       </tr>
   <% end %>
     </table>
+<p>Total Annual Envelopes <%= number_to_currency(@annual_total_budget) %></p>
   </div>
   <div id="add_envelope"><%= render 'form' %></div>
 </section>
@@ -54,7 +56,7 @@
       <td><%= t.date %></td>
       <td><%= t.envelope.name if t.envelope.present? %></td>
       <td><%= t.description %></td>
-      <td><%= t.amount %></td>
+      <td><%= number_to_currency(t.amount) %></td>
     </tr>
   <% end %>
   </table>

@@ -1,14 +1,14 @@
 class AccountsController < ApplicationController
+  load_and_authorize_resource
+
   def index
     @accounts = Account.all
   end
 
   def new
-    @account = Account.new
   end
 
   def create
-    @account = Account.new(params[:account])
     if @account.save
       redirect_to accounts_path, notice: "Successfully added account!"
     else
@@ -21,5 +21,4 @@ class AccountsController < ApplicationController
 
   def destroy
   end
-
 end

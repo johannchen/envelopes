@@ -1,10 +1,11 @@
 class TransactionsController < ApplicationController
+  load_and_authorize_resource
+
   def index
     @transactions = Transaction.page(params[:page]).per(10)
   end
 
   def new
-    @transaction = Transaction.new
   end
 
   def create

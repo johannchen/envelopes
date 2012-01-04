@@ -35,4 +35,13 @@ FactoryGirl.define do
       FactoryGirl.create(:transaction, :amount => -50, :envelope => envelope)
     end
   end
+
+  factory :user_with_envelopes, :parent => :user do
+    after_create do |user|
+      Factory(:envelope, :monthly => true, :name => "Auto", :budget => 250, :user => user) 
+      Factory(:envelope, :monthly => true, :name => "Home", :budget => 600, :user => user) 
+      Factory(:envelope, :monthly => false, :name => "Tax", :budget => 1200, :user => user) 
+      Factory(:envelope, :monthly => false, :name => "Birthday", :budget => 600, :user => user) 
+    end
+  end
 end

@@ -1,7 +1,11 @@
 class EnvelopesController < ApplicationController
+  load_and_authorize_resource
+
   def index
-    @monthly_envelopes = Envelope.where(:monthly => :true)
-    @annual_envelopes = Envelope.where(:monthly => :false)
+    @monthly_envelopes = current_user.envelopes.where(:monthly => :true)
+    @monthly_total_budget = @monthly_envelopes.sum("budget")
+    @annual_envelopes = current_user.envelopes.where(:monthly => :false)
+    @annual_total_budget = @annual_envelopes.sum("budget")
     @envelope = Envelope.new
     # TODO: list last 7 transactions
     @recent_transactions = Transaction.all
@@ -11,7 +15,6 @@ class EnvelopesController < ApplicationController
   end
 
   def create
-    @envelope = Envelope.new(params[:envelope])
     if @envelope.save
       redirect_to envelopes_path, notice: 'Sucessfully added envelope!'
     else
