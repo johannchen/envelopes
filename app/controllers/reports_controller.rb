@@ -1,6 +1,8 @@
 class ReportsController < ApplicationController
+  skip_authorization_check
+
   def expense_breakdown
-    @envelopes = Envelope.all
+    @envelopes = current_user.envelopes 
     #@total = 0
     #@envelopes.each do |e| 
     #  @total += e.expense
@@ -12,7 +14,7 @@ class ReportsController < ApplicationController
   end
 
   def budget_allocation
-    @envelopes = Envelope.all
-    @total = Envelope.total_budget_by_month
+    @envelopes = current_user.envelopes 
+    @total = current_user.total_budget_by_month
   end
 end

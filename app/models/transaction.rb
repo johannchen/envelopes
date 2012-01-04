@@ -19,7 +19,7 @@ class Transaction < ActiveRecord::Base
 
   def assign_envelope
     if @envelope_name
-      self.envelope = Envelope.find_or_create_by_name(@envelope_name)
+      self.envelope = Envelope.find_or_create_by_name_and_user_id(@envelope_name, self.user_id)
     end
   end
 end

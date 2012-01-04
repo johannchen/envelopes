@@ -6,7 +6,7 @@ class Ability
     if user.id.nil?
       cannot :manage, :all
     else
-      can :manage, Envelope, :user_id => user.id
+      can :manage, :all, :user_id => user.id
     end
   end
 end

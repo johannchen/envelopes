@@ -1,7 +1,11 @@
 require 'spec_helper'
 
 describe "Accounts" do
-  before { visit accounts_path }
+  let(:user) { Factory(:user) }
+  before do
+    login(user)
+    visit accounts_path 
+  end
 
   describe "Overview" do
     context "with no account" do

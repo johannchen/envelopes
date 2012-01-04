@@ -2,15 +2,14 @@ require 'spec_helper'
 
 describe "Transactions" do
   let(:user) { Factory(:user) }
-  let(:transaction) { Factory(:transaction, :user => user) }
   before do 
     login(user)
-    visit transactions_path 
   end
 
   describe "Transaction History" do
-    it "paginates every 10 transactions by default", :focus => true do
+    it "paginates every 10 transactions by default" do
       26.times { Factory(:transaction, :user => user) } 
+      visit transactions_path 
       page.should have_no_link("Prev")
       page.should have_link("Next")
       click_link "Next"
@@ -35,8 +34,9 @@ describe "Transactions" do
 
   describe "Record Expense" do
     it "records expense and stay on the same form" do
-      envelope = Factory(:envelope)
-      account = Factory(:account)
+      envelope = Factory(:envelope, :user => user)
+      account = Factory(:account, :user => user)
+      visit transactions_path 
       click_link "Record Expense"
       fill_in "Date", :with => Date.today
       fill_in "Name", :with => "Toyota"
@@ -52,8 +52,9 @@ describe "Transactions" do
   end
 
   describe "Add Income" do
-    it "adds income without allocation", :focus => true do
-      account = Factory(:account)
+    it "adds income without allocation" do
+      account = Factory(:account, :user => user)
+      visit transactions_path 
       click_link "Add Income"
       fill_in "Date", :with => Date.today
       fill_in "Name", :with => "UCD"
@@ -71,7 +72,8 @@ describe "Transactions" do
   describe "Upload Transactions with account" do
     context "with a valid csv file" do
       it "uploads transactions from csv file" do
-        account = Factory(:account)
+        account = Factory(:account, :user => user)
+        visit transactions_path 
         click_link "Upload Transactions"
         #TODO: put test file in test folder
         attach_file "transaction_file", "/home/vadmin/Downloads/history_valid.csv"

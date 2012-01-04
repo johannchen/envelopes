@@ -2,7 +2,7 @@ class TransactionsController < ApplicationController
   load_and_authorize_resource
 
   def index
-    @transactions = Transaction.page(params[:page]).per(10)
+    @transactions = current_user.transactions.page(params[:page]).per(10)
   end
 
   def new
@@ -10,7 +10,7 @@ class TransactionsController < ApplicationController
 
   def create
     params[:transaction][:amount] = "-" + params[:transaction][:amount] unless params[:income]
-    @transaction = Transaction.new(params[:transaction])
+    @transaction = current_user.transactions.build(params[:transaction])
     if @transaction.save
       redirect_to transactions_path, notice: "Successfully recorded expense!"
     else

@@ -30,9 +30,9 @@ FactoryGirl.define do
 
   factory :envelope_with_transactions, :parent => :envelope do
     after_create do |envelope|
-      FactoryGirl.create(:transaction, :envelope => envelope)
-      FactoryGirl.create(:transaction, :amount => -400, :envelope => envelope)
-      FactoryGirl.create(:transaction, :amount => -50, :envelope => envelope)
+      Factory(:transaction, :envelope => envelope)
+      Factory(:transaction, :amount => -400, :envelope => envelope)
+      Factory(:transaction, :amount => -50, :envelope => envelope)
     end
   end
 
@@ -42,6 +42,13 @@ FactoryGirl.define do
       Factory(:envelope, :monthly => true, :name => "Home", :budget => 600, :user => user) 
       Factory(:envelope, :monthly => false, :name => "Tax", :budget => 1200, :user => user) 
       Factory(:envelope, :monthly => false, :name => "Birthday", :budget => 600, :user => user) 
+    end
+  end
+
+  factory :user_with_transactions, :parent => :user do
+    after_create do |user|
+      Factory(:transaction, :amount => -400, :envelope_name => "Shopping", :user => user)
+      Factory(:transaction, :amount => -100, :envelope_name => "Food", :user => user)
     end
   end
 end

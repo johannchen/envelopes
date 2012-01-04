@@ -7,10 +7,11 @@
       <th>%</th>
     </tr>
   <% @envelopes.each do |e| %>
+    <% e.monthly ? budget = e.budget : budget = e.budget/12 %>
     <tr>
       <td><%= e.name %></td>
-      <td><%= number_to_currency(e.budget) %></td>
-      <td><%= number_to_percentage(e.budget/@total * 100, :precision => 0) %></td>
+      <td><%= number_to_currency(budget) %></td>
+      <td><%= number_to_percentage(budget/@total * 100, :precision => 0) %></td>
     </tr>
   <% end %>
  </table>

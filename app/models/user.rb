@@ -7,4 +7,12 @@ class User < ActiveRecord::Base
   has_many :accounts
   has_many :transactions
   has_many :distributions
+
+  def total_budget
+    envelopes.where(:monthly => true).sum("budget").to_f
+  end
+
+  def total_budget_by_month
+    total_budget + envelopes.where(:monthly => false).sum("budget") / 12
+  end
 end
