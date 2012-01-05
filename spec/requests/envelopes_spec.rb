@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe "Envelopes" do
-  let(:user) { Factory(:user_with_envelopes) }
+  let(:user) { Factory(:user_with_envelopes_and_transactions) }
   before do 
     login(user)
     visit envelopes_path 
@@ -28,14 +28,12 @@ describe "Envelopes" do
       end
     end
 
-    context "with no transaction" do
-      it "hides recent transactions" do
-        page.should have_no_content("Recent Transactions")
-      end
-    end
-    
     context "with transactions" do
       it "displays recent transactions" do
+        page.should have_content("Home")
+        page.should have_content("-$200.00")
+        page.should have_content("Auto")
+        page.should have_content("-$100.00")
       end
     end
   end

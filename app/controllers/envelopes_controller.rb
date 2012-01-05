@@ -7,8 +7,7 @@ class EnvelopesController < ApplicationController
     @annual_envelopes = current_user.envelopes.where(:monthly => :false)
     @annual_total_budget = @annual_envelopes.sum("budget")
     @envelope = Envelope.new
-    # TODO: list last 7 transactions
-    @recent_transactions = Transaction.all
+    @recent_transactions = current_user.recent_transactions 
   end
 
   def new

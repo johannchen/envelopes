@@ -15,4 +15,8 @@ class User < ActiveRecord::Base
   def total_budget_by_month
     total_budget + envelopes.where(:monthly => false).sum("budget") / 12
   end
+
+  def recent_transactions
+    transactions.order("date desc").limit(5)
+  end
 end
