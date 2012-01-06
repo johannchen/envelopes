@@ -1,11 +1,16 @@
 <%= form_for(@account) do |f| %>
-  <div class="field">
+<fieldset>
+  <div class="clearfix">
     <%= f.label :name %>
-    <%= f.text_field :name %>
+    <div class="input">
+      <%= f.text_field :name %>
+    </div>
   </div>
-  <div class="field">
+  <div class="clearfix">
     <%= f.label :note %>
-    <%= f.text_field :note %>
+    <div class="input">
+      <%= f.text_field :note %>
+    </div>
   </div>
-  <div class="actions"><%= f.submit "Save" %></div>
+  <div class="actions"><%= f.submit "Save", :class => "btn primary" %></div>
 <% end %>

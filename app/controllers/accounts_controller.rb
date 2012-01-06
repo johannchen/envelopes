@@ -3,6 +3,7 @@ class AccountsController < ApplicationController
 
   def index
     @accounts = current_user.accounts 
+    @account = Account.new
   end
 
   def new

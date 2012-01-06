@@ -1,32 +1,52 @@
 <%= form_for(@transaction) do |f| %>
-  <div class="field">
+<fieldset>
+  <div class="clearfix">
     <%= f.label :date %>
-    <%= f.text_field :date %>
+    <div class="input">
+      <%= f.text_field :date %>
+    </div>
   </div>
-  <div class="field">
+  <div class="clearfix">
     <%= f.label :name %>
-    <%= f.text_field :name %>
+    <div class="input">
+      <%= f.text_field :name %>
+    </div>
   </div>
-  <div class="field">
+  <div class="clearfix">
     <%= f.label :description %>
-    <%= f.text_field :description %>
+    <div class="input">
+      <%= f.text_field :description %>
+    </div>
   </div>
-  <div class="field">
+  <div class="clearfix">
     <%= f.label :amount %>
-    <%= f.text_field :amount %>
+    <div class="input">
+      <%= f.text_field :amount %>
+    </div>
   </div>
-  <div class="field">
+  <div class="clearfix">
     <%= f.label :envelope %>
-    <%= f.collection_select :envelope_id, Envelope.all, :id, :name %>
+    <div class="input">
+      <%= f.collection_select :envelope_id, Envelope.all, :id, :name %>
+    </div>
   </div>
-  <div class="field">
+  <div class="clearfix">
     <%= f.label :account %>
-    <%= f.collection_select :account_id, Account.all, :id, :name %>
+    <div class="input">
+      <%= f.collection_select :account_id, Account.all, :id, :name %>
+    </div>
   </div>
-  <% if params[:income] %>
-  <div class="field">
-    <%= hidden_field_tag :income, :true %>
+  <div class="clearfix">
+    <%= label_tag :type %>
+    <div class="input">
+      <%= radio_button_tag :income, false, :checked => true%>
+      <span>expense</span>
+    </div>
+    <div class="input">
+      <%= radio_button_tag :income, true %>
+      <span>Income</span>
+    </div>
   </div>
-  <% end %>
-  <div class="actions"><%= f.submit "Save" %></div>
+  <div class="actions"><%= f.submit "Save", :class => "btn primary" %></div>
+</fieldset>
 <% end %>

@@ -1,17 +1,36 @@
 <%= form_for(@envelope) do |f| %>
-  <div class="field">
+<fieldset>
+  <div class="clearfix">
     <%= f.label :name %>
+    <div class="input">
     <%= f.text_field :name %>
+    </div>
   </div>
-  <div class="field">
+  <div class="clearfix">
     <%= f.label :budget%>
+    <div class="input">
     <%= f.text_field :budget %>
+    </div>
   </div>
-  <div class="field">
-    <%= f.radio_button :monthly, 1 %>
-    <%= f.label :monthly, "monthly" %>
-    <%= f.radio_button :monthly, 0 %>
-    <%= f.label :annual, "annual" %>
+  <div class="clearfix">
+    <label id="envelope_type">Type</label>
+    <div class="input">
+      <ul class="inputs-list">
+        <li>
+        <label>
+          <%= f.radio_button :monthly, 1, :checked => true %>
+          <span>monthly</span>
+        </label>
+        </li>
+        <li>
+        <label>
+          <%= f.radio_button :monthly, 0 %>
+          <span>annual</span>
+        </label>
+        </li>
+      </ul>
   </div>
-  <div class="actions"><%= f.submit "Save" %></div>
+  </div>
+  <div class="actions"><%= f.submit "Save", :class => "btn primary" %></div>
+</fieldset>
 <% end %>

@@ -1,19 +1,25 @@
-<h1>Envelopes</h1>
+<div class="page-header">
+  <h1>Envelopes</h1>
+</div>
 <section id="envelopes">
-  <ul class="tabs">
-    <li><a href="#monthly_envelopes">Monthly</a></li>
+  <ul class="tabs" data-tabs="tabs">
+    <li class="active"><a href="#monthly_envelopes">Monthly</a></li>
     <li><a href="#annual_envelopes">Annual</a></li>
     <li><a href="#add_envelope">Add Envelope</a></li>
     <li><%= link_to "Distribution", new_distribution_path %></li>
   </ul>
-  <div id="monthly_envelopes">
+  <div class="tab-content">
+  <div class="active" id="monthly_envelopes">
     <table>
+      <thead>
       <tr>
         <th>Envelopes</th>
         <th>Monthly Budget</th>
         <th>Current Amount</th>
         <th>Status</th>
       </tr>
+    </thead>
+    <tbody>
   <% @monthly_envelopes.each do |envelope| %>
       <tr>
         <td><%= envelope.name %></td>
@@ -21,18 +27,22 @@
         <td><%= number_to_currency(envelope.current_amount) %></td>
         <td></td>
       </tr>
-  <% end %>
+    <% end %>
+  </tbody>
 </table> 
 <p>Total Monthly Envelopes <%= number_to_currency(@monthly_total_budget) %></p>
   </div>
   <div id="annual_envelopes">
     <table>
+      <thead>
       <tr>
         <th>Envelopes</th>
         <th>Annual Budget</th>
         <th>Current Amount</th>
         <th>Status</th>
       </tr>
+    </thead>
+    <tbody>
   <% @annual_envelopes.each do |envelope| %>
       <tr>
         <td><%= envelope.name %></td>
@@ -40,11 +50,13 @@
         <td><%= number_to_currency(envelope.current_amount) %></td>
         <td></td>
       </tr>
-  <% end %>
-    </table>
+    <% end %>
+  </tbody>
+</table>
 <p>Total Annual Envelopes <%= number_to_currency(@annual_total_budget) %></p>
   </div>
   <div id="add_envelope"><%= render 'form' %></div>
+  </div>
 </section>
 
 <% if @recent_transactions.present? %>

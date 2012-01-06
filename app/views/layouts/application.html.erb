@@ -10,7 +10,7 @@
   <div class="topbar">
     <div class="topbar-inner">
       <div class="container">
-        <h3>Envelopes Budget</h3>
+        <%= link_to 'Envelopes Budget', root_url, :class => 'brand' %>
         <ul class="nav">
           <li><%= link_to 'Envelopes', envelopes_path %></li>
           <li><%= link_to 'Transactions', transactions_path %></li>
@@ -20,12 +20,12 @@
       </div>
     </div>
   </div>
-  <div class="notice">
-    <% flash.each do |name, msg| %>
-      <%= msg %>
-    <% end %>
-  </div>
   <div id="main">
+    <div class="notice">
+      <% flash.each do |name, msg| %>
+        <%= msg %>
+      <% end %>
+    </div>
     <div class="container">
       <div class="row">
         <div class="span12">

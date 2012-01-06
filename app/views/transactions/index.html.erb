@@ -1,14 +1,16 @@
-<h1>Transactions</h1>
-<div class="toplinks">
-  <ul>
-    <li></li>
-    <li><%= link_to 'Record Expense', new_transaction_path %></li>
-    <li><%= link_to 'Add Income', new_transaction_path(:income => :true) %></li>
+<div class="page-header">
+  <h1>Transactions</h1>
+</div>
+<section id="transactions">
+  <ul class="tabs" data-tabs="tabs">
+    <li class="active"><a href="#history">Transaction History</a></li>
+    <li><a href="#record_transaction">Record Transaction</a></li>
     <li><a href="#upload_transactions">Upload Transactions</a></li>
   </ul>
-</div>
-<div id="transactions">
-  <table>
+  <div class="tab-content">
+  <div class="active" id="history">
+    <table>
+      <thead>
     <tr>
       <th>Date</th>
       <th>Type</th>
@@ -17,6 +19,8 @@
       <th>Envelope</th>
       <th>Action</th>
     </tr>
+  </thead>
+  <tbody>
   <% @transactions.each do |t| %>
     <tr>
       <td><%= t.date %></td>
@@ -27,10 +31,14 @@
       <td><%= link_to_if t.amount > 0, "allocate", new_transaction_path %></td>
     </tr>
   <% end %>
+  </tbody>
 </table>
 <%= paginate @transactions %>
 </div>
 
+<div id="record_transaction">
+  <%= render 'form' %>
+</div>
 <div id="upload_transactions">
   <%= form_tag({:action => :upload}, :multipart => true, :method => :put) do %>
     <%= file_field_tag :transaction_file %>
@@ -38,3 +46,6 @@
     <%= submit_tag 'Upload' %>
   <% end %>
 </div>
+</div>
+</section>
+
