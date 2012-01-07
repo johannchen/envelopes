@@ -14,13 +14,18 @@ describe "Logins" do
       page.should have_content("Signed up!")
     end
 
-    it "Logs in" do
+    it "Login and logout", :focus => true do
       user = Factory(:user)
       visit root_url
       fill_in "Email", :with => user.email 
       fill_in "Password", :with => user.password
       click_button "Log In"
       page.should have_content("Logged in!")
+      # page.should have_content(user.email)
+      page.should have_link("Log out")
+      current_path.should eq(envelopes_path)
+      click_link "Log out"
+      page.should have_content("Logged out!")
     end
   end
 end

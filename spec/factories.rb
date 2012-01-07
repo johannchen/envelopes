@@ -55,4 +55,17 @@ FactoryGirl.define do
       Factory(:transaction, :amount => -200, :envelope => e2, :user => user)
     end
   end
+
+  factory :user_with_accounts_and_envelopes_and_transactions, :parent => :user do
+    after_create do |user|
+      e1 = Factory(:envelope, :monthly => true, :name => "Auto", :budget => 250, :user => user) 
+      e2 = Factory(:envelope, :monthly => true, :name => "Home", :budget => 600, :user => user) 
+      e3 = Factory(:envelope, :monthly => false, :name => "Tax", :budget => 1200, :user => user) 
+      e4 = Factory(:envelope, :monthly => false, :name => "Birthday", :budget => 600, :user => user) 
+      Factory(:transaction, :amount => -100, :envelope => e1, :user => user)
+      Factory(:transaction, :amount => -200, :envelope => e2, :user => user)
+      Factory(:account, :name => "BOA", :user => user)
+      Factory(:account, :name => "Amazon", :user => user)
+    end
+  end
 end

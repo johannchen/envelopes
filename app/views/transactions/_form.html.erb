@@ -1,6 +1,17 @@
 <%= form_for(@transaction) do |f| %>
 <fieldset>
   <div class="clearfix">
+    <%= label_tag :type %>
+    <div class="input">
+      <%= radio_button_tag :income, 0, :checked => true%>
+      <span>Expense</span>
+    </div>
+    <div class="input">
+      <%= radio_button_tag :income, 1%>
+      <span>Income</span>
+    </div>
+  </div>
+  <div class="clearfix">
     <%= f.label :date %>
     <div class="input">
       <%= f.text_field :date %>
@@ -27,24 +38,13 @@
   <div class="clearfix">
     <%= f.label :envelope %>
     <div class="input">
-      <%= f.collection_select :envelope_id, Envelope.all, :id, :name %>
+      <%= f.collection_select :envelope_id, current_user.envelopes, :id, :name %>
     </div>
   </div>
   <div class="clearfix">
     <%= f.label :account %>
     <div class="input">
-      <%= f.collection_select :account_id, Account.all, :id, :name %>
-    </div>
-  </div>
-  <div class="clearfix">
-    <%= label_tag :type %>
-    <div class="input">
-      <%= radio_button_tag :income, false, :checked => true%>
-      <span>expense</span>
-    </div>
-    <div class="input">
-      <%= radio_button_tag :income, true %>
-      <span>Income</span>
+      <%= f.collection_select :account_id, current_user.accounts, :id, :name %>
     </div>
   </div>
   <div class="actions"><%= f.submit "Save", :class => "btn primary" %></div>

@@ -5,6 +5,7 @@ Envelopes::Application.routes.draw do
   get "reports/budget_allocation"
 
   root :to => 'sessions#new'
+  match "/logout" => "sessions#destroy", :as => :logout
   resources :users, :sessions, :envelopes, :distributions, :transfers
   resources :accounts 
   resources :transactions do

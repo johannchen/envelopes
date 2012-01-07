@@ -10,13 +10,16 @@
   <div class="topbar">
     <div class="topbar-inner">
       <div class="container">
-        <%= link_to 'Envelopes Budget', root_url, :class => 'brand' %>
+        <%= link_to 'Envelopes Budget', envelopes_url, :class => 'brand' %>
+        <% if current_user %>
         <ul class="nav">
           <li><%= link_to 'Envelopes', envelopes_path %></li>
           <li><%= link_to 'Transactions', transactions_path %></li>
           <li><%= link_to 'Accounts', accounts_path %></li>
           <li><a href="#">Reports</a></li>
+          <li> <%= link_to 'Log out', logout_path %></li>
         </ul>
+        <% end %>
       </div>
     </div>
   </div>

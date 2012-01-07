@@ -10,7 +10,7 @@ class TransactionsController < ApplicationController
   end
 
   def create
-    params[:transaction][:amount] = "-" + params[:transaction][:amount] unless params[:income]
+    params[:transaction][:amount] = "-" + params[:transaction][:amount] unless params[:income].to_i == 1
     @transaction = current_user.transactions.build(params[:transaction])
     if @transaction.save
       redirect_to transactions_path, notice: "Successfully recorded expense!"

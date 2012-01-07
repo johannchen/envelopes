@@ -25,7 +25,7 @@ describe "Accounts" do
   end
 
   describe "Add Account" do
-    it "adds new account", :focus => :true do
+    it "adds new account", :focus => true do
       click_link "Add Account"
       fill_in "Name", :with => "BOA"
       fill_in "Note", :with => "checking account"
