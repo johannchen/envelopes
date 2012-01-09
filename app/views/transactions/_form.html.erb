@@ -35,7 +35,7 @@
       <%= f.text_field :amount %>
     </div>
   </div>
-  <div class="clearfix">
+  <div id="transaction_envelope" class="clearfix">
     <%= f.label :envelope %>
     <div class="input">
       <%= f.collection_select :envelope_id, current_user.envelopes, :id, :name %>
