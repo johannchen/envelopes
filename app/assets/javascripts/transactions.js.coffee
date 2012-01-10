@@ -4,10 +4,13 @@
 #
 
 jQuery ->
+  $(".best_in_place").best_in_place()
+
   $("#transaction_date").datepicker dateFormat: 'yy-mm-dd'
+  
   $("input[name=income]").change ->
-    if $("input[name=income]").val() == 1
-      $("#transaction_envelope").hide
+    if $("input[name=income]:checked").val() == "1"
+      $("#transaction_envelope").hide()
     else
-      $("#transaction_envelope").show
+      $("#transaction_envelope").show()
     

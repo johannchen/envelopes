@@ -10,7 +10,11 @@ class TransactionsController < ApplicationController
   end
 
   def create
-    params[:transaction][:amount] = "-" + params[:transaction][:amount] unless params[:income].to_i == 1
+    if params[:income].to_i == 1
+      params[:transaction].delete(:envelope_id) 
+    else 
+      params[:transaction][:amount] = "-" + params[:transaction][:amount] 
+    end
     @transaction = current_user.transactions.build(params[:transaction])
     if @transaction.save
       redirect_to transactions_path, notice: "Successfully recorded expense!"
@@ -20,9 +24,15 @@ class TransactionsController < ApplicationController
   end
 
   def update
+    @transaction.update_attributes(params[:transaction])
+    respond_to do |format|
+      format.json { respond_with_bip(@transaction) }
+    end
   end
 
   def destroy
+    @transaction.destroy
+    redirect_to transactions_url
   end
 
   def upload

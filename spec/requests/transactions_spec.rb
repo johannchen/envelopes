@@ -21,6 +21,8 @@ describe "Transactions" do
     end
     it "provides options of 25/50/100 for paginations" do
     end
+    it "removes transaction" do
+    end
     it "downloads as CSV" do 
     end
   end

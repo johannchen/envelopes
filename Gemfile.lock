@@ -32,7 +32,7 @@ GEM
     addressable (2.2.6)
     arel (2.2.1)
     bcrypt-ruby (3.0.1)
-    best_in_place (1.0.2)
+    best_in_place (1.0.4)
       jquery-rails
       rails (~> 3.1.0)
     builder (3.0.0)
@@ -191,7 +191,7 @@ PLATFORMS
 
 DEPENDENCIES
   bcrypt-ruby (~> 3.0.0)
-  best_in_place
+  best_in_place (~> 1.0.4)
   cancan
   capybara
   coffee-rails (~> 3.1.1)

@@ -4,6 +4,7 @@ class Transaction < ActiveRecord::Base
   belongs_to :account
   belongs_to :user
 
+  attr_reader :account_name
   attr_writer :envelope_name
   before_save :assign_envelope
 
@@ -13,6 +14,10 @@ class Transaction < ActiveRecord::Base
 
   def envelope_name
     @envelope_name || envelope.name if envelope
+  end
+
+  def account_name
+    @account_name || account.name if account
   end
 
   private

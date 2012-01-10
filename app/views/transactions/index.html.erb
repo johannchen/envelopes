@@ -13,22 +13,24 @@
       <thead>
     <tr>
       <th>Date</th>
-      <th>Type</th>
       <th>Amount</th>
-      <th>Description</th>
+      <th>Name</th>
       <th>Envelope</th>
+      <th>Account</th>
+      <th>Description</th>
       <th>Action</th>
     </tr>
   </thead>
   <tbody>
   <% @transactions.each do |t| %>
     <tr>
-      <td><%= t.date %></td>
-      <td></td>
-      <td><%= number_to_currency(t.amount) %></td>
-      <td><%= t.name %></td>
-      <td><%= t.envelope_name %></td>
-      <td><%= link_to_if t.amount > 0, "allocate", new_transaction_path %></td>
+      <td><%= best_in_place t, :date %></td>
+      <td><%= best_in_place t, :amount, :display_with => :number_to_currency %></td>
+      <td><%= best_in_place t, :name %></td>
+      <td><%= best_in_place t, :envelope_id, :type => :select, :collection => current_user.envelopes.map{|e| [e.id, e.name]}, :display_as => :envelope_name  %></td>
+      <td><%= t.account_name %></td>
+      <td><%= best_in_place t, :description %></td>
+      <td><%= link_to "remove", t, :class => "ui-icon ui-icon-trash", :title => "remove", :confirm => "Are you sure?", :method => :delete %></td>
     </tr>
   <% end %>
   </tbody>
