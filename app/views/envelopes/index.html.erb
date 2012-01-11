@@ -6,7 +6,8 @@
     <li class="active"><a href="#monthly_envelopes">Monthly</a></li>
     <li><a href="#annual_envelopes">Annual</a></li>
     <li><a href="#add_envelope">Add Envelope</a></li>
-    <li><%= link_to "Distribution", new_distribution_path %></li>
+    <li><a href="#distribution">Distribution</a></li>
+    <li><a href="#transfer">Transfer</a></li>
   </ul>
   <div class="tab-content">
   <div class="active" id="monthly_envelopes">
@@ -16,22 +17,45 @@
         <th>Envelopes</th>
         <th>Monthly Budget</th>
         <th>Current Amount</th>
-        <th>Status</th>
+        <th>Action</th>
       </tr>
     </thead>
     <tbody>
   <% @monthly_envelopes.each do |envelope| %>
       <tr>
-        <td><%= envelope.name %></td>
-        <td><%= number_to_currency(envelope.budget) %></td>
+        <td><%= best_in_place envelope, :name %></td>
+        <td><%= best_in_place envelope, :budget, :display_with => :number_to_currency %></td>
         <td><%= number_to_currency(envelope.current_amount) %></td>
         <td></td>
       </tr>
     <% end %>
+    <tr>
+      <td><strong>Total</strong></td>
+      <td><%= number_to_currency(@monthly_total_budget) %></td>
+      <td><%= number_to_currency(current_user.total_monthly_current_amount) %></td<>
+      <td></td>
+    </tr>
+
   </tbody>
 </table> 
-<p>Total Monthly Envelopes <%= number_to_currency(@monthly_total_budget) %></p>
+<p>Unallocate Money <%= number_to_currency(current_user.unallocated_amount) %></p>
+
+<% if @recent_transactions.present? %>
+<div id="recent_transactions">
+  <h3>Recent Transactions</h3>
+  <table>
+  <% @recent_transactions.each do |t| %>
+    <tr>
+      <td><%= t.date %></td>
+      <td><%= t.envelope.name if t.envelope.present? %></td>
+      <td><%= t.description %></td>
+      <td><%= number_to_currency(t.amount) %></td>
+    </tr>
+  <% end %>
+  </table>
   </div>
+<% end %>
+</div>
   <div id="annual_envelopes">
     <table>
       <thead>
@@ -45,8 +69,8 @@
     <tbody>
   <% @annual_envelopes.each do |envelope| %>
       <tr>
-        <td><%= envelope.name %></td>
-        <td><%= number_to_currency(envelope.budget) %></td>
+        <td><%= best_in_place envelope, :name %></td>
+        <td><%= best_in_place envelope, :budget, :display_with => :number_to_currency %></td>
         <td><%= number_to_currency(envelope.current_amount) %></td>
         <td></td>
       </tr>
@@ -56,21 +80,11 @@
 <p>Total Annual Envelopes <%= number_to_currency(@annual_total_budget) %></p>
   </div>
   <div id="add_envelope"><%= render 'form' %></div>
+  <div id="distribution">
+    <%= render 'distributions/form' %> 
   </div>
+  <div id="transfer">
+    <%= render 'transfers/form' %> 
+  </div>
+</div>
 </section>
-
-<% if @recent_transactions.present? %>
-<section id="recent_transactions">
-  <h3>Recent Transactions</h3>
-  <table>
-  <% @recent_transactions.each do |t| %>
-    <tr>
-      <td><%= t.date %></td>
-      <td><%= t.envelope.name if t.envelope.present? %></td>
-      <td><%= t.description %></td>
-      <td><%= number_to_currency(t.amount) %></td>
-    </tr>
-  <% end %>
-  </table>
-  </section>
-<% end %>

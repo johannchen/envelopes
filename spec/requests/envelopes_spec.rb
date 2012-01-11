@@ -9,12 +9,14 @@ describe "Envelopes" do
 
   describe "Overview" do
     context "with many envelopes" do
-      it "displays monthly envelopes" do
+      it "displays monthly envelopes", :focus => true do
         page.should have_content("Auto")
         page.should have_content("$250.00")
         page.should have_content("Home")
         page.should have_content("$600.00")
         page.should have_content("$850.00")
+        page.should have_content("$50.00")
+        page.should have_content("Unallocate Money $600.00")
       end
       it "displays annual/irregular envelopes" do
         click_link "Annual"

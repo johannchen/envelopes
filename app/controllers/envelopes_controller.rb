@@ -1,5 +1,6 @@
 class EnvelopesController < ApplicationController
   load_and_authorize_resource
+  respond_to :json, :only => :update
 
   def index
     @monthly_envelopes = current_user.envelopes.where(:monthly => :true)
@@ -8,6 +9,8 @@ class EnvelopesController < ApplicationController
     @annual_total_budget = @annual_envelopes.sum("budget")
     @envelope = Envelope.new
     @recent_transactions = current_user.recent_transactions 
+    @distribution = Distribution.new
+    @envelopes = current_user.envelopes 
   end
 
   def new
@@ -22,6 +25,8 @@ class EnvelopesController < ApplicationController
   end
 
   def update
+    @envelope.update_attributes(params[:envelope])
+    respond_with_bip(@envelope)
   end
 
   def destroy

@@ -2,7 +2,7 @@ class TransactionsController < ApplicationController
   load_and_authorize_resource
 
   def index
-    @transactions = current_user.transactions.page(params[:page]).per(10)
+    @transactions = current_user.transactions.unallocated.page(params[:page]).per(10)
     @transaction = Transaction.new
   end
 

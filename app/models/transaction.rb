@@ -8,8 +8,16 @@ class Transaction < ActiveRecord::Base
   attr_writer :envelope_name
   before_save :assign_envelope
 
-  def self.unallocated_amount
-    self.where("amount > 0 and allocated = false").sum("amount") - self.where("amount > 0 and allocated = true").sum("amount")
+  scope :income, where("amount > 0 and allocated = false")
+  scope :allocated , where("amount > 0 and allocated = true")
+  scope :unallocated , where("allocated = false")
+
+  def self.total_income
+    income.sum("amount")
+  end
+
+  def self.total_allocated
+    allocated.sum("amount")
   end
 
   def envelope_name

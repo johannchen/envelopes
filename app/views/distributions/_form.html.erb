@@ -1,25 +1,37 @@
+<p>You currently have <%= number_to_currency(current_user.unallocated_amount.to_f) %> in Unallocated Money.</p>
+
 <%= form_for(@distribution) do |f| %>
-  <div class="field">
+<fieldset>
+  <div class="clearfix">
     <%= f.label :date %>
-    <%= f.text_field :date %>
+    <div class="input">
+      <%= f.text_field :date %>
+    </div>
   </div>
-  <div class="field">
+  <div class="clearfix">
     <%= f.label :name %>
-    <%= f.text_field :name %>
+    <div class="input">
+      <%= f.text_field :name %>
+    </div>
   </div>
-  <div class="field">
+  <div class="clearfix">
     <%= f.label :amount %>
-    <%= f.text_field :amount %>
+    <div class="input">
+      <%= f.text_field :amount %>
+    </div>
   </div>
 
   <%= fields_for :transactions do |t| %>
     <% @envelopes.each do |e| %>
-    <div class="field">
+    <div class="clearfix">
       <%= t.label e.name %>
-      <%= t.text_field e.name %>
+      <div class="input">
+        <%= t.text_field e.name %>
+      </div>
     </div>
     <% end %>
   <% end %>
 
-  <div class="actions"><%= f.submit "Save" %></div>
+  <div class="actions"><%= f.submit "Save", class: "btn primary" %></div>
+</fieldset>
 <% end %>

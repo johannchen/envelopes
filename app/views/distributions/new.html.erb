@@ -1,5 +1,5 @@
 <h1>Distribution</h1>
-<p>You currently have <%= number_to_currency(Transaction.unallocated_amount) %> in Unallocated Money.</p>
+<p>You currently have <%= number_to_currency(current_user.unallocated_amount.to_f) %> in Unallocated Money.</p>
 
 <div id="distribution">
   <%= render 'form' %>

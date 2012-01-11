@@ -1,0 +1,37 @@
+<%= form_tag :controller => :transfers, :action => :create do %>
+<fieldset>
+  <div class="clearfix">
+  <%= label_tag "Date" %>
+    <div class="input">
+      <%= text_field_tag "transfer_date" %>
+    </div>
+  </div>
+  <div class="clearfix">
+  <%= label_tag "Description" %>
+    <div class="input">
+      <%= text_field_tag "description" %>
+    </div>
+  </div>
+  <div class="clearfix">
+  <%= label_tag "Amount" %>
+    <div class="input">
+      <%= text_field_tag "amount" %>
+    </div>
+  </div>
+  <div class="clearfix">
+  <%= label_tag "From" %>
+    <div class="input">
+      <%= select_tag "from", options_from_collection_for_select(@envelopes, :id, :name) %>
+    </div>
+  </div>
+  <div class="clearfix">
+  <%= label_tag "To" %>
+    <div class="input">
+      <%= select_tag "to", options_from_collection_for_select(@envelopes, :id, :name) %>
+    </div>
+  </div>
+  <div class="actions">
+    <%= submit_tag "Transfer", class: "btn primary" %>
+  </div>
+</fieldset>
+<% end %>

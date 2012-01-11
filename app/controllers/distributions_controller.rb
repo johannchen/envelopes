@@ -1,9 +1,12 @@
 class DistributionsController < ApplicationController
+  #TODO authorize 
+  skip_authorization_check
+
   before_filter :allocate_envelopes, :only => :create
 
   def new
     @distribution = Distribution.new
-    @envelopes = Envelope.all
+    @envelopes = current_user.envelopes 
   end
 
   def create
@@ -19,7 +22,7 @@ class DistributionsController < ApplicationController
   def allocate_envelopes
     transactions = params[:transactions]
     transactions.each do |key, value|
-      Transaction.create(:envelope_name => key, :amount => value, :allocated => true) unless value.blank?
+      current_user.transactions.create(:envelope_name => key, :amount => value, :allocated => true, :date => params[:distribution][:date] ) unless value.blank?
     end
   end
 end
