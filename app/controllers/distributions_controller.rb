@@ -22,7 +22,7 @@ class DistributionsController < ApplicationController
   def allocate_envelopes
     transactions = params[:transactions]
     transactions.each do |key, value|
-      current_user.transactions.create(:envelope_name => key, :amount => value, :allocated => true, :date => params[:distribution][:date] ) unless value.blank?
+      current_user.transactions.create(:envelope_name => key, :amount => value, :allocated => true, :date => params[:distribution][:date] ) unless value.blank? or value.to_f == 0
     end
   end
 end

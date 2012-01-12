@@ -11,6 +11,8 @@ class EnvelopesController < ApplicationController
     @recent_transactions = current_user.recent_transactions 
     @distribution = Distribution.new
     @envelopes = current_user.envelopes 
+    @unallocated_amount = current_user.unallocated_amount.to_f
+    @total_refill_amount = current_user.total_refill_amount
   end
 
   def new

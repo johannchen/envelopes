@@ -12,12 +12,14 @@ class TransactionsController < ApplicationController
   def create
     if params[:income].to_i == 1
       params[:transaction].delete(:envelope_id) 
+      msg = "Successfully recorded income!"
     else 
       params[:transaction][:amount] = "-" + params[:transaction][:amount] 
+      msg = "Successfully recorded expense!"
     end
     @transaction = current_user.transactions.build(params[:transaction])
     if @transaction.save
-      redirect_to transactions_path, notice: "Successfully recorded expense!"
+      redirect_to transactions_path, notice: msg
     else
       render 'new'
     end

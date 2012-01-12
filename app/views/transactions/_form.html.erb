@@ -1,3 +1,6 @@
+<% if current_user.accounts.blank? or current_user.envelopes.blank? %>
+  <p>You don't have accounts or envelopes. Please <a href="/accounts#add_account">add accounts</a> or <a href="/envelopes#add_envelope">add envelopes</a>.</p>
+<% else %>
 <%= form_for(@transaction) do |f| %>
 <fieldset>
   <div class="clearfix">
@@ -49,4 +52,5 @@
   </div>
   <div class="actions"><%= f.submit "Save", :class => "btn primary" %></div>
 </fieldset>
+<% end %>
 <% end %>

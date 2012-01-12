@@ -20,8 +20,12 @@ class User < ActiveRecord::Base
     envelopes.where(:monthly => true).inject(0.0) { |sum, e| sum + e.current_amount }
   end
 
+  def total_refill_amount
+    envelopes.inject(0.0) { |sum, e| sum + e.refill_amount }
+  end
+
   def recent_transactions
-    transactions.order("date desc").limit(5)
+    transactions.unallocated.order("date desc").limit(5)
   end
 
   def unallocated_amount

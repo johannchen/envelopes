@@ -26,16 +26,12 @@
   </div>
   <header>
   </header>
-  <div class="notice">
-    <% flash.each do |name, msg| %>
-      <%= msg %>
-    <% end %>
-  </div>
  
   <div class="container">
     <section id="main">
     <div class="row">
       <div class="span12">
+        <%= flash_messages %>
         <%= yield %>
       </div>
       <div class="span4"></div>

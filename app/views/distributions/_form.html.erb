@@ -1,5 +1,8 @@
-<p>You currently have <%= number_to_currency(current_user.unallocated_amount.to_f) %> in Unallocated Money.</p>
+<p>You currently have <%= number_to_currency(@unallocated_amount) %> in Unallocated Money.</p>
 
+<% if @unallocated_amount <= 0 %>
+  <p>Please <a href="/transactions#record_transaction">add income</a> and envelopes</p>
+<% else %>
 <%= form_for(@distribution) do |f| %>
 <fieldset>
   <div class="clearfix">
@@ -17,7 +20,7 @@
   <div class="clearfix">
     <%= f.label :amount %>
     <div class="input">
-      <%= f.text_field :amount %>
+      <%= f.text_field :amount, :value => @total_refill_amount %>
     </div>
   </div>
 
@@ -26,7 +29,8 @@
     <div class="clearfix">
       <%= t.label e.name %>
       <div class="input">
-        <%= t.text_field e.name %>
+        <%= t.text_field e.name, :value => e.refill_amount %>
+        <span><%= number_to_currency(e.current_amount) %>/<%= number_to_currency(e.budget) %></span>
       </div>
     </div>
     <% end %>
@@ -34,4 +38,5 @@
 
   <div class="actions"><%= f.submit "Save", class: "btn primary" %></div>
 </fieldset>
+<% end %>
 <% end %>

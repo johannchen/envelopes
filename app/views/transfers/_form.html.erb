@@ -21,13 +21,13 @@
   <div class="clearfix">
   <%= label_tag "From" %>
     <div class="input">
-      <%= select_tag "from", options_from_collection_for_select(@envelopes, :id, :name) %>
+      <%= select_tag "from", options_from_collection_for_select(@envelopes, :id, :name_amount) %>
     </div>
   </div>
   <div class="clearfix">
   <%= label_tag "To" %>
     <div class="input">
-      <%= select_tag "to", options_from_collection_for_select(@envelopes, :id, :name) %>
+      <%= select_tag "to", options_from_collection_for_select(@envelopes, :id, :name_amount) %>
     </div>
   </div>
   <div class="actions">

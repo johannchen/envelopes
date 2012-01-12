@@ -9,7 +9,7 @@ class Transaction < ActiveRecord::Base
   before_save :assign_envelope
 
   scope :income, where("amount > 0 and allocated = false")
-  scope :allocated , where("amount > 0 and allocated = true")
+  scope :allocated , where("allocated = true")
   scope :unallocated , where("allocated = false")
 
   def self.total_income

@@ -2,7 +2,15 @@ require 'spec_helper'
 
 describe "Logins" do
   describe "Authentication" do
-    it "Signs up new user" do
+    it "shows invalid user error message", :focus = true do
+      visit root_url
+      fill_in "Email", :with => "whatever@mail.com" 
+      fill_in "Password", :with => "whatever" 
+      click_button "Log In"
+      page.should have_content("Invalid email or password") 
+    end
+
+    it "signs up new user" do
       visit root_url
       page.should have_link("sign up")
       click_link "sign up"
