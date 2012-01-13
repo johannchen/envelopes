@@ -14,13 +14,13 @@
   <div class="clearfix">
     <%= f.label :name %>
     <div class="input">
-      <%= f.text_field :name %>
+      <%= f.text_field :name, :required => "required" %>
     </div>
   </div>
   <div class="clearfix">
     <%= f.label :email %>
     <div class="input">
-      <%= f.text_field :email %>
+      <%= f.email_field :email, :required => "required" %>
     </div>
   </div>
   <div class="clearfix">

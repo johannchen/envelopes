@@ -1,0 +1,30 @@
+    <table>
+      <thead>
+      <tr>
+        <th class="envelope_name">Envelopes</th>
+        <th class="budget">Monthly Budget</th>
+        <th class="current_amount">Current Amount</th>
+        <th class="meter">Meter</th>
+      </tr>
+    </thead>
+    <tbody>
+  <% @monthly_envelopes.each do |envelope| %>
+      <tr>
+        <td><%= best_in_place envelope, :name %></td>
+        <td><%= best_in_place envelope, :budget, :display_with => :number_to_currency %></td>
+        <td><%= number_to_currency(envelope.current_amount) %></td>
+        <td><meter min=0 max=<%= envelope.budget %> value=<%= envelope.current_amount %>></meter></td>
+      </tr>
+    <% end %>
+    <tr>
+      <td><strong>Total</strong></td>
+      <td><%= number_to_currency(@monthly_total_budget) %></td>
+      <td><%= number_to_currency(current_user.total_monthly_current_amount) %></td<>
+      <td></td>
+    </tr>
+
+  </tbody>
+</table> 
+<p>Unallocate Money <%= number_to_currency(current_user.unallocated_amount) %></p>
+
+

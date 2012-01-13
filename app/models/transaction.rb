@@ -6,6 +6,7 @@ class Transaction < ActiveRecord::Base
 
   validates_presence_of :date, :name, :amount
 
+  self.per_page = 10
   attr_reader :account_name
   attr_writer :envelope_name
   before_save :assign_envelope

@@ -7,7 +7,8 @@ gem 'rails', '3.1.3'
 
 gem 'pg'
 gem 'cancan'
-gem 'kaminari'
+gem 'will_paginate', '~> 3.0'
+gem 'bootstrap-will_paginate'
 gem 'best_in_place', '~> 1.0.4'
 
 # Gems used only for assets and not required
