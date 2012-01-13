@@ -8,19 +8,19 @@
   <div class="clearfix">
     <%= f.label :date %>
     <div class="input">
-      <%= f.text_field :date %>
+      <%= f.text_field :date, :required => "required" %>
     </div>
   </div>
   <div class="clearfix">
     <%= f.label :name %>
     <div class="input">
-      <%= f.text_field :name %>
+      <%= f.text_field :name, :required => "required" %>
     </div>
   </div>
   <div class="clearfix">
     <%= f.label :amount %>
     <div class="input">
-      <%= f.text_field :amount, :value => @total_refill_amount %>
+      <%= f.text_field :amount, :value => @total_refill_amount, :required => "required" %>
     </div>
   </div>
 

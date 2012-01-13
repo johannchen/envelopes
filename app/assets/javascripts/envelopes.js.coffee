@@ -4,6 +4,6 @@
 
 jQuery ->
   $(".tabs").tabs
-
+  $(".alert-message").effect "fade", "", 2000 
   $("#transfer_date").datepicker dateFormat: "yy-mm-dd"
   

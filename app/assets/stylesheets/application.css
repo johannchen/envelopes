@@ -17,4 +17,16 @@ body {
   min-height: 600px;
 }
 
+/* Table ----------*/
+th.envelope_name, th.budget, th.current_amount {
+  width: 20%
+}
+
+th.meter {
+  width: 40%
+}
+
+meter {
+  width: 100%
+}
 

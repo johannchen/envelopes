@@ -14,10 +14,10 @@
     <table>
       <thead>
       <tr>
-        <th>Envelopes</th>
-        <th>Monthly Budget</th>
-        <th>Current Amount</th>
-        <th>Meter</th>
+        <th class="envelope_name">Envelopes</th>
+        <th class="budget">Monthly Budget</th>
+        <th class="current_amount">Current Amount</th>
+        <th class="meter">Meter</th>
       </tr>
     </thead>
     <tbody>
@@ -26,7 +26,7 @@
         <td><%= best_in_place envelope, :name %></td>
         <td><%= best_in_place envelope, :budget, :display_with => :number_to_currency %></td>
         <td><%= number_to_currency(envelope.current_amount) %></td>
-        <td><meter min=0 max=<%= envelope.budget %> value=<%= envelope.current_amount %>>12cm</meter></td>
+        <td><meter min=0 max=<%= envelope.budget %> value=<%= envelope.current_amount %>></meter></td>
       </tr>
     <% end %>
     <tr>
@@ -60,10 +60,10 @@
     <table>
       <thead>
       <tr>
-        <th>Envelopes</th>
-        <th>Annual Budget</th>
-        <th>Current Amount</th>
-        <th>Status</th>
+        <th class="envelope_name">Envelopes</th>
+        <th class="budget">Annual Budget</th>
+        <th class="current_amount">Current Amount</th>
+        <th class="meter">Meter</th>
       </tr>
     </thead>
     <tbody>
@@ -72,7 +72,7 @@
         <td><%= best_in_place envelope, :name %></td>
         <td><%= best_in_place envelope, :budget, :display_with => :number_to_currency %></td>
         <td><%= number_to_currency(envelope.current_amount) %></td>
-        <td></td>
+        <td><meter min=0 max=<%= envelope.budget %> value=<%= envelope.current_amount %>></meter></td>
       </tr>
     <% end %>
     <tr>
