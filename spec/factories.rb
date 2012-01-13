@@ -53,6 +53,7 @@ FactoryGirl.define do
       e4 = Factory(:envelope, :monthly => false, :name => "Birthday", :budget => 600, :user => user) 
       Factory(:transaction, :amount => -100, :envelope => e1, :user => user)
       Factory(:transaction, :amount => -150, :envelope => e2, :user => user)
+      Factory(:transaction, :amount => -300, :envelope => e4, :user => user)
       Factory(:transaction, :amount => 400, :envelope => e1, :allocated => true, :user => user)
       Factory(:transaction, :amount => 3000, :envelope => nil, :user => user)
     end

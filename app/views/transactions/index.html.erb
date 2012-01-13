@@ -42,11 +42,7 @@
   <%= render 'form' %>
 </div>
 <div id="upload_transactions">
-  <%= form_tag({:action => :upload}, :multipart => true, :method => :put) do %>
-    <%= file_field_tag :transaction_file %>
-    <%= select_tag :account_id, options_from_collection_for_select(Account.all, :id, :name) %>
-    <%= submit_tag 'Upload' %>
-  <% end %>
+  <%= render 'upload_form' %>
 </div>
 </div>
 </section>

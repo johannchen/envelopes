@@ -4,6 +4,13 @@ class Envelope < ActiveRecord::Base
 
   attr_reader :name_amount
 
+  validates_presence_of :name, :user
+  validates_numericality_of :budget
+  validates_uniqueness_of :name, :scope => :user_id
+  
+  scope :monthly, where(:monthly => true)
+  scope :annual, where(:monthly => false)
+
   def current_amount
     transactions.sum("amount").to_f
   end

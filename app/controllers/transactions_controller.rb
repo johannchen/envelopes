@@ -45,8 +45,9 @@ class TransactionsController < ApplicationController
     csv.each do |row|
       t = row.to_hash 
       t["account_id"] = params[:account_id]
+      t["date"] = Date.strptime(t["date"], "%m/%d/%Y").to_s
       #TODO: check if creation fail
-      Transaction.create!(t.symbolize_keys)
+      current_user.transactions.create!(t.symbolize_keys)
     end
 
     redirect_to transactions_path, notice: "Successfully uploaded transactions!"

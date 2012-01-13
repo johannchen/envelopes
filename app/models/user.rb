@@ -1,7 +1,10 @@
 class User < ActiveRecord::Base
   attr_accessible :name, :email, :password, :password_confirmation
   has_secure_password
+
+  validates_presence_of :name, :email
   validates_presence_of :password, :on => :create
+  validates_uniqueness_of :email
 
   has_many :envelopes 
   has_many :accounts
@@ -9,15 +12,19 @@ class User < ActiveRecord::Base
   has_many :distributions
 
   def total_budget
-    envelopes.where(:monthly => true).sum("budget").to_f
+    envelopes.monthly.sum("budget").to_f
   end
 
   def total_budget_by_month
-    total_budget + envelopes.where(:monthly => false).sum("budget") / 12
+    total_budget + envelopes.annual.sum("budget") / 12
   end
 
   def total_monthly_current_amount
-    envelopes.where(:monthly => true).inject(0.0) { |sum, e| sum + e.current_amount }
+    envelopes.monthly.inject(0.0) { |sum, e| sum + e.current_amount }
+  end
+
+  def total_annual_current_amount
+    envelopes.annual.inject(0.0) { |sum, e| sum + e.current_amount }
   end
 
   def total_refill_amount

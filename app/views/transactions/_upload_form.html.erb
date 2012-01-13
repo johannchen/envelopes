@@ -1,0 +1,10 @@
+<% if current_user.accounts.blank? %>
+  <p>Please add account first.</p>
+<% else %>
+  <%= form_tag({:action => :upload}, :multipart => true, :method => :put) do %>
+    <%= file_field_tag :transaction_file %>
+    <%= select_tag :account_id, options_from_collection_for_select(current_user.accounts, :id, :name) %>
+    <%= submit_tag 'Upload', class: "btn primary" %>
+  <% end %>
+<% end %>
+

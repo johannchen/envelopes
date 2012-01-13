@@ -4,6 +4,8 @@ class Transaction < ActiveRecord::Base
   belongs_to :account
   belongs_to :user
 
+  validates_presence_of :date, :name, :amount
+
   attr_reader :account_name
   attr_writer :envelope_name
   before_save :assign_envelope

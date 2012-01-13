@@ -1,5 +1,5 @@
 <% if current_user.accounts.blank? or current_user.envelopes.blank? %>
-  <p>You don't have accounts or envelopes. Please <a href="/accounts#add_account">add accounts</a> or <a href="/envelopes#add_envelope">add envelopes</a>.</p>
+  <p>You don't have accounts or envelopes. Please <%= link_to 'add accounts', new_account_path %> or <%= link_to 'add envelopes', new_envelope_path %>.</p>
 <% else %>
 <%= form_for(@transaction) do |f| %>
 <fieldset>
@@ -17,13 +17,13 @@
   <div class="clearfix">
     <%= f.label :date %>
     <div class="input">
-      <%= f.text_field :date %>
+      <%= f.text_field :date, :required => "required" %>
     </div>
   </div>
   <div class="clearfix">
     <%= f.label :name %>
     <div class="input">
-      <%= f.text_field :name %>
+      <%= f.text_field :name, :required => "required" %>
     </div>
   </div>
   <div class="clearfix">
@@ -35,7 +35,7 @@
   <div class="clearfix">
     <%= f.label :amount %>
     <div class="input">
-      <%= f.text_field :amount %>
+      <%= f.text_field :amount, :required => "required" %>
     </div>
   </div>
   <div id="transaction_envelope" class="clearfix">

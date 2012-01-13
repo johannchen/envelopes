@@ -1,7 +1,7 @@
 <p>You currently have <%= number_to_currency(@unallocated_amount) %> in Unallocated Money.</p>
 
 <% if @unallocated_amount <= 0 %>
-  <p>Please <a href="/transactions#record_transaction">add income</a> and envelopes</p>
+  <p>Please <%= link_to 'add income', new_transaction_path %> and add envelopes</p>
 <% else %>
 <%= form_for(@distribution) do |f| %>
 <fieldset>

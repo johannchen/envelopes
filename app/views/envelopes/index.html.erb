@@ -17,7 +17,7 @@
         <th>Envelopes</th>
         <th>Monthly Budget</th>
         <th>Current Amount</th>
-        <th>Action</th>
+        <th>Meter</th>
       </tr>
     </thead>
     <tbody>
@@ -26,7 +26,7 @@
         <td><%= best_in_place envelope, :name %></td>
         <td><%= best_in_place envelope, :budget, :display_with => :number_to_currency %></td>
         <td><%= number_to_currency(envelope.current_amount) %></td>
-        <td></td>
+        <td><meter min=0 max=<%= envelope.budget %> value=<%= envelope.current_amount %>>12cm</meter></td>
       </tr>
     <% end %>
     <tr>
@@ -75,10 +75,17 @@
         <td></td>
       </tr>
     <% end %>
+    <tr>
+      <td><strong>Total</strong></td>
+      <td><%= number_to_currency(@annual_total_budget) %></td>
+      <td><%= number_to_currency(current_user.total_annual_current_amount) %></td<>
+      <td></td>
+    </tr>
   </tbody>
 </table>
-<p>Total Annual Envelopes <%= number_to_currency(@annual_total_budget) %></p>
+<p>Unallocate Money <%= number_to_currency(current_user.unallocated_amount) %></p>
   </div>
+
   <div id="add_envelope"><%= render 'form' %></div>
   <div id="distribution">
     <%= render 'distributions/form' %> 
