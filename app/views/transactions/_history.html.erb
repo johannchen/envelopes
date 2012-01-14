@@ -1,0 +1,31 @@
+<%= form_tag transactions_path, :method => 'get' do %>
+  <%= select_tag "envelope", options_from_collection_for_select(current_user.envelopes, :id, :name) %>
+  <%= submit_tag "Filter", :name => nil %>
+<% end %>
+<table>
+      <thead>
+    <tr>
+      <th>Date</th>
+      <th>Amount</th>
+      <th>Name</th>
+      <th>Envelope</th>
+      <th>Account</th>
+      <th>Description</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
+  <% @transactions.each do |t| %>
+    <tr>
+      <td><%= best_in_place t, :date %></td>
+      <td><%= best_in_place t, :amount, :display_with => :number_to_currency %></td>
+      <td><%= best_in_place t, :name %></td>
+      <td><%= best_in_place t, :envelope_id, :type => :select, :collection => current_user.envelopes.map{|e| [e.id, e.name]}, :display_as => :envelope_name  %></td>
+      <td><%= t.account_name %></td>
+      <td><%= best_in_place t, :description %></td>
+      <td><%= link_to "remove", t, :class => "ui-icon ui-icon-trash", :title => "remove", :confirm => "Are you sure?", :method => :delete %></td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+<%= will_paginate @transactions %>

@@ -2,8 +2,13 @@ class TransactionsController < ApplicationController
   load_and_authorize_resource
 
   def index
-    @transactions = current_user.transactions.unallocated.page(params[:page]).order('date DESC')
     @transaction = Transaction.new
+
+    if params[:envelope]
+      @transactions = Envelope.find(params[:envelope]).transactions.unallocated.page(params[:page]).order('date DESC')
+    else
+      @transactions = current_user.transactions.unallocated.page(params[:page]).order('date DESC')
+    end
   end
 
   def new

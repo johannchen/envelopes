@@ -28,6 +28,15 @@ describe "Transactions" do
   end
 
   describe "Filter Results" do
+    it "filters results by envelope", :focus => true do
+      visit transactions_path 
+      select "Auto", :from => "envelope"
+      click_button "Filter"
+      page.should have_content("Auto")
+      page.should have_content("-$100.00")
+      page.should have_no_content("Home")
+      page.should have_no_content("-$150.00")
+    end
     it "filters results by envelope and date, and displays blance" do
     end
     it "filters results by search description and amount" do
@@ -35,7 +44,7 @@ describe "Transactions" do
   end
 
   describe "Record Transaction" do
-    it "records expense and stay on the same form", :focus => true do
+    it "records expense and stay on the same form" do
       visit transactions_path 
       click_link "Record Transaction"
       fill_in "Date", :with => Date.today

@@ -8,42 +8,15 @@
     <li><a href="#upload_transactions">Upload Transactions</a></li>
   </ul>
   <div class="tab-content">
-  <div class="active" id="history">
-    <table>
-      <thead>
-    <tr>
-      <th>Date</th>
-      <th>Amount</th>
-      <th>Name</th>
-      <th>Envelope</th>
-      <th>Account</th>
-      <th>Description</th>
-      <th>Action</th>
-    </tr>
-  </thead>
-  <tbody>
-  <% @transactions.each do |t| %>
-    <tr>
-      <td><%= best_in_place t, :date %></td>
-      <td><%= best_in_place t, :amount, :display_with => :number_to_currency %></td>
-      <td><%= best_in_place t, :name %></td>
-      <td><%= best_in_place t, :envelope_id, :type => :select, :collection => current_user.envelopes.map{|e| [e.id, e.name]}, :display_as => :envelope_name  %></td>
-      <td><%= t.account_name %></td>
-      <td><%= best_in_place t, :description %></td>
-      <td><%= link_to "remove", t, :class => "ui-icon ui-icon-trash", :title => "remove", :confirm => "Are you sure?", :method => :delete %></td>
-    </tr>
-  <% end %>
-  </tbody>
-</table>
-<%= will_paginate @transactions %>
-</div>
-
-<div id="record_transaction">
-  <%= render 'form' %>
-</div>
-<div id="upload_transactions">
-  <%= render 'upload_form' %>
-</div>
-</div>
+    <div class="active" id="history">
+      <%= render 'history' %>
+    </div>
+    <div id="record_transaction">
+      <%= render 'form' %>
+    </div>
+    <div id="upload_transactions">
+      <%= render 'upload_form' %>
+    </div>
+  </div>
 </section>
 
