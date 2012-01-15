@@ -11,15 +11,15 @@
   <% @annual_envelopes.each do |envelope| %>
       <tr>
         <td><%= best_in_place envelope, :name %></td>
-        <td><%= best_in_place envelope, :budget, :display_with => :number_to_currency %></td>
-        <td><%= number_to_currency(envelope.current_amount) %></td>
+        <td class="money"><%= best_in_place envelope, :budget, :display_with => :number_to_currency %></td>
+        <td class="money"><%= number_to_currency(envelope.current_amount) %></td>
         <td><meter min=0 max=<%= envelope.budget %> value=<%= envelope.current_amount %>></meter></td>
       </tr>
     <% end %>
     <tr>
       <td><strong>Total</strong></td>
-      <td><%= number_to_currency(@annual_total_budget) %></td>
-      <td><%= number_to_currency(current_user.total_annual_current_amount) %></td<>
+      <td class="money"><%= number_to_currency(@annual_total_budget) %></td>
+      <td class="money"><%= number_to_currency(current_user.total_annual_current_amount) %></td<>
       <td></td>
     </tr>
   </tbody>

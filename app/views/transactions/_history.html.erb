@@ -6,7 +6,7 @@
       <thead>
     <tr>
       <th>Date</th>
-      <th>Amount</th>
+      <th class="money">Amount</th>
       <th>Name</th>
       <th>Envelope</th>
       <th>Account</th>
@@ -18,7 +18,7 @@
   <% @transactions.each do |t| %>
     <tr>
       <td><%= best_in_place t, :date %></td>
-      <td><%= best_in_place t, :amount, :display_with => :number_to_currency %></td>
+      <td class="money"><%= best_in_place t, :amount, :display_with => :number_to_currency %></td>
       <td><%= best_in_place t, :name %></td>
       <td><%= best_in_place t, :envelope_id, :type => :select, :collection => current_user.envelopes.map{|e| [e.id, e.name]}, :display_as => :envelope_name  %></td>
       <td><%= t.account_name %></td>

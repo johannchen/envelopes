@@ -11,6 +11,10 @@ body {
   color: #333;
 }
 
+meter {
+  width: 100%
+}
+
 /* Layout ---------*/
 #main {
   padding-top: 60px;
@@ -18,15 +22,19 @@ body {
 }
 
 /* Table ----------*/
+
 th.envelope_name, th.budget, th.current_amount {
-  width: 20%
+  width: 20%;
+}
+th.money, th.budget, th.current_amount {
+  text-align: right;
 }
 
 th.meter {
   width: 40%
 }
 
-meter {
-  width: 100%
+td.money {
+  text-align: right;
 }
 
