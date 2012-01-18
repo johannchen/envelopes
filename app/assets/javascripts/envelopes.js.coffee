@@ -6,4 +6,6 @@ jQuery ->
   $(".tabs").tabs
   $(".alert-message").effect "fade", "", 2000 
   $("#transfer_date").datepicker dateFormat: "yy-mm-dd"
-  
+
+  $("span[id$=budget]").attr("data-original-content").change ->
+    $("#total_monthly_budget").text("0")

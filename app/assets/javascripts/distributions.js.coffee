@@ -5,7 +5,6 @@
 jQuery ->
   $("#distribution_date").datepicker dateFormat: 'yy-mm-dd' 
 
-  
   $("input[name*=transactions]").change ->
     sum = 0
     $("input[name*=transactions]").each ->
