@@ -4,6 +4,7 @@
   <title>Envelopes</title>
   <%= stylesheet_link_tag    "application" %>
   <%= stylesheet_link_tag    "http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/themes/smoothness/jquery-ui.css" %>
+  <%= javascript_include_tag "https://www.google.com/jsapi" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
 </head>
@@ -17,7 +18,7 @@
           <li><%= link_to 'Envelopes', envelopes_path %></li>
           <li><%= link_to 'Transactions', transactions_path %></li>
           <li><%= link_to 'Accounts', accounts_path %></li>
-          <li><a href="#">Reports</a></li>
+          <li><%= link_to 'Reports', reports_expense_breakdown_path %></li>
           <li> <%= link_to 'Log out', logout_path %></li>
         </ul>
         <% end %>

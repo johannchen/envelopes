@@ -13,7 +13,7 @@
       <thead>
     <tr>
       <th>Name</th>
-      <th>Balance</th>
+      <th class="money">Balance</th>
       <th>Note</th>
       <th>Action</th>
     </tr>
@@ -21,8 +21,8 @@
   <tbody>
   <% @accounts.each do |a| %>
     <tr>
-      <td><%= a.name %></td>
-      <td></td>
+      <td><%= link_to a.name, transactions_path(account: a.id) %></td>
+      <td class="money"><%= number_to_currency(a.transactions.sum("amount")) %></td>
       <td><%= a.note %></td>
       <td></td>
     </tr>

@@ -1,6 +1,7 @@
-<%= form_tag transactions_path, :method => 'get' do %>
-  <%= select_tag "envelope", options_from_collection_for_select(current_user.envelopes, :id, :name) %>
-  <%= submit_tag "Filter", :name => nil %>
+<%= form_tag transactions_path, method: 'get' do %>
+  <%= select_tag "envelope", options_from_collection_for_select(current_user.envelopes, :id, :name), prompt: "By Envelope" %>
+  <%= select_tag "account", options_from_collection_for_select(current_user.accounts, :id, :name), prompt: "By Account" %>
+  <%= submit_tag "Filter", name: nil %>
 <% end %>
 <table>
       <thead>

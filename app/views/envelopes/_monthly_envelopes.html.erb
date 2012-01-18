@@ -18,7 +18,7 @@
     <% end %>
     <tr>
       <td><strong>Total</strong></td>
-      <td class="money"><%= number_to_currency(@monthly_total_budget) %></td>
+      <td class="money" id="total_monthly_budget"><%= number_to_currency(@monthly_total_budget) %></td>
       <td class="money"><%= number_to_currency(current_user.total_monthly_current_amount) %></td<>
       <td></td>
     </tr>

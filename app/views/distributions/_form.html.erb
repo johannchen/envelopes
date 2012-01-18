@@ -20,7 +20,7 @@
   <div class="clearfix">
     <%= f.label :amount %>
     <div class="input">
-      <%= f.text_field :amount, :value => @total_refill_amount, :required => "required" %>
+      <%= f.text_field :amount, value: @total_refill_amount, required: "required", disabled: true %>
     </div>
   </div>
 
