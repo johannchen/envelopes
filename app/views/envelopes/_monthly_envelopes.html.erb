@@ -11,7 +11,7 @@
   <% @monthly_envelopes.each do |envelope| %>
       <tr>
         <td><%= best_in_place envelope, :name %></td>
-        <td class="money"><%= best_in_place envelope, :budget, :display_with => :number_to_currency %></td>
+        <td class="money"><%= best_in_place envelope, :budget, :html_attrs => "monthly_budget", :display_with => :number_to_currency %></td>
         <td class="money"><%= link_to number_to_currency(envelope.current_amount), transactions_path(:envelope => envelope) %></td>
         <td><meter min=0 max=<%= envelope.budget %> value=<%= envelope.current_amount %>></meter></td>
       </tr>

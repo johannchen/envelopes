@@ -4,8 +4,11 @@
 
 jQuery ->
   $(".tabs").tabs
-  $(".alert-message").effect "fade", "", 2000 
+  $(".alert-message").effect "fade", "", 4000 
   $("#transfer_date").datepicker dateFormat: "yy-mm-dd"
 
-  $("span[id$=budget]").attr("data-original-content").change ->
-    $("#total_monthly_budget").text("0")
+  $("span[id$=budget]").bind "ajax:success", ->
+    sum = 0
+    $("span[id$=budget]").each ->
+      sum += parseFloat($(this).attr("data-original-content"))
+    $("#total_monthly_budget").text(sum) 
