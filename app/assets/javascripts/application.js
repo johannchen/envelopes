@@ -10,4 +10,5 @@
 //= require bootstrap-tabs
 //= require jquery.purr
 //= require best_in_place
+//= require jquery.formatCurrency-1.4.0.min
 //= require_tree .
