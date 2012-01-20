@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120113002748) do
+ActiveRecord::Schema.define(:version => 20120120181236) do
 
   create_table "accounts", :force => true do |t|
     t.string   "name"
@@ -53,6 +53,7 @@ ActiveRecord::Schema.define(:version => 20120113002748) do
     t.string   "note"
     t.string   "name"
     t.boolean  "allocated",   :default => false
+    t.boolean  "excluded",    :default => false
   end
 
   create_table "users", :force => true do |t|

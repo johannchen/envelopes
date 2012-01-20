@@ -11,10 +11,11 @@ class Transaction < ActiveRecord::Base
   attr_writer :envelope_name
   before_save :assign_envelope
 
-  scope :income, where("amount > 0 and allocated = false")
-  scope :expense, where("amount < 0 and allocated = false")
+  scope :income, where("amount > 0 and allocated = false and excluded = false")
+  scope :expense, where("amount < 0 and allocated = false and excluded = false")
   scope :allocated , where("allocated = true")
   scope :unallocated , where("allocated = false")
+  scope :excluded , where("excluded = true")
 
   def self.total_income
     income.sum("amount")

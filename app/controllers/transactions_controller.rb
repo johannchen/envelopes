@@ -4,7 +4,6 @@ class TransactionsController < ApplicationController
   def index
     @transaction = Transaction.new
 
-
     if params[:envelope].present? and params[:account].present?
       ts = Account.find(params[:account]).transactions.where("envelope_id = #{params[:envelope]}")
     elsif params[:account].present?
@@ -24,6 +23,8 @@ class TransactionsController < ApplicationController
         ts = ts.income
       when 2
         ts = current_user.transactions.allocated
+      when 3
+        ts = current_user.transactions.excluded
       end
     end
 

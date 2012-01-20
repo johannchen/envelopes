@@ -1,7 +1,7 @@
 <%= form_tag transactions_path, method: 'get', remote: true do %>
   <%= select_tag "envelope", options_from_collection_for_select(current_user.envelopes, :id, :name), prompt: "By Envelope" %>
   <%= select_tag "account", options_from_collection_for_select(current_user.accounts, :id, :name), prompt: "By Account" %>
-  <%= select_tag "type", options_for_select([['Expense', 0], ['Income', 1], ['Allocation', 2]]), prompt: "By Type" %>
+  <%= select_tag "type", options_for_select([['Expense', 0], ['Income', 1], ['Allocation', 2], ['Excluded', 3]]), prompt: "By Type" %>
   <%= submit_tag "Filter", name: nil %>
 <% end %>
 <div id="transaction_table">
