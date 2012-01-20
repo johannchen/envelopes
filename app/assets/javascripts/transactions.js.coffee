@@ -5,6 +5,8 @@
 
 jQuery ->
   $(".best_in_place").best_in_place()
+  
+  $(".pagination").find("a").attr("data-remote", true)
 
   $("#transaction_date").datepicker dateFormat: 'yy-mm-dd'
   

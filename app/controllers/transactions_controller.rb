@@ -4,15 +4,31 @@ class TransactionsController < ApplicationController
   def index
     @transaction = Transaction.new
 
-    if params[:envelope].present? and params[:account].blank?
-      @transactions = Envelope.find(params[:envelope]).transactions.unallocated.page(params[:page]).order('date DESC')
-    elsif params[:account].present? and params[:envelope].blank?
-      @transactions = Account.find(params[:account]).transactions.page(params[:page]).order('date DESC')
-    elsif params[:account].present? and params[:envelope].present?
-      @transactions = Account.find(params[:account]).transactions.where("envelope_id = #{params[:envelope]}").page(params[:page]).order('date DESC')
+
+    if params[:envelope].present? and params[:account].present?
+      ts = Account.find(params[:account]).transactions.where("envelope_id = #{params[:envelope]}")
+    elsif params[:account].present?
+      ts = Account.find(params[:account]).transactions
+    elsif params[:envelope].present?
+      ts = Envelope.find(params[:envelope]).transactions
     else
-      @transactions = current_user.transactions.unallocated.page(params[:page]).order('date DESC')
+      ts = current_user.transactions
     end
+
+    if params[:type].present?
+      type = params[:type].to_i
+      case type
+      when 0
+        ts = ts.expense
+      when 1
+        ts = ts.income
+      when 2
+        ts = current_user.transactions.allocated
+      end
+    end
+
+    @transactions = ts.page(params[:page]).order('date DESC')
+
   end
 
   def new

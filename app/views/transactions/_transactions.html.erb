@@ -1,0 +1,29 @@
+<table>
+<caption><strong>Total Amount:</strong> <%= number_to_currency(@transactions.sum("amount")) %></caption>
+      <thead>
+    <tr>
+      <th>Date</th>
+      <th class="money">Amount</th>
+      <th>Name</th>
+      <th>Envelope</th>
+      <th>Account</th>
+      <th>Description</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
+  <% @transactions.each do |t| %>
+    <tr>
+      <td><%= best_in_place t, :date %></td>
+      <td class="money"><%= best_in_place t, :amount, :display_with => :number_to_currency %></td>
+      <td><%= best_in_place t, :name %></td>
+      <td><%= best_in_place t, :envelope_id, :type => :select, :collection => current_user.envelopes.map{|e| [e.id, e.name]}, :display_as => :envelope_name  %></td>
+      <td><%= best_in_place t, :account_id, type: :select, collection: current_user.accounts.map{|a| [a.id, a.name]}, display_as: :account_name %></td>
+      <td><%= best_in_place t, :description %></td>
+      <td><%= link_to "remove", t, :class => "ui-icon ui-icon-trash", :title => "remove", :confirm => "Are you sure?", :method => :delete %></td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+<%= will_paginate @transactions %>
+

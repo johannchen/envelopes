@@ -23,6 +23,10 @@ meter {
 
 /* Table ----------*/
 
+caption {
+  text-align: left;
+}
+
 th.envelope_name, th.budget, th.current_amount {
   width: 20%;
 }

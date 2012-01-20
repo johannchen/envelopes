@@ -6,12 +6,13 @@ class Transaction < ActiveRecord::Base
 
   validates_presence_of :date, :name, :amount
 
-  self.per_page = 10
+  self.per_page = 25
   attr_reader :account_name
   attr_writer :envelope_name
   before_save :assign_envelope
 
   scope :income, where("amount > 0 and allocated = false")
+  scope :expense, where("amount < 0 and allocated = false")
   scope :allocated , where("allocated = true")
   scope :unallocated , where("allocated = false")
 
