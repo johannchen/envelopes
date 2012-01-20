@@ -8,7 +8,6 @@ class EnvelopesController < ApplicationController
     @annual_envelopes = current_user.envelopes.where(:monthly => :false)
     @annual_total_budget = @annual_envelopes.sum("budget")
     @envelope = Envelope.new
-    @recent_transactions = current_user.recent_transactions 
     @distribution = Distribution.new
     @envelopes = current_user.envelopes 
     @unallocated_amount = current_user.unallocated_amount.to_f

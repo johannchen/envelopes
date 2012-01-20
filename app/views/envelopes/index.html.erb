@@ -12,14 +12,13 @@
   <div class="tab-content">
     <div class="active" id="monthly_envelopes">
       <%= render 'monthly_envelopes' %>
-      <% if @recent_transactions.present? %>
-        <%= render 'recent_transactions' %>
-      <% end %>
     </div>
     <div id="annual_envelopes">
       <%= render 'annual_envelopes' %>
     </div>
-    <div id="add_envelope"><%= render 'form' %></div>
+    <div id="add_envelope">
+      <%= render 'form' %>
+    </div>
     <div id="distribution">
       <%= render 'distributions/form' %> 
     </div>
