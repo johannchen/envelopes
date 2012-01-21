@@ -1,21 +1,47 @@
-<h1>Expense Breakdown</h1>
-<div id="expense_breakdown">
-  <table>
-    <tr>
-      <th>Envelope</th>
-      <th>Amount</th>
-      <th>%</th>
-    </tr>
-  <% @envelopes.each do |e| %>
-    <tr>
-      <td><%= e.name %></td>
-      <td><%= number_to_currency(e.expense) %></td>
-      <td><%= number_to_percentage(e.expense/@total * 100, :precision => 0) %></td>
-    </tr>
-  <% end %>
- </table>
- <p>Total: <%= number_to_currency(@total) %></p>
+<div class="page-header">
+  <h1>Reports</h1>
+</div>
+<div class="reports">
+  <ul class="tabs" data-tabs="tabs">
+    <li class="active"><%= link_to 'Expense Breakdown', reports_expense_breakdown_path %></li>
+    <li><%= link_to 'Expense vs Budget', reports_expense_vs_budget_path %></li>
+    <li><%= link_to 'Budget Allocation', reports_budget_allocation_path %></li>
+  </ul>
+  <div class="tab-content">
+    <div class="active" id="expense_breakdown">
+      <div class="row">
+        <div class="span6">
+          <table>
+            <thead>
+            <tr>
+              <th>Envelope</th>
+              <th class="money">Amount</th>
+              <th class="money">%</th>
+            </tr>
+          </thead>
+          <tbody>
+          <% @envelopes.each do |e| %>
+            <tr>
+              <td><%= e.name %></td>
+              <td class="money"><%= number_to_currency(e.expense) %></td>
+              <td class="money"><%= number_to_percentage(e.expense/@total * 100, :precision => 0) %></td>
+            </tr>
+          <% end %>
+            <tr>
+              <td><strong>Total</strong></td>
+              <td class="money"><%= number_to_currency(@total) %></td>
+              <td></td>
+            </tr>
+          </tbody>
+          </table>
+        </div>
+        <div class="span10">
+          <div id="chart"></div>
+          <%= render_chart @chart, 'chart' %>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 
-<div id="chart"></div>
-<%= render_chart @chart, 'chart' %>
+

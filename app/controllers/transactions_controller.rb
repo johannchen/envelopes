@@ -28,6 +28,8 @@ class TransactionsController < ApplicationController
       end
     end
 
+    ts = ts.search(params[:search]) if params[:search].present?
+
     @transactions = ts.page(params[:page]).order('date DESC')
 
   end

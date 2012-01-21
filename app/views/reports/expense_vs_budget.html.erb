@@ -1,2 +1,51 @@
-<h1>Reports#expense_vs_budget</h1>
-<p>Find me in app/views/reports/expense_vs_budget.html.erb</p>
+<div class="page-header">
+  <h1>Reports</h1>
+</div>
+<div class="reports">
+  <ul class="tabs" data-tabs="tabs">
+    <li><%= link_to 'Expense Breakdown', reports_expense_breakdown_path %></li>
+    <li class="active"><%= link_to 'Expense vs Budget', reports_expense_vs_budget_path %></li>
+    <li><%= link_to 'Budget Allocation', reports_budget_allocation_path %></li>
+  </ul>
+  <div class="tab-content">
+    <div class="active" id="expense_budget">
+      <div class="row">
+        <div class="span6">
+          <table>
+            <thead>
+            <tr>
+              <th>Envelope</th>
+              <th class="money">Expense</th>
+              <th class="money">Budget</th>
+              <th class="money">%</th>
+            </tr>
+          </thead>
+          <tbody>
+          <% @envelopes.each do |e| %>
+            <tr>
+              <td><%= e.name %></td>
+              <td class="money"><%= number_to_currency(e.expense) %></td>
+              <td class="money"><%= number_to_currency(e.budget.to_f) %></td>
+              <td class="money"><%= number_to_percentage(e.expense/e.budget.to_f * 100, :precision => 0) %></td>
+            </tr>
+          <% end %>
+            <tr>
+              <td><strong>Total</strong></td>
+              <td class="money"><%= number_to_currency(@total_expense) %></td>
+              <td class="money"><%= number_to_currency(@total_budget) %></td>
+              <td class="money"><%= number_to_percentage(@total_percentage, :precision => 0) %></td>
+            </tr>
+          </tbody>
+          </table>
+        </div>
+        <div class="span10">
+          <div id="chart"></div>
+          <%= render_chart @chart, 'chart' %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+

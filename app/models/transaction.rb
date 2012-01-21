@@ -16,6 +16,8 @@ class Transaction < ActiveRecord::Base
   scope :allocated , where("allocated = true")
   scope :unallocated , where("allocated = false")
   scope :excluded , where("excluded = true")
+  scope :current_month, lambda { where("date >= :start_date and date < :end_date", {:start_date => Date.today.at_beginning_of_month, :end_date => Date.today.at_beginning_of_month.next_month}) }
+  scope :months_ago, lambda { |n| where("date >= :start_date and date < :end_date", {:start_date => n.month.ago.at_beginning_of_month, :end_date => (n-1).month.ago.at_beginning_of_month}) }
 
   def self.total_income
     income.sum("amount")
@@ -23,6 +25,10 @@ class Transaction < ActiveRecord::Base
 
   def self.total_allocated
     allocated.sum("amount")
+  end
+
+  def self.search(name)
+    where(['lower(name) like ?', "%#{name.downcase}%"]) if name
   end
 
   def envelope_name

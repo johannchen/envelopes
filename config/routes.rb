@@ -1,11 +1,10 @@
 Envelopes::Application.routes.draw do
 
+  root :to => 'sessions#new'
+  match "/logout" => "sessions#destroy", :as => :logout
   get "reports/expense_breakdown" 
   get "reports/expense_vs_budget"
   get "reports/budget_allocation"
-
-  root :to => 'sessions#new'
-  match "/logout" => "sessions#destroy", :as => :logout
   resources :users, :sessions, :envelopes, :distributions, :transfers
   resources :accounts 
   resources :transactions do

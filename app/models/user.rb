@@ -19,6 +19,10 @@ class User < ActiveRecord::Base
     total_budget + envelopes.annual.sum("budget") / 12
   end
 
+  def total_expense
+    envelopes.inject(0.0) { |sum, e| sum + e.expense }
+  end
+
   def total_monthly_current_amount
     envelopes.monthly.inject(0.0) { |sum, e| sum + e.current_amount }
   end

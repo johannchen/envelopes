@@ -1,19 +1,48 @@
-<h1>Budget Allocation</h1>
-<div id="budget_allocation">
-  <table>
-    <tr>
-      <th>Envelope</th>
-      <th>Amount</th>
-      <th>%</th>
-    </tr>
-  <% @envelopes.each do |e| %>
-    <% e.monthly ? budget = e.budget : budget = e.budget/12 %>
-    <tr>
-      <td><%= e.name %></td>
-      <td><%= number_to_currency(budget) %></td>
-      <td><%= number_to_percentage(budget/@total * 100, :precision => 0) %></td>
-    </tr>
-  <% end %>
- </table>
- <p>Total: <%= number_to_currency(@total) %></p>
+<div class="page-header">
+  <h1>Reports</h1>
 </div>
+<div class="reports">
+  <ul class="tabs" data-tabs="tabs">
+    <li><%= link_to 'Expense Breakdown', reports_expense_breakdown_path %></li>
+    <li><%= link_to 'Expense vs Budget', reports_expense_vs_budget_path %></li>
+    <li class="active"><a href="#">Budget Allocation</a></li>
+  </ul>
+  <div class="tab-content">
+    <div class="active" id="budget_allocation">
+      <div class="row">
+        <div class="span6">
+          <table>
+            <thead>
+            <tr>
+              <th>Envelope</th>
+              <th class="money">Amount</th>
+              <th class="money">%</th>
+            </tr>
+          </thead>
+          <tbody>
+          <% @envelopes.each do |e| %>
+            <% e.monthly ? budget = e.budget : budget = e.budget/12 %>
+            <tr>
+              <td><%= e.name %></td>
+              <td class="money"><%= number_to_currency(budget) %></td>
+              <td class="money"><%= number_to_percentage(budget/@total * 100, :precision => 0) %></td>
+            </tr>
+          <% end %>
+            <tr>
+              <td><strong>Total</strong></td>
+              <td class="money"><%= number_to_currency(@total) %></td>
+              <td></td>
+            </tr>
+          </tbody>
+         </table>
+              
+        </div>
+        <div class="span10">
+          <div id="chart"></div>
+          <%= render_chart @chart, 'chart' %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
