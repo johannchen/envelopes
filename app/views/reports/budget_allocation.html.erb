@@ -25,7 +25,7 @@
             <tr>
               <td><%= e.name %></td>
               <td class="money"><%= number_to_currency(budget) %></td>
-              <td class="money"><%= number_to_percentage(budget/@total * 100, :precision => 0) %></td>
+              <td class="money"><%= number_to_percentage(budget/@total * 100, :precision => 2) %></td>
             </tr>
           <% end %>
             <tr>

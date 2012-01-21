@@ -9,6 +9,11 @@
   </ul>
   <div class="tab-content">
     <div class="active" id="expense_breakdown">
+      <%= form_tag reports_expense_breakdown_path, method: 'get' do %>
+        <%= text_field_tag "start_date", Date.today.at_beginning_of_month, required: "required" %> to
+        <%= text_field_tag "end_date", Date.today.at_beginning_of_month.next_month, required: "required" %>
+        <%= submit_tag "Filter", name: nil %>
+      <% end %> 
       <div class="row">
         <div class="span6">
           <table>
@@ -23,8 +28,8 @@
           <% @envelopes.each do |e| %>
             <tr>
               <td><%= e.name %></td>
-              <td class="money"><%= number_to_currency(e.expense) %></td>
-              <td class="money"><%= number_to_percentage(e.expense/@total * 100, :precision => 0) %></td>
+              <td class="money"><%= number_to_currency(e.expense(@start_date, @end_date)) %></td>
+              <td class="money"><%= number_to_percentage(e.expense(@start_date, @end_date)/@total * 100, precision: 2) %></td>
             </tr>
           <% end %>
             <tr>

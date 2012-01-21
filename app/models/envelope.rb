@@ -24,7 +24,7 @@ class Envelope < ActiveRecord::Base
     refill < 0 ? 0.0 : refill
   end
 
-  def expense
-    transactions.where("amount < 0").sum("amount").to_f.abs
+  def expense(start_date, end_date)
+    transactions.period(start_date, end_date).where("amount < 0").sum("amount").to_f.abs if start_date and end_date 
   end
 end

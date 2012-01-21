@@ -24,9 +24,9 @@
           <% @envelopes.each do |e| %>
             <tr>
               <td><%= e.name %></td>
-              <td class="money"><%= number_to_currency(e.expense) %></td>
+              <td class="money"><%= number_to_currency(e.expense(@start_date, @end_date)) %></td>
               <td class="money"><%= number_to_currency(e.budget.to_f) %></td>
-              <td class="money"><%= number_to_percentage(e.expense/e.budget.to_f * 100, :precision => 0) %></td>
+              <td class="money"><%= number_to_percentage(e.expense(@start_date, @end_date)/e.budget.to_f * 100, :precision => 2) %></td>
             </tr>
           <% end %>
             <tr>
