@@ -9,6 +9,10 @@
   </ul>
   <div class="tab-content">
     <div class="active" id="expense_budget">
+      <%= form_tag reports_expense_vs_budget_path, method: 'get' do %>
+        <strong>Last </strong><%= select_tag "months", options_for_select((1..12).to_a.map{|n| ["#{n}", n]}, params[:months]) %> <strong>months</strong>
+        <%= submit_tag "Filter", name: nil %>
+      <% end %>
       <div class="row">
         <div class="span6">
           <table>
@@ -21,12 +25,14 @@
             </tr>
           </thead>
           <tbody>
-          <% @envelopes.each do |e| %>
+            <% @envelopes.each do |e| %>
+              <% expense = e.months_expense(@months) %>
+              <% budget = e.budget.to_f * @months %>
             <tr>
               <td><%= e.name %></td>
-              <td class="money"><%= number_to_currency(e.expense(@start_date, @end_date)) %></td>
-              <td class="money"><%= number_to_currency(e.budget.to_f) %></td>
-              <td class="money"><%= number_to_percentage(e.expense(@start_date, @end_date)/e.budget.to_f * 100, :precision => 2) %></td>
+              <td class="money"><%= number_to_currency(expense) %></td>
+              <td class="money"><%= number_to_currency(budget) %></td>
+              <td class="money"><%= number_to_percentage(expense/budget * 100, :precision => 2) %></td>
             </tr>
           <% end %>
             <tr>

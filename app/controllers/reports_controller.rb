@@ -2,25 +2,23 @@ class ReportsController < ApplicationController
   skip_authorization_check
       
   def expense_breakdown
-    # TODO: refactor date
     params[:start_date] ? @start_date = params[:start_date] : @start_date = Date.today.at_beginning_of_month
     params[:end_date] ? @end_date = params[:end_date] : @end_date = Date.today.at_beginning_of_month.next_month
     @envelopes = current_user.envelopes 
-    @total = @envelopes.inject(0.0) { |result, e| e.expense(@start_date, @end_date) + result }
-    rows = @envelopes.map { |e| [e.name, e.expense(@start_date, @end_date)] } 
-    @chart = pie_chart(rows, 'Envelope', 'Amount', 'Expense Breakdown') 
+    @total = @envelopes.inject(0.0) { |result, e| e.period_expense(@start_date, @end_date) + result }
+    rows = @envelopes.map { |e| [e.name, e.period_expense(@start_date, @end_date)] } 
+    @chart = pie_chart(rows, 'Envelope', 'Amount', "Expense Breakdown #{@start_date} to #{@end_date}") 
   end
 
   def expense_vs_budget
-    # TODO: monthly rather than start and end date
-    params[:start_date] ? @start_date = params[:start_date] : @start_date = Date.today.at_beginning_of_month
-    params[:end_date] ? @end_date = params[:end_date] : @end_date = Date.today.at_beginning_of_month.next_month
+    params[:months] ? @months = params[:months].to_i : @months = 1 
+    start_date = @months.months.ago.at_beginning_of_month.strftime("from %Y-%m-%d")
     @envelopes = current_user.envelopes 
-    @total_expense = current_user.total_expense(@start_date, @end_date)
-    @total_budget = @envelopes.sum("budget")
+    @total_expense = current_user.total_months_expense(@months)
+    @total_budget = @envelopes.sum("budget") * @months
     @total_percentage = @total_expense / @total_budget * 100
-    rows = @envelopes.map { |e| [e.name, e.expense(@start_date, @end_date), e.budget.to_f] } 
-    @chart = bar_chart(rows, 'Envelope', 'Expense', 'Budget', 'Expense vs Budget') 
+    rows = @envelopes.map { |e| [e.name, e.budget.to_f * @months, e.months_expense(@months)] } 
+    @chart = bar_chart(rows, 'Envelope', 'Budget', 'Expense', "Expense vs Budget #{start_date} to #{Date.today.at_beginning_of_month}") 
   end
 
   def budget_allocation
@@ -47,7 +45,7 @@ class ReportsController < ApplicationController
     data_table.new_column('number', col2)
     data_table.new_column('number', col3)
     data_table.add_rows(rows)
-    options = { width: 600, height: 360, title: title, vAxis: {title: title, titleTextStyle: {color: 'red'}}}
+    options = { width: 600, height: 540, title: title }
     chart = GoogleVisualr::Interactive::BarChart.new(data_table, options)
   end
 
