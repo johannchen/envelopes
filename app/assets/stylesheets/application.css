@@ -42,3 +42,13 @@ td.money {
   text-align: right;
 }
 
+td.green {
+  text-align: right;
+  color: green;
+}
+
+td.yellow {
+  text-align: right;
+  color: yellow;
+}
+
