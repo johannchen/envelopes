@@ -47,6 +47,10 @@ td.green {
   color: green;
 }
 
+td.purple {
+  text-align: right;
+  color: purple;
+}
 td.yellow {
   text-align: right;
   color: yellow;

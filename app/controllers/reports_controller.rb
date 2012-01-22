@@ -1,7 +1,8 @@
 class ReportsController < ApplicationController
-  skip_authorization_check
-      
+  # authorize_resource :class => false
+
   def expense_breakdown
+    authorize! :read, :reports
     params[:start_date] ? @start_date = params[:start_date] : @start_date = Date.today.at_beginning_of_month
     params[:end_date] ? @end_date = params[:end_date] : @end_date = Date.today.at_beginning_of_month.next_month
     @envelopes = current_user.envelopes 
@@ -11,6 +12,7 @@ class ReportsController < ApplicationController
   end
 
   def expense_vs_budget
+    authorize! :read, :reports
     params[:months] ? @months = params[:months].to_i : @months = 1 
     start_date = @months.months.ago.at_beginning_of_month.strftime("from %Y-%m-%d")
     @envelopes = current_user.envelopes 
@@ -22,6 +24,7 @@ class ReportsController < ApplicationController
   end
 
   def budget_allocation
+    authorize! :read, :reports
     @envelopes = current_user.envelopes 
     @total = current_user.total_budget_by_month
     rows = @envelopes.map { |e| e.monthly ? [e.name, e.budget.to_f] : [e.name, e.budget.to_f/12] } 

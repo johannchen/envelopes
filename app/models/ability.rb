@@ -6,7 +6,8 @@ class Ability
     if user.id.nil?
       cannot :manage, :all
     else
-      can :manage, :all, :user_id => user.id
+      can :read, :reports
+      can :manage, [Envelope, Transaction, Account, Distribution], :user_id => user.id
     end
   end
 end
