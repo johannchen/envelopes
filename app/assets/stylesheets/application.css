@@ -27,8 +27,8 @@ caption {
   text-align: left;
 }
 
-th.envelope_name, th.budget, th.current_amount {
-  width: 20%;
+th.envelope_name, th.budget, th.current_amount, th.monthly {
+  width: 15%;
 }
 th.money, th.budget, th.current_amount {
   text-align: right;

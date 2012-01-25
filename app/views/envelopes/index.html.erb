@@ -1,29 +1,47 @@
 <div class="page-header">
   <h1>Envelopes</h1>
 </div>
-<section id="envelopes">
+<div class="envelopes">
   <ul class="tabs" data-tabs="tabs">
-    <li class="active"><a href="#monthly_envelopes">Monthly</a></li>
-    <li><a href="#annual_envelopes">Annual</a></li>
-    <li><a href="#add_envelope">Add Envelope</a></li>
-    <li><a href="#distribution">Distribution</a></li>
-    <li><a href="#transfer">Transfer</a></li>
+    <li class="active"><a href="#">Monthly</a></li>
+    <li><%= link_to "Annual", annual_envelopes_path %></li>
+    <li><%= link_to "Add Envelope", new_envelope_path %></li>
+    <li><%= link_to "New Distribution", new_distribution_path %></li>
+    <li><%= link_to "Transfer Between Envelopes", new_transfer_path %></li>
   </ul>
   <div class="tab-content">
     <div class="active" id="monthly_envelopes">
-      <%= render 'monthly_envelopes' %>
-    </div>
-    <div id="annual_envelopes">
-      <%= render 'annual_envelopes' %>
-    </div>
-    <div id="add_envelope">
-      <%= render 'form' %>
-    </div>
-    <div id="distribution">
-      <%= render 'distributions/form' %> 
-    </div>
-    <div id="transfer">
-      <%= render 'transfers/form' %> 
+    <table>
+      <thead>
+      <tr>
+        <th class="envelope_name">Envelopes</th>
+        <th class="budget">Monthly Budget</th>
+        <th class="current_amount">Current Amount</th>
+        <th>Meter</th>
+        <th class="monthly">Monthly Envelope</th>
+      </tr>
+    </thead>
+    <tbody>
+  <% @monthly_envelopes.each do |envelope| %>
+      <tr>
+        <td><%= best_in_place envelope, :name %></td>
+        <td class="money"><%= best_in_place envelope, :budget, :display_with => :number_to_currency %></td>
+        <td class="money"><%= link_to number_to_currency(envelope.current_amount), transactions_path(:envelope => envelope) %></td>
+        <td class="meter"><meter min=0 max=<%= envelope.budget %> value=<%= envelope.current_amount %>></meter></td>
+        <td><%= best_in_place envelope, :monthly, :type => :checkbox %></td>
+      </tr>
+    <% end %>
+    <tr>
+      <td><strong>Total</strong></td>
+      <td class="money" id="total_monthly_budget"><%= number_to_currency(@monthly_total_budget) %></td>
+      <td class="money"><%= number_to_currency(current_user.total_monthly_current_amount) %></td<>
+      <td></td>
+      <td></td>
+    </tr>
+
+  </tbody>
+</table> 
+<p>Unallocate Money <%= number_to_currency(current_user.unallocated_amount) %></p>
     </div>
   </div>
-</section>
+</div>

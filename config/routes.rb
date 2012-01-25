@@ -5,10 +5,13 @@ Envelopes::Application.routes.draw do
   get "reports/expense_breakdown" 
   get "reports/expense_vs_budget"
   get "reports/budget_allocation"
-  resources :users, :sessions, :envelopes, :distributions, :transfers
+  resources :users, :sessions, :distributions, :transfers
   resources :accounts 
   resources :transactions do
     put 'upload', :on => :collection
+  end
+  resources :envelopes do
+    get 'annual', :on => :collection
   end
 
   # The priority is based upon order of creation:

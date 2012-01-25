@@ -2,6 +2,7 @@ class TransfersController < ApplicationController
   skip_authorization_check
 
   def new
+    @envelopes = current_user.envelopes
   end
 
   def create

@@ -3,7 +3,6 @@
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 
 jQuery ->
-  $(".tabs").tabs
   $(".alert-message").effect "fade", "", 4000 
   $("#transfer_date").datepicker dateFormat: "yy-mm-dd"
 

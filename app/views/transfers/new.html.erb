@@ -5,13 +5,17 @@
   <ul class="tabs" data-tabs="tabs">
     <li><%= link_to "Monthly", envelopes_path %></li>
     <li><%= link_to "Annual", annual_envelopes_path %></li>
-    <li class="active"><%= link_to "Add Envelope", new_envelope_path %></li>
+    <li><%= link_to "Add Envelope", new_envelope_path %></li>
     <li><%= link_to "New Distribution", new_distribution_path %></li>
-    <li><%= link_to "Transfer Between Envelopes", new_transfer_path %></li>
+    <li class="active"><%= link_to "Transfer Between Envelopes", new_transfer_path %></li>
   </ul>
   <div class="tab-content">
-    <div class="active" id="new_envelope">
-      <%= render 'form' %>
+    <div class="active" id="new_transfer">
+<% if @envelopes.blank? %>
+  <p>Please Add Envelope.</p>
+<% else %>
+  <%= render 'form' %>
+<% end %>
     </div>
   </div>
 </div>

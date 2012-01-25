@@ -1,6 +1,3 @@
-<% if current_user.envelopes.blank? %>
-  <p>Please Add Envelope.</p>
-<% else %>
 <%= form_tag :controller => :transfers, :action => :create do %>
 <fieldset>
   <div class="clearfix">
@@ -37,5 +34,4 @@
     <%= submit_tag "Transfer", class: "btn primary" %>
   </div>
 </fieldset>
-<% end %>
 <% end %>

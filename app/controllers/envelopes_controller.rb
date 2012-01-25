@@ -3,15 +3,8 @@ class EnvelopesController < ApplicationController
   respond_to :json, :only => :update
 
   def index
-    @monthly_envelopes = current_user.envelopes.where(:monthly => :true)
+    @monthly_envelopes = current_user.envelopes.where(:monthly => :true).order("name")
     @monthly_total_budget = @monthly_envelopes.sum("budget")
-    @annual_envelopes = current_user.envelopes.where(:monthly => :false)
-    @annual_total_budget = @annual_envelopes.sum("budget")
-    @envelope = Envelope.new
-    @distribution = Distribution.new
-    @envelopes = current_user.envelopes 
-    @unallocated_amount = current_user.unallocated_amount.to_f
-    @total_refill_amount = current_user.total_refill_amount.round(2)
   end
 
   def new
@@ -33,4 +26,9 @@ class EnvelopesController < ApplicationController
   def destroy
   end
 
+  def annual
+    @annual_envelopes = current_user.envelopes.where(:monthly => :false).order("name")
+    @annual_total_budget = @annual_envelopes.sum("budget")
+    @unallocated_amount = current_user.unallocated_amount.to_f
+  end
 end

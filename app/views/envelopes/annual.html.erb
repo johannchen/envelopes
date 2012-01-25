@@ -1,10 +1,24 @@
-    <table>
+    <div class="page-header">
+  <h1>Envelopes</h1>
+</div>
+<div class="envelopes">
+  <ul class="tabs" data-tabs="tabs">
+    <li><%= link_to "Monthly", envelopes_path %></li>
+    <li class="active"><%= link_to "Annual", annual_envelopes_path %></li>
+    <li><%= link_to "Add Envelope", new_envelope_path %></li>
+    <li><%= link_to "New Distribution", new_distribution_path %></li>
+    <li><%= link_to "Transfer Between Envelopes", new_transfer_path %></li>
+  </ul>
+  <div class="tab-content">
+    <div class="active" id="annual_envelopes">
+ <table>
       <thead>
       <tr>
         <th class="envelope_name">Envelopes</th>
         <th class="budget">Annual Budget</th>
         <th class="current_amount">Current Amount</th>
         <th class="meter">Meter</th>
+        <th class="monthly">Monthly Envelope</th>
       </tr>
     </thead>
     <tbody>
@@ -12,8 +26,9 @@
       <tr>
         <td><%= best_in_place envelope, :name %></td>
         <td class="money"><%= best_in_place envelope, :budget, :display_with => :number_to_currency %></td>
-        <td class="money"><%= number_to_currency(envelope.current_amount) %></td>
+        <td class="money"><%= link_to number_to_currency(envelope.current_amount), transactions_path(:envelope => envelope) %></td>
         <td><meter min=0 max=<%= envelope.budget %> value=<%= envelope.current_amount %>></meter></td>
+        <td><%= best_in_place envelope, :monthly, :type => :checkbox %></td>
       </tr>
     <% end %>
     <tr>
@@ -21,8 +36,11 @@
       <td id="total_annual_budget" class="money"><%= number_to_currency(@annual_total_budget) %></td>
       <td class="money"><%= number_to_currency(current_user.total_annual_current_amount) %></td<>
       <td></td>
+      <td></td>
     </tr>
   </tbody>
 </table>
 <p>Unallocate Money <%= number_to_currency(current_user.unallocated_amount) %></p>
- 
+  </div>
+</div>
+</div>
