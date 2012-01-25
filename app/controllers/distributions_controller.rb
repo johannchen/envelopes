@@ -1,18 +1,15 @@
 class DistributionsController < ApplicationController
-  #TODO authorize 
-  skip_authorization_check
+  load_and_authorize_resource
 
   before_filter :allocate_envelopes, :only => :create
 
   def new
-    @distribution = Distribution.new
-    @envelopes = current_user.envelopes 
+    @envelopes = current_user.envelopes.order("name") 
     @unallocated_amount = current_user.unallocated_amount.to_f
     @total_refill_amount = current_user.total_refill_amount.round(2)
   end
 
   def create
-    @distribution = Distribution.new(params[:distribution])
     if @distribution.save
       redirect_to envelopes_path, notice: "Successfully distributed money!"
     else
