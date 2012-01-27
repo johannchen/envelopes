@@ -14,25 +14,14 @@ class TransactionsController < ApplicationController
       ts = current_user.transactions
     end
 
-    if params[:type].present?
-      type = params[:type].to_i
-      case type
-      when 0
-        ts = ts.expense
-      when 1
-        ts = ts.income
-      when 2
-        ts = current_user.transactions.allocated
-      when 3
-        ts = current_user.transactions.excluded
-      end
-    end
+    ts = filter_by_type(params[:type].to_i, ts) if params[:type].present?
 
     ts = ts.search(params[:search]) if params[:search].present?
 
     if params[:start_date].present? and params[:end_date].present?
-      ts = ts.peroid(params[:start_date], params[:end_date])
+      ts = ts.period(params[:start_date], params[:end_date])
     end
+
     @transactions = ts.page(params[:page]).order('date DESC')
 
   end
@@ -82,5 +71,20 @@ class TransactionsController < ApplicationController
     end
 
     redirect_to transactions_path, notice: "Successfully uploaded transactions!"
+  end
+
+  private
+
+  def filter_by_type(type, ts)
+    case type
+    when 0
+      ts.expense
+    when 1
+      ts.income
+    when 2
+      current_user.transactions.allocated
+    when 3
+      current_user.transactions.excluded
+    end
   end
 end
