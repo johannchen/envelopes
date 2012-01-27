@@ -4,7 +4,8 @@ class DistributionsController < ApplicationController
   before_filter :allocate_envelopes, :only => :create
 
   def new
-    @envelopes = current_user.envelopes.order("name") 
+    @monthly_envelopes = current_user.envelopes.monthly.order("name") 
+    @annual_envelopes = current_user.envelopes.annual.order("name") 
     @unallocated_amount = current_user.unallocated_amount.to_f
     @total_refill_amount = current_user.total_refill_amount.round(2)
   end

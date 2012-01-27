@@ -46,4 +46,8 @@ class User < ActiveRecord::Base
   def unallocated_amount
     transactions.total_income - transactions.total_allocated
   end
+
+  def current_month_income
+    transactions.current_month.total_income
+  end
 end

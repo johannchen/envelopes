@@ -11,11 +11,7 @@
   </ul>
   <div class="tab-content">
     <div class="active" id="new_transfer">
-<% if @envelopes.blank? %>
-  <p>Please Add Envelope.</p>
-<% else %>
-  <%= render 'form' %>
-<% end %>
+      <%= render 'form' %>
     </div>
   </div>
 </div>

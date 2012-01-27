@@ -19,7 +19,8 @@ describe "Envelopes" do
         page.should have_content("Total")
         page.should have_content("$650.00")
         page.should have_content("-$150.00")
-        page.should have_content("Unallocate Money $2,600.00")
+        page.should have_content("Current month income $2,600.00")
+        page.should have_content("Total unallocate money $2,600.00")
       end
       it "displays annual/irregular envelopes", :focus => true do
         click_link "Annual"
@@ -31,20 +32,12 @@ describe "Envelopes" do
         page.should have_content("-$300.00")
         page.should have_content("Total")
         page.should have_content("$1,800.00")
-        page.should have_content("Unallocate Money $2,600.00")
+        page.should have_content("Total unallocate money $2,600.00")
       end
       it "edits budget in place" do
       end
     end
 
-    context "with transactions" do
-      it "displays recent transactions" do
-        page.should have_content("Home")
-        page.should have_content("-$200.00")
-        page.should have_content("Auto")
-        page.should have_content("-$100.00")
-      end
-    end
   end
 
   describe "Add Envelope" do

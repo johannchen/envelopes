@@ -19,8 +19,8 @@
         <%= best_in_place t, :amount, :display_with => :number_to_currency %>
       </td>
       <td><%= best_in_place t, :name %></td>
-      <td><%= best_in_place t, :envelope_id, :type => :select, :collection => current_user.envelopes.map{|e| [e.id, e.name]}, :display_as => :envelope_name  %></td>
-      <td><%= best_in_place t, :account_id, type: :select, collection: current_user.accounts.map{|a| [a.id, a.name]}, display_as: :account_name %></td>
+      <td><%= best_in_place_if t.envelope_id.present?, t, :envelope_id, :type => :select, :collection => current_user.envelopes.map{|e| [e.id, e.name]}, :display_as => :envelope_name  %></td>
+      <td><%= best_in_place_if t.account_id.present?, t, :account_id, type: :select, collection: current_user.accounts.map{|a| [a.id, a.name]}, display_as: :account_name %></td>
       <td><%= best_in_place t, :excluded, :type => :checkbox %></td>
       <td><%= link_to "remove", t, :class => "ui-icon ui-icon-trash", :title => "remove", :confirm => "Are you sure?", :method => :delete %></td>
     </tr>
