@@ -1,8 +1,10 @@
 <%= form_tag transactions_path, method: 'get', remote: true, id: 'search_transactions_form' do %>
-  <%= search_field_tag "search", params[:search], placeholder: "By Name" %>
-  <%= select_tag "envelope", options_from_collection_for_select(current_user.envelopes, :id, :name, params[:envelope]), prompt: "By Envelope" %>
-  <%= select_tag "account", options_from_collection_for_select(current_user.accounts, :id, :name, params[:account]), prompt: "By Account" %>
-  <%= select_tag "type", options_for_select([['Expense', 0], ['Income', 1], ['Allocation', 2], ['Account Transfer', 3]], params[:type]), prompt: "By Type" %>
+  <%= search_field_tag "search", params[:search], placeholder: "By Name", class: "small" %>
+  <%= select_tag "envelope", options_from_collection_for_select(current_user.envelopes, :id, :name, params[:envelope]), prompt: "By Envelope", class: "span2" %>
+  <%= select_tag "account", options_from_collection_for_select(current_user.accounts, :id, :name, params[:account]), prompt: "By Account", class: "span2" %>
+  <%= select_tag "type", options_for_select([['Expense', 0], ['Income', 1], ['Allocation', 2], ['Account Transfer', 3]], params[:type]), prompt: "By Type", class: "span2" %>
+  <%= text_field_tag "start_date", params[:start_date], placeholder: "Start Date", class: "small" %> to
+  <%= text_field_tag "end_date", params[:end_date], placeholder: "End Date", class: "small" %>
   <%= submit_tag "Search", name: nil %>
 <% end %>
 <div id="transaction_table">

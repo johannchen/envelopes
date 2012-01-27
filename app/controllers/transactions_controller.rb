@@ -30,6 +30,9 @@ class TransactionsController < ApplicationController
 
     ts = ts.search(params[:search]) if params[:search].present?
 
+    if params[:start_date].present? and params[:end_date].present?
+      ts = ts.peroid(params[:start_date], params[:end_date])
+    end
     @transactions = ts.page(params[:page]).order('date DESC')
 
   end
