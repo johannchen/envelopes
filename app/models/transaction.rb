@@ -24,6 +24,10 @@ class Transaction < ActiveRecord::Base
     income.sum("amount")
   end
 
+  def self.total_expense
+    expense.sum("amount")
+  end
+
   def self.total_allocated
     allocated.sum("amount")
   end

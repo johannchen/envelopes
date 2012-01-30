@@ -8,4 +8,20 @@ module ApplicationHelper
       end
     end.join.html_safe
   end
+
+  def beginning_of_this_month
+    Date.today.at_beginning_of_month
+  end
+
+  def beginning_of_next_month
+    Date.today.at_beginning_of_month.next_month
+  end
+
+  def start_date
+    params[:start_date] ? params[:start_date] : beginning_of_this_month
+  end
+
+  def end_date
+    params[:end_date] ? params[:end_date] : beginning_of_next_month
+  end
 end

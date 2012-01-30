@@ -26,13 +26,11 @@
           </thead>
           <tbody>
             <% @envelopes.each do |e| %>
-              <% expense = e.months_expense(@months) %>
-              <% budget = e.budget.to_f * @months %>
             <tr>
               <td><%= e.name %></td>
-              <td class="money"><%= number_to_currency(expense) %></td>
-              <td class="money"><%= number_to_currency(budget) %></td>
-              <td class="money"><%= number_to_percentage(expense/budget * 100, :precision => 2) %></td>
+              <td class="money"><%= number_to_currency(expense_of_months(e, @months)) %></td>
+              <td class="money"><%= number_to_currency(budget_of_months(e, @months)) %></td>
+              <td class="money"><%= number_to_percentage(expense_over_budget(e, @months), :precision => 2) %></td>
             </tr>
           <% end %>
             <tr>

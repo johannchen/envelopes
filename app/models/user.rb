@@ -50,4 +50,12 @@ class User < ActiveRecord::Base
   def current_month_income
     transactions.current_month.total_income
   end
+
+  def current_month_expense
+    transactions.current_month.total_expense
+  end
+
+  def current_month_saving
+    current_month_income + current_month_expense
+  end
 end
