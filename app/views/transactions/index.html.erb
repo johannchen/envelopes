@@ -1,22 +1,19 @@
 <div class="page-header">
   <h1>Transactions</h1>
 </div>
-<section id="transactions">
+<div id="transactions">
   <ul class="tabs" data-tabs="tabs">
-    <li class="active"><a href="#history">Transaction History</a></li>
-    <li><a href="#record_transaction">Record Transaction</a></li>
+    <li class="active"><%= link_to "Transaction History", transactions_path %></li>
+    <li><%= link_to "Record Transaction", new_transaction_path %></li>
     <li><a href="#upload_transactions">Upload Transactions</a></li>
   </ul>
   <div class="tab-content">
     <div class="active" id="history">
       <%= render 'history' %>
     </div>
-    <div id="record_transaction">
-      <%= render 'form' %>
-    </div>
     <div id="upload_transactions">
       <%= render 'upload_form' %>
     </div>
   </div>
-</section>
+</div>
 
