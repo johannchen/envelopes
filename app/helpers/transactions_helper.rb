@@ -1,7 +1,7 @@
 module TransactionsHelper
   def amount_color(transaction)
     if transaction.excluded
-      "yellow"
+      "olive"
     elsif transaction.allocated
       "purple"
     elsif transaction.amount > 0

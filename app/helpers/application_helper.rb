@@ -9,6 +9,10 @@ module ApplicationHelper
     end.join.html_safe
   end
 
+  def color_amount(amount)
+    amount < 0 ? "red" : "green"
+  end
+
   def beginning_of_this_month
     Date.today.at_beginning_of_month
   end

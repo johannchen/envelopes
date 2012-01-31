@@ -10,8 +10,8 @@
   <div class="tab-content">
     <div class="active" id="expense_breakdown">
       <%= form_tag reports_expense_breakdown_path, method: 'get' do %>
-        <%= text_field_tag "start_date", start_date, required: "required" %> to
-        <%= text_field_tag "end_date", end_date, required: "required" %>
+        <%= text_field_tag "start_date", start_date, required: "required", class: "span2" %> to
+        <%= text_field_tag "end_date", end_date, required: "required", class: "span2" %>
         <%= submit_tag "Filter", name: nil %>
       <% end %> 
       <div class="row">

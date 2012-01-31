@@ -17,7 +17,7 @@
   <div class="clearfix">
     <%= f.label :date %>
     <div class="input">
-      <%= f.text_field :date, :required => "required" %>
+      <%= f.text_field :date, :value => Date.today, :required => "required" %>
     </div>
   </div>
   <div class="clearfix">

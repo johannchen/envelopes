@@ -43,7 +43,7 @@
 </table>
 <p>Current month income <%= link_to number_to_currency(current_user.current_month_income), transactions_path(:start_date => beginning_of_this_month, :end_date => beginning_of_next_month, :type => 1) %></p> 
 <p>Current month expense <%= link_to number_to_currency(current_user.current_month_expense), transactions_path(:start_date => beginning_of_this_month, :end_date => beginning_of_next_month, :type => 0) %></p> 
-<p>Current month saving <%= number_to_currency(current_user.current_month_saving) %></p> 
+<p>Current month saving <span class=<%= color_amount(current_user.current_month_saving) %>><%= number_to_currency(current_user.current_month_saving) %></span></p> 
 <p>Total unallocate money <%= number_to_currency(current_user.unallocated_amount) %></p>
     </div>
   </div>

@@ -10,7 +10,7 @@
   <div class="tab-content">
     <div class="active" id="expense_budget">
       <%= form_tag reports_expense_vs_budget_path, method: 'get' do %>
-        <strong>Last </strong><%= select_tag "months", options_for_select((1..12).to_a.map{|n| ["#{n}", n]}, params[:months]) %> <strong>months</strong>
+        <strong>Last </strong><%= select_tag "months", options_for_select((1..12).to_a.map{|n| ["#{n}", n]}, params[:months]), class: "span1" %> <strong>months</strong>
         <%= submit_tag "Filter", name: nil %>
       <% end %>
       <div class="row">

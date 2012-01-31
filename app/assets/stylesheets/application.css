@@ -51,8 +51,16 @@ td.purple {
   text-align: right;
   color: purple;
 }
-td.yellow {
+td.olive {
   text-align: right;
-  color: yellow;
+  color: olive;
+}
+
+.red {
+  color: red;
+}
+
+.green {
+  color: green;
 }
 

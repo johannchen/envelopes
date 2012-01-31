@@ -52,10 +52,10 @@ class User < ActiveRecord::Base
   end
 
   def current_month_expense
-    transactions.current_month.total_expense
+    transactions.current_month.total_expense.abs
   end
 
   def current_month_saving
-    current_month_income + current_month_expense
+    current_month_income - current_month_expense
   end
 end
