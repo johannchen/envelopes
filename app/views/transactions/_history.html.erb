@@ -6,6 +6,7 @@
   <%= text_field_tag "start_date", params[:start_date], placeholder: "Start Date", class: "small" %> to
   <%= text_field_tag "end_date", params[:end_date], placeholder: "End Date", class: "small" %>
   <%= submit_tag "Search", name: nil %>
+  <%= link_to "Download Transactions", transactions_path(params.merge({format: :csv})), class: "btn" %>
 <% end %>
 <div id="transaction_table">
   <%= render 'transactions' %>

@@ -1,4 +1,6 @@
 class TransactionsController < ApplicationController
+  require 'csv'
+
   load_and_authorize_resource
 
   def index
@@ -23,7 +25,12 @@ class TransactionsController < ApplicationController
     end
 
     @transactions = ts.page(params[:page]).order('date DESC')
-
+   
+    respond_to do |format|
+      format.html
+      format.js
+      format.csv { render text: download(@transactions)}
+    end
   end
 
   def new
@@ -58,7 +65,6 @@ class TransactionsController < ApplicationController
   end
 
   def upload
-    require 'csv'
     # Heroku has tempfile class, which can access for the duration of the request
     csv_text = IO.read(params[:transaction_file].tempfile.path)
     csv = CSV.parse(csv_text, :headers => true)
@@ -86,5 +92,15 @@ class TransactionsController < ApplicationController
     when 3
       current_user.transactions.excluded
     end
+  end
+
+  def download(transactions)
+    csv_data = CSV.generate do |csv|
+      csv << ["date", "amount", "name", "envelope_name", "account_name"]
+      transactions.map do |tx|
+        csv << [tx.date, tx.amount, tx.name, tx.envelope_name, tx.account_name]
+      end
+    end
+    csv_data
   end
 end

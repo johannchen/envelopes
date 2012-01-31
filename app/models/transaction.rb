@@ -1,4 +1,5 @@
 class Transaction < ActiveRecord::Base
+  require 'csv'
   has_one :distribution
   belongs_to :envelope
   belongs_to :account
