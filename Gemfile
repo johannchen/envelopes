@@ -11,6 +11,7 @@ gem 'will_paginate', '~> 3.0'
 gem 'bootstrap-will_paginate'
 gem 'best_in_place', '~> 1.0.4'
 gem 'google_visualr', '~> 2.1'
+gem 'active_link_to'
 
 # Gems used only for assets and not required
 # in production environments by default.

@@ -15,11 +15,11 @@
         <%= link_to 'Envelopes Budget', envelopes_url, :class => 'brand' %>
         <% if current_user %>
         <ul class="nav">
-          <li><%= link_to 'Envelopes', envelopes_path %></li>
-          <li><%= link_to 'Transactions', transactions_path %></li>
-          <li><%= link_to 'Accounts', accounts_path %></li>
-          <li><%= link_to 'Reports', reports_expense_breakdown_path %></li>
-          <li> <%= link_to 'Log out', logout_path %></li>
+          <%= active_link_to 'Envelopes', envelopes_path, :active => [['envelopes', 'distributions', 'transfers'], []], :wrap_tag => :li %>
+          <%= active_link_to 'Transactions', transactions_path, :wrap_tag => :li %>
+          <%= active_link_to 'Accounts', accounts_path, :wrap_tag => :li %>
+          <%= active_link_to 'Reports', reports_expense_breakdown_path, :active => /^\/reports/, :wrap_tag => :li %>
+          <li><%= link_to 'Log out', logout_path %></li>
         </ul>
         <% end %>
       </div>
