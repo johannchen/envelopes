@@ -2,8 +2,7 @@ class AccountsController < ApplicationController
   load_and_authorize_resource
 
   def index
-    @accounts = current_user.accounts 
-    @account = Account.new
+    @accounts = current_user.accounts.order("name")
   end
 
   def new

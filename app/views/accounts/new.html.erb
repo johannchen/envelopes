@@ -1,2 +1,15 @@
-<h1>New Account</h1>
-<%= render 'form' %>
+<div class="page-header">
+  <h1>Accounts</h1>
+</div>
+
+<div id="accounts">
+  <ul class="tabs" data-tabs="tabs">
+    <li><%= link_to 'Account Overview', accounts_path %></li>
+    <li class="active"><%= link_to 'Add Account', new_account_path %></li>
+  </ul>
+  <div class="tab-content">
+    <div class="active" id="add_account">
+      <%= render 'form' %>
+    </div>
+  </div>
+</div>

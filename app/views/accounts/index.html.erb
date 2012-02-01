@@ -2,36 +2,33 @@
   <h1>Accounts</h1>
 </div>
 
-<section id="accounts">
+<div id="accounts">
   <ul class="tabs" data-tabs="tabs">
-    <li class="active"><a href="#overview">Account Overview</a></li>
-    <li><a href="#add_account">Add Account</a></li>
+    <li class="active"><%= link_to 'Account Overview', accounts_path %></li>
+    <li><%= link_to 'Add Account', new_account_path %></li>
   </ul>
   <div class="tab-content">
   <div class="active" id="overview">
-    <table>
+    <table class="span6">
       <thead>
     <tr>
       <th>Name</th>
       <th class="money">Balance</th>
-      <th>Note</th>
-      <th>Action</th>
     </tr>
   </thead>
   <tbody>
   <% @accounts.each do |a| %>
     <tr>
       <td><%= link_to a.name, transactions_path(account: a.id) %></td>
-      <td class="money"><%= number_to_currency(a.transactions.sum("amount")) %></td>
-      <td><%= a.note %></td>
-      <td></td>
+      <td class="money"><%= number_to_currency(a.balance) %></td>
     </tr>
   <% end %>
+  <tr>
+    <td><strong>Total</strong></td>
+    <td class="money"><%= number_to_currency(current_user.total_accounts_balance) %></td>
+  </tr>
   </tbody>
   </table>
 </div>
 
-<div id="add_account">
-  <%= render 'form' %>
 </div>
-</section>

@@ -4,4 +4,8 @@ class Account < ActiveRecord::Base
 
   validates_presence_of :name, :user
   validates_uniqueness_of :name, :scope => :user_id
+
+  def balance
+    transactions.sum("amount")
+  end
 end

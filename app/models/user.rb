@@ -39,6 +39,9 @@ class User < ActiveRecord::Base
     envelopes.inject(0.0) { |sum, e| sum + e.refill_amount }
   end
 
+  def total_accounts_balance
+    accounts.inject(0.0) { |sum, a| sum + a.balance }
+  end
   def recent_transactions
     transactions.unallocated.order("date desc").limit(5)
   end
