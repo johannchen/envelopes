@@ -1,16 +1,12 @@
-<div class="page-header">
-  <h1>Envelopes</h1>
-</div>
-<div class="envelopes">
-  <ul class="tabs" data-tabs="tabs">
-    <li class="active"><a href="#">Monthly</a></li>
+<div class="subnav subnav-fixed">
+  <ul class="nav nav-pills">
+    <li class="active"><%= link_to "Monthly", envelopes_path %></li>
     <li><%= link_to "Annual", annual_envelopes_path %></li>
     <li><%= link_to "Add Envelope", new_envelope_path %></li>
     <li><%= link_to "New Distribution", new_distribution_path %></li>
     <li><%= link_to "Transfer Between Envelopes", new_transfer_path %></li>
   </ul>
-  <div class="tab-content">
-    <div class="active" id="monthly_envelopes">
+</div>
     <table>
       <thead>
       <tr>
@@ -45,6 +41,3 @@
 <p>Current month expense <%= link_to number_to_currency(current_user.current_month_expense), transactions_path(:start_date => beginning_of_this_month, :end_date => beginning_of_next_month, :type => 0) %></p> 
 <p>Current month saving <span class=<%= color_amount(current_user.current_month_saving) %>><%= number_to_currency(current_user.current_month_saving) %></span></p> 
 <p>Total unallocate money <%= number_to_currency(current_user.unallocated_amount) %></p>
-    </div>
-  </div>
-</div>
