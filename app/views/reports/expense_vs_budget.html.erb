@@ -4,7 +4,9 @@
         <strong>Last </strong><%= select_tag "months", options_for_select((1..12).to_a.map{|n| ["#{n}", n]}, params[:months]), class: "span1" %> <strong>months</strong>
         <%= submit_tag "Filter", name: nil %>
       <% end %>
-          <table>
+    <div class="row">
+      <div class="span4">
+          <table class="table">
             <thead>
             <tr>
               <th>Envelope</th>
@@ -29,9 +31,13 @@
               <td class="money"><%= number_to_percentage(@total_percentage, :precision => 0) %></td>
             </tr>
           </tbody>
-          </table>
-          <div id="chart"></div>
-          <%= render_chart @chart, 'chart' %>
-          </section>
+        </table>
+      </div>
+      <div class="span8">
+        <div id="chart"></div>
+        <%= render_chart @chart, 'chart' %>
+      </div>
+    </div>
+  </section>
 
 

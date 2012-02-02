@@ -5,7 +5,9 @@
         <%= text_field_tag "end_date", end_date, required: "required", class: "span2" %>
         <%= submit_tag "Filter", name: nil %>
       <% end %> 
-          <table>
+    <div class="row">
+      <div class="span4">
+          <table class="table">
             <thead>
             <tr>
               <th>Envelope</th>
@@ -27,9 +29,11 @@
               <td></td>
             </tr>
           </tbody>
-          </table>
-        </div>
-          <div id="chart"></div>
-          <%= render_chart @chart, 'chart' %>
-
-          </section>
+        </table>
+      </div>
+      <div class="span8">
+        <div id="chart"></div>
+        <%= render_chart @chart, 'chart' %>
+      </div>
+    </div>
+  </section>

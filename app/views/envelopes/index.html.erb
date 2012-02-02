@@ -16,7 +16,11 @@
         <td><%= best_in_place envelope, :name %></td>
         <td class="money"><%= best_in_place envelope, :budget, :display_with => :number_to_currency %></td>
         <td class="money"><%= link_to number_to_currency(envelope.current_amount), transactions_path(:envelope => envelope) %></td>
-        <td class="meter"><meter min=0 max=<%= envelope.budget %> value=<%= envelope.current_amount %>></meter></td>
+        <td class="meter">
+          <div class="progress progress-success">
+            <div class="bar" style="width: <%= number_to_percentage(envelope.current_amount / envelope.budget * 100) %>;"></div>
+          </div>
+        </td>
         <td><%= best_in_place envelope, :monthly, :type => :checkbox %></td>
       </tr>
     <% end %>

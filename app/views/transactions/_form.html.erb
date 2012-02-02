@@ -1,50 +1,50 @@
 <% if current_user.accounts.blank? or current_user.envelopes.blank? %>
   <p>You don't have accounts or envelopes. Please <%= link_to 'add accounts', new_account_path %> or <%= link_to 'add envelopes', new_envelope_path %>.</p>
 <% else %>
-<%= form_for(@transaction) do |f| %>
+  <%= form_for @transaction, html: { class: "form-horizontal" } do |f| %>
 <fieldset>
-  <div class="clearfix">
+  <div class="control-group">
     <%= label_tag :type %>
-    <div class="input">
+    <div class="controls">
       <%= radio_button_tag :income, 0, :checked => true%>
       <span>Expense</span>
     </div>
-    <div class="input">
+    <div class="controls">
       <%= radio_button_tag :income, 1%>
       <span>Income</span>
     </div>
   </div>
-  <div class="clearfix">
+  <div class="control-group">
     <%= f.label :date %>
-    <div class="input">
+    <div class="controls">
       <%= f.text_field :date, :value => Date.today, :required => "required" %>
     </div>
   </div>
-  <div class="clearfix">
+  <div class="control-group">
     <%= f.label :name %>
-    <div class="input">
+    <div class="controls">
       <%= f.text_field :name, :required => "required" %>
     </div>
   </div>
-  <div class="clearfix">
+  <div class="control-group">
     <%= f.label :amount %>
-    <div class="input">
+    <div class="controls">
       <%= f.text_field :amount, :required => "required" %>
     </div>
   </div>
-  <div id="transaction_envelope" class="clearfix">
+  <div id="transaction_envelope" class="control-group">
     <%= f.label :envelope %>
-    <div class="input">
+    <div class="controls">
       <%= f.collection_select :envelope_id, current_user.envelopes.order("name"), :id, :name_amount %>
     </div>
   </div>
-  <div class="clearfix">
+  <div class="control-group">
     <%= f.label :account %>
-    <div class="input">
+    <div class="controls">
       <%= f.collection_select :account_id, current_user.accounts, :id, :name %>
     </div>
   </div>
-  <div class="actions"><%= f.submit "Save", :class => "btn primary" %></div>
+  <div class="form-actions"><%= f.submit "Save Transaction", :class => "btn-primary" %></div>
 </fieldset>
 <% end %>
 <% end %>

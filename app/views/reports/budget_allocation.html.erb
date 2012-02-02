@@ -1,6 +1,8 @@
 <%= render 'header' %>
 <section id="budget_allocation">
-         <table>
+    <div class="row">
+      <div class="span4">
+         <table class="table">
             <thead>
             <tr>
               <th>Envelope</th>
@@ -24,7 +26,10 @@
             </tr>
           </tbody>
          </table>
-              
-          <div id="chart"></div>
-          <%= render_chart @chart, 'chart' %>
-          </section>
+      </div>
+      <div class="span8">
+        <div id="chart"></div>
+        <%= render_chart @chart, 'chart' %>
+      </div>
+    </div>
+   </section>
