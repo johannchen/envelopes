@@ -1,15 +1,6 @@
-<div class="page-header">
-  <h1>Accounts</h1>
-</div>
-
-<div id="accounts">
-  <ul class="tabs" data-tabs="tabs">
-    <li class="active"><%= link_to 'Account Overview', accounts_path %></li>
-    <li><%= link_to 'Add Account', new_account_path %></li>
-  </ul>
-  <div class="tab-content">
-  <div class="active" id="overview">
-    <table class="span6">
+<%= render 'header' %>
+<section id="accounts_overview">
+<table class="span6">
       <thead>
     <tr>
       <th>Name</th>
@@ -28,7 +19,5 @@
     <td class="money"><%= number_to_currency(current_user.total_accounts_balance) %></td>
   </tr>
   </tbody>
-  </table>
-</div>
-
-</div>
+</table>
+</section>

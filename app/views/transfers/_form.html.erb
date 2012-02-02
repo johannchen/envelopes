@@ -1,37 +1,37 @@
-<%= form_tag :controller => :transfers, :action => :create do %>
+<%= form_tag transfers_path, :class => "form-horizontal" do %>
 <fieldset>
-  <div class="clearfix">
+  <div class="control-group">
   <%= label_tag "Date" %>
-    <div class="input">
+    <div class="controls">
       <%= text_field_tag "transfer_date", Date.today, required: "required" %>
     </div>
   </div>
-  <div class="clearfix">
+  <div class="control-group">
   <%= label_tag "Name" %>
-    <div class="input">
+    <div class="controls">
       <%= text_field_tag "name" %>
     </div>
   </div>
-  <div class="clearfix">
+  <div class="control-group">
   <%= label_tag "Amount" %>
-    <div class="input">
+    <div class="controls">
       <%= text_field_tag "amount", nil, required: "required" %>
     </div>
   </div>
-  <div class="clearfix">
+  <div class="control-group">
   <%= label_tag "From" %>
-    <div class="input">
+    <div class="controls">
       <%= select_tag "from", options_from_collection_for_select(@envelopes, :id, :name_amount) %>
     </div>
   </div>
-  <div class="clearfix">
+  <div class="control-group">
   <%= label_tag "To" %>
-    <div class="input">
+    <div class="controls">
       <%= select_tag "to", options_from_collection_for_select(@envelopes, :id, :name_amount) %>
     </div>
   </div>
-  <div class="actions">
-    <%= submit_tag "Transfer", class: "btn primary" %>
+  <div class="form-actions">
+    <%= submit_tag "Save Transfer", class: "btn-primary" %>
   </div>
 </fieldset>
 <% end %>

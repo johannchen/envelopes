@@ -1,20 +1,9 @@
-<div class="page-header">
-  <h1>Reports</h1>
-</div>
-<div class="reports">
-  <ul class="tabs" data-tabs="tabs">
-    <li><%= link_to 'Expense Breakdown', reports_expense_breakdown_path %></li>
-    <li class="active"><%= link_to 'Expense vs Budget', reports_expense_vs_budget_path %></li>
-    <li><%= link_to 'Budget Allocation', reports_budget_allocation_path %></li>
-  </ul>
-  <div class="tab-content">
-    <div class="active" id="expense_budget">
-      <%= form_tag reports_expense_vs_budget_path, method: 'get' do %>
+<%= render 'header' %>
+<section id="expense_vs_budget">
+     <%= form_tag reports_expense_vs_budget_path, method: 'get' do %>
         <strong>Last </strong><%= select_tag "months", options_for_select((1..12).to_a.map{|n| ["#{n}", n]}, params[:months]), class: "span1" %> <strong>months</strong>
         <%= submit_tag "Filter", name: nil %>
       <% end %>
-      <div class="row">
-        <div class="span6">
           <table>
             <thead>
             <tr>
@@ -41,15 +30,8 @@
             </tr>
           </tbody>
           </table>
-        </div>
-        <div class="span10">
           <div id="chart"></div>
           <%= render_chart @chart, 'chart' %>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
+          </section>
 
 

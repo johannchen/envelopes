@@ -1,17 +1,6 @@
-<div class="page-header">
-  <h1>Reports</h1>
-</div>
-<div class="reports">
-  <ul class="tabs" data-tabs="tabs">
-    <li><%= link_to 'Expense Breakdown', reports_expense_breakdown_path %></li>
-    <li><%= link_to 'Expense vs Budget', reports_expense_vs_budget_path %></li>
-    <li class="active"><a href="#">Budget Allocation</a></li>
-  </ul>
-  <div class="tab-content">
-    <div class="active" id="budget_allocation">
-      <div class="row">
-        <div class="span6">
-          <table>
+<%= render 'header' %>
+<section id="budget_allocation">
+         <table>
             <thead>
             <tr>
               <th>Envelope</th>
@@ -36,13 +25,6 @@
           </tbody>
          </table>
               
-        </div>
-        <div class="span10">
           <div id="chart"></div>
           <%= render_chart @chart, 'chart' %>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
+          </section>

@@ -8,8 +8,12 @@ Envelopes::Application.routes.draw do
   resources :users, :sessions, :distributions, :transfers
   resources :accounts 
   resources :transactions do
-    put 'upload', :on => :collection
+    collection do
+      get 'new_upload'
+      put 'upload'
+    end 
   end
+
   resources :envelopes do
     get 'annual', :on => :collection
   end

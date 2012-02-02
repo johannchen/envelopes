@@ -1,0 +1,8 @@
+<header class="jumbotron subhead">
+<div class="subnav subnav-fixed">
+  <ul class="nav nav-pills">
+    <%= active_link_to "Accounts Overview", accounts_path, :active => [['accounts'], ['index']], :wrap_tag => :li %>
+    <%= active_link_to "Add Account", new_account_path, :acctive => [['accounts'], ['new']], :wrap_tag => :li %>
+  </ul>
+</div>
+</header>

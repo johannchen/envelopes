@@ -1,20 +1,20 @@
-<%= form_for(@distribution) do |f| %>
+<%= form_for(@distribution, html: { class: "form-horizontal" }) do |f| %>
 <fieldset>
-  <div class="clearfix">
+  <div class="control-group">
     <%= f.label :date %>
-    <div class="input">
+    <div class="controls">
       <%= f.text_field :date, :value => Date.today, :required => "required" %>
     </div>
   </div>
-  <div class="clearfix">
+  <div class="control-group">
     <%= f.label :name %>
-    <div class="input">
+    <div class="controls">
       <%= f.text_field :name, :required => "required" %>
     </div>
   </div>
-  <div class="clearfix">
+  <div class="control-group">
     <%= f.label :amount %>
-    <div class="input">
+    <div class="controls">
       <%= f.text_field :amount, value: @total_refill_amount, required: "required", disabled: true %>
     </div>
   </div>
@@ -22,9 +22,9 @@
   <legend>Monthly Envelopes</legend>
   <%= fields_for :transactions do |t| %>
     <% @monthly_envelopes.each do |e| %>
-    <div class="clearfix">
+    <div class="control-group">
       <%= t.label e.name %>
-      <div class="input">
+      <div class="controls">
         <%= t.text_field e.name, :value => e.refill_amount %>
         <span><%= number_to_currency(e.current_amount) %>/<%= number_to_currency(e.budget) %></span>
       </div>
@@ -36,9 +36,9 @@
   <legend>Annual Envelopes</legend>
   <%= fields_for :transactions do |t| %>
     <% @annual_envelopes.each do |e| %>
-    <div class="clearfix">
+    <div class="control-group">
       <%= t.label e.name %>
-      <div class="input">
+      <div class="controls">
         <%= t.text_field e.name, :value => e.refill_amount %>
         <span><%= number_to_currency(e.current_amount) %>/<%= number_to_currency(e.budget) %></span>
       </div>
@@ -46,6 +46,6 @@
     <% end %>
   <% end %>
 </fieldset>
-  <div class="actions"><%= f.submit "Save", class: "btn primary" %></div>
+  <div class="form-actions"><%= f.submit "Save Distribution", class: "btn-primary" %></div>
 </fieldset>
 <% end %>

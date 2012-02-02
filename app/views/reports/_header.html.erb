@@ -1,0 +1,9 @@
+<header class="jumbotron subhead">
+<div class="subnav subnav-fixed">
+  <ul class="nav nav-pills">
+    <%= active_link_to "Expense Breakdown", reports_expense_breakdown_path, :active => [['reports'], ['expense_breakdown']], :wrap_tag => :li %>
+    <%= active_link_to "Expense vs Budget", reports_expense_vs_budget_path, :active => [['reports'], ['expense_vs_budget']], :wrap_tag => :li %>
+    <%= active_link_to "Budget Allocation", reports_budget_allocation_path, :active => [['reports'], ['budget_allocation']], :wrap_tag => :li %>
+  </ul>
+</div>
+</header>

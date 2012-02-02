@@ -64,6 +64,9 @@ class TransactionsController < ApplicationController
     redirect_to transactions_url
   end
 
+  def new_upload
+  end
+
   def upload
     # Heroku has tempfile class, which can access for the duration of the request
     csv_text = IO.read(params[:transaction_file].tempfile.path)

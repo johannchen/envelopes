@@ -1,24 +1,10 @@
-<div class="page-header">
-  <h1>Envelopes</h1>
-</div>
-<div class="envelopes">
-  <ul class="tabs" data-tabs="tabs">
-    <li><%= link_to "Monthly", envelopes_path %></li>
-    <li><%= link_to "Annual", annual_envelopes_path %></li>
-    <li><%= link_to "Add Envelope", new_envelope_path %></li>
-    <li class="active"><%= link_to "New Distribution", new_distribution_path %></li>
-    <li><%= link_to "Transfer Between Envelopes", new_transfer_path %></li>
-  </ul>
-  <div class="tab-content">
-    <div class="active" id="new_distribution">
-      <p>You currently have <%= number_to_currency(current_user.unallocated_amount.to_f) %> in Unallocated Money.</p>
+<%= render 'envelopes/header' %>
+<section id="new_distribution">
+<p>You currently have <%= number_to_currency(current_user.unallocated_amount.to_f) %> in Unallocated Money.</p>
 
 <% if @unallocated_amount <= 0 %>
   <p>Please <%= link_to 'add income', new_transaction_path %> and add envelopes</p>
 <% else %>
   <%= render 'form' %>
 <% end %>
-    </div>
-  </div>
-</div>
-
+</section>

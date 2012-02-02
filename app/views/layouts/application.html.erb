@@ -9,7 +9,7 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-  <div class="navbar navar-fixed-top">
+  <div class="navbar navbar-fixed-top">
     <div class="navbar-inner">
       <div class="container">
         <%= link_to 'Envelopes Budget', envelopes_url, :class => 'brand' %>
@@ -27,18 +27,10 @@
       </div>
     </div>
   </div>
-  <header>
-  </header>
  
   <div class="container">
-    <section id="main">
-    <div class="row">
-      <div class="span12">
-        <%= flash_messages %>
-        <%= yield %>
-      </div>
-    </div>
-    </section>
+    <%= flash_messages %>
+    <%= yield %>
   </div>
 
   <footer>

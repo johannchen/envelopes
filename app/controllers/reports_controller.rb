@@ -1,5 +1,4 @@
 class ReportsController < ApplicationController
-  # authorize_resource :class => false
 
   def expense_breakdown
     authorize! :read, :reports

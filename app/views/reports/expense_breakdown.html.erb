@@ -1,21 +1,10 @@
-<div class="page-header">
-  <h1>Reports</h1>
-</div>
-<div class="reports">
-  <ul class="tabs" data-tabs="tabs">
-    <li class="active"><%= link_to 'Expense Breakdown', reports_expense_breakdown_path %></li>
-    <li><%= link_to 'Expense vs Budget', reports_expense_vs_budget_path %></li>
-    <li><%= link_to 'Budget Allocation', reports_budget_allocation_path %></li>
-  </ul>
-  <div class="tab-content">
-    <div class="active" id="expense_breakdown">
-      <%= form_tag reports_expense_breakdown_path, method: 'get' do %>
+<%= render 'header' %>
+<section id="expense_breakdown">
+<%= form_tag reports_expense_breakdown_path, method: 'get' do %>
         <%= text_field_tag "start_date", start_date, required: "required", class: "span2" %> to
         <%= text_field_tag "end_date", end_date, required: "required", class: "span2" %>
         <%= submit_tag "Filter", name: nil %>
       <% end %> 
-      <div class="row">
-        <div class="span6">
           <table>
             <thead>
             <tr>
@@ -40,13 +29,7 @@
           </tbody>
           </table>
         </div>
-        <div class="span10">
           <div id="chart"></div>
           <%= render_chart @chart, 'chart' %>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
 
-
+          </section>
