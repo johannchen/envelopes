@@ -1,0 +1,27 @@
+<div data-role="header">
+  <%= link_to 'Home', root_url, "data-icon" => "home" %> 
+  <h1>Budget Envelopes</h1>
+</div>
+
+<div data-role="content">
+  <ul data-role="listview">
+    <% @monthly_envelopes.each do |envelope| %>
+    <li>
+      <%= envelope.name %> 
+      <span class="ui-li-aside">
+	<%= envelope.current_amount %> / <%= envelope.budget %>
+      </span>
+    </li>
+    <% end %> 
+  </ul>
+</div>
+
+<div data-role="footer">
+  <div data-role="navbar">
+    <ul>
+      <li class="ui-btn-active">Envelopes</li>
+      <li>Transactions</li>
+      <li>Accounts</li>
+    </ul>
+  </div>
+</div>
