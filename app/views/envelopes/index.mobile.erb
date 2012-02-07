@@ -5,14 +5,28 @@
 
 <div data-role="content">
   <ul data-role="listview">
+    <li data-role="list-divider" role="heading">Monthly Envelopes</li>
     <% @monthly_envelopes.each do |envelope| %>
-    <li>
-      <%= envelope.name %> 
-      <span class="ui-li-aside">
-	<%= envelope.current_amount %> / <%= envelope.budget %>
-      </span>
-    </li>
+      <li>
+        <a href="#">
+          <%= envelope.name %>
+          <span class="ui-li-aside">
+            <%= number_to_currency(envelope.current_amount) %> / <%= number_to_currency(envelope.budget) %>
+          </span>
+        </a>
+      </li>
     <% end %> 
+    <li data-role="list-divider" role="heading">Annual Envelopes</li>
+    <% current_user.envelopes.where(:monthly => :false).order("name").each do |envelope| %>
+      <li>
+        <a herf="#">
+          <%= envelope.name %>
+          <span class="ui-li-aside">
+            <%= number_to_currency(envelope.current_amount) %> / <%= number_to_currency(envelope.budget) %>
+          </span>
+        </a>
+      </li>
+    <% end %>
   </ul>
 </div>
 
