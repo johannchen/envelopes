@@ -7,12 +7,12 @@
   <ul data-role="listview">
     <% @accounts.each do |account| %>
       <li>
-        <a href="#">
+        <%= link_to transactions_path(:account => account) do %>
           <%= account.name %>
           <span class="ui-li-aside">
             <%= number_to_currency(account.balance) %>
           </span>
-        </a>
+        <% end %>
       </li>
     <% end %> 
   </ul>

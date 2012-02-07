@@ -1,0 +1,31 @@
+<div data-role="header">
+  <%= link_to 'Home', root_url, "data-icon" => "home" %> 
+  <h1>New Transaction</h1>
+</div>
+
+<div data-role="content">
+  <%= form_for(@transaction) do |f| %>
+    <div data-role="fieldcontain">
+      <fieldset data-role="controlgroup">
+        <legend>Type</legend>
+        <%= f.radio_button :income, 0, :checked => true %> 
+        <label for="transaction_income_0">Expense</label>
+        <%= f.radio_button :income, 1 %> 
+        <label for="transaction_income_1">Income</label>
+      </fieldset>
+      <%= f.label :name %>
+      <%= f.text_field :name, :required => "required" %>
+      <%= f.submit "Save Envelope" %>
+    </div>
+  <% end %>
+</div>
+
+<div data-role="footer" data-position="fixed">
+  <div data-role="navbar">
+    <ul>
+      <li><%= link_to 'Envelopes', envelopes_path, class: "ui-btn-active" %></li>
+      <li><%= link_to 'Transactions', transactions_path %></li>
+      <li><%= link_to 'Accounts', accounts_path %></li>
+    </ul>
+  </div>
+</div>

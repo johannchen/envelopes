@@ -1,0 +1,33 @@
+<div data-role="header">
+  <%= link_to 'Home', root_url, "data-icon" => "home" %> 
+  <h1>Budget Envelopes</h1>
+</div>
+
+<div data-role="content">
+  <%= form_for(@envelope) do |f| %>
+    <div data-role="fieldcontain">
+      <%= f.label :name %>
+      <%= f.text_field :name, :required => "required" %>
+      <%= f.label :budget%>
+      <%= f.text_field :budget, :required => "required" %>
+      <fieldset data-role="controlgroup">
+        <legend>Type</legend>
+        <%= f.radio_button :monthly, 1, :checked => true %> 
+        <label for="envelope_monthly_1">monthly</label>
+        <%= f.radio_button :monthly, 0 %> 
+        <label for="envelope_monthly_0">annual</label>
+      </fieldset>
+      <%= f.submit "Save Envelope" %>
+    </div>
+  <% end %>
+</div>
+
+<div data-role="footer" data-position="fixed">
+  <div data-role="navbar">
+    <ul>
+      <li><%= link_to 'Envelopes', envelopes_path, class: "ui-btn-active" %></li>
+      <li><%= link_to 'Transactions', transactions_path %></li>
+      <li><%= link_to 'Accounts', accounts_path %></li>
+    </ul>
+  </div>
+</div>

@@ -1,6 +1,7 @@
 <div data-role="header">
-  <%= link_to 'Home', root_url, "data-icon" => "home" %> 
+  <%= link_to "Home", root_url, "data-icon" => "home" %> 
   <h1>Budget Envelopes</h1>
+  <%= link_to "Add", new_envelope_path, "data-icon" => "plus" %> 
 </div>
 
 <div data-role="content">
@@ -8,12 +9,12 @@
     <li data-role="list-divider" role="heading">Monthly Envelopes</li>
     <% @monthly_envelopes.each do |envelope| %>
       <li>
-        <a href="#">
+        <%= link_to transactions_path(:envelope => envelope) do %>
           <%= envelope.name %>
           <span class="ui-li-aside">
             <%= number_to_currency(envelope.current_amount) %> / <%= number_to_currency(envelope.budget) %>
-          </span>
-        </a>
+            </span>
+        <% end %>
       </li>
     <% end %> 
     <li data-role="list-divider" role="heading">Annual Envelopes</li>

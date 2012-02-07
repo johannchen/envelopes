@@ -1,6 +1,7 @@
 <div data-role="header">
   <%= link_to 'Home', root_url, "data-icon" => "home" %> 
-  <h1>Budget Envelopes</h1>
+  <h1>Transactions</h1>
+  <%= link_to 'Add', new_transaction_path, "data-icon" => "plus" %> 
 </div>
 
 <div data-role="content">
@@ -9,7 +10,7 @@
       <tr>
         <th scope="col">Date</th>
         <th scope="col" class="right">Amount</th>
-        <th scope="col" class="left">Envelope</th>
+        <th scope="col" class="left"><%= params[:envelope] ? "Account" : "Envelope" %></th>
         <th scope="col" class="left">Name</th>
       </tr>
     </thead>
@@ -18,7 +19,7 @@
       <tr>
         <td><%= transaction.date.strftime("%m/%d") %></td>
         <td class="right <%= amount_color(transaction) %>"><%= number_to_currency(transaction.amount) %></td>
-        <td><%= transaction.envelope_name %></td>
+        <td><%= params[:envelope] ? transaction.account_name : transaction.envelope_name %></td>
         <td><%= transaction.name %></td>
       </tr>
       <% end %>
