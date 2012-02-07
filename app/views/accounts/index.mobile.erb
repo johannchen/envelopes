@@ -1,0 +1,29 @@
+<div data-role="header">
+  <%= link_to 'Home', root_url, "data-icon" => "home" %> 
+  <h1>Budget Envelopes</h1>
+</div>
+
+<div data-role="content">
+  <ul data-role="listview">
+    <% @accounts.each do |account| %>
+      <li>
+        <a href="#">
+          <%= account.name %>
+          <span class="ui-li-aside">
+            <%= number_to_currency(account.balance) %>
+          </span>
+        </a>
+      </li>
+    <% end %> 
+  </ul>
+</div>
+
+<div data-role="footer" data-position="fixed">
+  <div data-role="navbar">
+    <ul>
+      <li><%= link_to 'Envelopes', envelopes_path %></li>
+      <li><%= link_to 'Transactions', transactions_path %></li>
+      <li><a href="#" class="ui-btn-active">Accounts</a></li>
+    </ul>
+  </div>
+</div>

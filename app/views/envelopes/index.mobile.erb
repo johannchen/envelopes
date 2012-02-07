@@ -30,12 +30,12 @@
   </ul>
 </div>
 
-<div data-role="footer">
+<div data-role="footer" data-position="fixed">
   <div data-role="navbar">
     <ul>
-      <li class="ui-btn-active">Envelopes</li>
-      <li>Transactions</li>
-      <li>Accounts</li>
+      <li><a href="#" class="ui-btn-active">Envelopes</a></li>
+      <li><%= link_to 'Transactions', transactions_path %></li>
+      <li><%= link_to 'Accounts', accounts_path %></li>
     </ul>
   </div>
 </div>

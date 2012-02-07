@@ -23,12 +23,17 @@ class TransactionsController < ApplicationController
     if params[:start_date].present? and params[:end_date].present?
       ts = ts.period(params[:start_date], params[:end_date])
     end
-
-    @transactions = ts.page(params[:page]).order('date DESC')
+  
+    if params[:format] == "mobile"
+      @transactions = ts.order('date DESC')
+    else
+      @transactions = ts.page(params[:page]).order('date DESC')
+    end
    
     respond_to do |format|
       format.html
       format.js
+      format.mobile 
       format.csv { render text: download(@transactions)}
     end
   end

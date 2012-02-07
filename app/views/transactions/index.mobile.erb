@@ -1,0 +1,37 @@
+<div data-role="header">
+  <%= link_to 'Home', root_url, "data-icon" => "home" %> 
+  <h1>Budget Envelopes</h1>
+</div>
+
+<div data-role="content">
+  <table>
+    <thead>
+      <tr>
+        <th scope="col">Date</th>
+        <th scope="col" class="right">Amount</th>
+        <th scope="col" class="left">Envelope</th>
+        <th scope="col" class="left">Name</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @transactions.each do |transaction| %>
+      <tr>
+        <td><%= transaction.date.strftime("%m/%d") %></td>
+        <td class="right <%= amount_color(transaction) %>"><%= number_to_currency(transaction.amount) %></td>
+        <td><%= transaction.envelope_name %></td>
+        <td><%= transaction.name %></td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+
+<div data-role="footer" data-position="fixed">
+  <div data-role="navbar">
+    <ul>
+      <li><%= link_to 'Envelopes', envelopes_path %></li>
+      <li><%= link_to 'Transactions', transactions_path, class: "ui-btn-active" %></li>
+      <li><%= link_to 'Accounts', accounts_path %></li>
+    </ul>
+  </div>
+</div>
