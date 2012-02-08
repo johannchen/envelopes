@@ -8,14 +8,27 @@
     <div data-role="fieldcontain">
       <fieldset data-role="controlgroup">
         <legend>Type</legend>
-        <%= f.radio_button :income, 0, :checked => true %> 
-        <label for="transaction_income_0">Expense</label>
-        <%= f.radio_button :income, 1 %> 
-        <label for="transaction_income_1">Income</label>
+        <%= radio_button_tag :income, 0, :checked => true %> 
+        <label for="income_0">Expense</label>
+        <%= radio_button_tag :income, 1 %> 
+        <label for="income_1">Income</label>
+      </fieldset>
+      <fieldset data-role="controlgroup" data-type="horizontal">
+        <legend>Date</legend>
+        <%= f.date_select :date, :default => Date.today %>
       </fieldset>
       <%= f.label :name %>
       <%= f.text_field :name, :required => "required" %>
-      <%= f.submit "Save Envelope" %>
+      <%= f.label :amount %>
+      <%= f.number_field :amount, :required => "required" %>
+      <div id="transaction_envelope">
+        <%= f.label :envelope_id %>
+        <%= f.collection_select :envelope_id, current_user.envelopes.order("name"), :id, :name_amount %>
+      </div>
+      <%= f.label :account_id %>
+      <%= f.collection_select :account_id, current_user.accounts, :id, :name %>
+
+      <%= f.submit "Save Transaction" %>
     </div>
   <% end %>
 </div>
