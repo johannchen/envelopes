@@ -18,4 +18,18 @@
   color: olive;
 }
 
+.ui-grid-c .ui-block-a {
+  width: 15%;
+}
 
+.ui-grid-c .ui-block-b {
+  width: 20%;
+}
+
+.ui-grid-c .ui-block-c {
+  width: 25%;
+}
+
+.ui-grid-c .ui-block-d {
+  width: 40%;
+}

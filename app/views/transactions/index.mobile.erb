@@ -1,30 +1,22 @@
 <div data-role="header">
-  <%= link_to 'Home', root_url, "data-icon" => "home" %> 
+  <%= link_to 'Home', envelopes_path, "data-icon" => "home" %> 
   <h1>Transactions</h1>
   <%= link_to 'Add', new_transaction_path, "data-icon" => "plus" %> 
 </div>
 
 <div data-role="content">
-  <table>
-    <thead>
-      <tr>
-        <th scope="col">Date</th>
-        <th scope="col" class="right">Amount</th>
-        <th scope="col" class="left"><%= params[:envelope] ? "Account" : "Envelope" %></th>
-        <th scope="col" class="left">Name</th>
-      </tr>
-    </thead>
-    <tbody>
-      <% @transactions.each do |transaction| %>
-      <tr>
-        <td><%= transaction.date.strftime("%m/%d") %></td>
-        <td class="right <%= amount_color(transaction) %>"><%= number_to_currency(transaction.amount) %></td>
-        <td><%= params[:envelope] ? transaction.account_name : transaction.envelope_name %></td>
-        <td><%= transaction.name %></td>
-      </tr>
+<ul data-role="listview" class="ui-listview">
+     <% @transactions.each do |transaction| %>
+       <li class="ui-li ui-li-static">
+       <div class="ui-grid-c">
+       <div class="ui-block-a"><%= transaction.date.strftime("%m/%d") %></div>
+       <div class="ui-block-b <%= amount_color(transaction) %>"><%= number_to_currency(transaction.amount) %></div>
+    <div class="ui-block-c"><%= params[:envelope] ? transaction.account_name : transaction.envelope_name %></div>
+    <div class="ui-block-d"><%= transaction.name %></div>
+    </div>
+    </li>
       <% end %>
-    </tbody>
-  </table>
+  </ul>
 </div>
 
 <div data-role="footer" data-position="fixed">

@@ -8,13 +8,18 @@
   <ul data-role="listview">
     <li data-role="list-divider" role="heading">Monthly Envelopes</li>
     <% @monthly_envelopes.each do |envelope| %>
-      <li>
-        <%= link_to transactions_path(:envelope => envelope) do %>
-          <%= envelope.name %>
-          <span class="ui-li-aside">
+      <li class="ui-btn ui-btn-icon-right ui-li-has-arrow ui-li ui-btn-up-c">
+        <div class="ui-btn-inner ui-li">
+          <div class="ui-btn-text">
+        <%= link_to transactions_path(:envelope => envelope), class: "ui-link-inherit" do %>
+          <p class="ui-li-aside ui-li-desc">
             <%= number_to_currency(envelope.current_amount) %> / <%= number_to_currency(envelope.budget) %>
-            </span>
-        <% end %>
+            </p>
+          <h3 class="ui-li-heading"><%= envelope.name %></h3>
+          <% end %>
+          </div>
+          <span class="ui-icon ui-icon-arrow-r ui-icon-shadow"></span>
+          </div>
       </li>
     <% end %> 
     <li data-role="list-divider" role="heading">Annual Envelopes</li>

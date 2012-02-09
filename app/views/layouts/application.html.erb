@@ -20,6 +20,7 @@
           <%= active_link_to 'Transactions', transactions_path, :wrap_tag => :li %>
           <%= active_link_to 'Accounts', accounts_path, :wrap_tag => :li %>
           <%= active_link_to 'Reports', reports_expense_breakdown_path, :active => /^\/reports/, :wrap_tag => :li %>
+          <li><%= link_to 'Mobile', envelopes_path(:mobile => 1) %></li>
           <li><%= link_to 'Log out', logout_path %></li>
         </ul>
       </div>
