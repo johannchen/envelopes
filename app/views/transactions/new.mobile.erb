@@ -5,49 +5,49 @@
 </div>
 
 <div data-role="content">
-<%= form_for(@transaction) do |f| %>
-    <ul data-role="listview" class="ui-listview">
+  <%= form_for(@transaction) do |f| %>
+  <ul data-role="listview" class="ui-listview">
     <li data-role="fieldcontain">
-      <fieldset data-role="controlgroup">
-        <legend>Type</legend>
-        <%= radio_button_tag :income, 0, :checked => true %> 
-        <label for="income_0">Expense</label>
-        <%= radio_button_tag :income, 1 %> 
-        <label for="income_1">Income</label>
-        </fieldset>
+    <fieldset data-role="controlgroup">
+      <legend>Type</legend>
+      <%= radio_button_tag :income, 0, :checked => true %> 
+      <label for="income_0">Expense</label>
+      <%= radio_button_tag :income, 1 %> 
+      <label for="income_1">Income</label>
+    </fieldset>
     </li>
     <li data-role="fieldcontain">
 
-      <fieldset data-role="controlgroup" data-type="horizontal">
-        <legend>Date</legend>
-        <%= f.date_select :date, :default => Date.today %>
-      </fieldset>
+    <fieldset data-role="controlgroup" data-type="horizontal">
+      <legend>Date</legend>
+      <%= f.date_select :date, :default => Date.today %>
+    </fieldset>
     </li>
     <li data-role="fieldcontain">
-      <%= f.label :name %>
-      <%= f.text_field :name, :required => "required" %>
+    <%= f.label :name %>
+    <%= f.text_field :name, :required => "required" %>
     </li>
     <li data-role="fieldcontain">
-      <%= f.label :amount %>
-      <%= f.number_field :amount, :required => "required" %>
+    <%= f.label :amount %>
+    <%= f.number_field :amount, :required => "required" %>
     </li>
     <li data-role="fieldcontain">
-      <div id="transaction_envelope">
-        <%= f.label :envelope_id %>
-        <%= f.collection_select :envelope_id, current_user.envelopes.order("name"), :id, :name_amount %>
-      </div>
+    <div id="transaction_envelope">
+      <%= f.label :envelope_id %>
+      <%= f.collection_select :envelope_id, current_user.envelopes.order("name"), :id, :name_amount %>
+    </div>
     </li>
     <li data-role="fieldcontain">
-      <%= f.label :account_id %>
-      <%= f.collection_select :account_id, current_user.accounts, :id, :name %>
+    <%= f.label :account_id %>
+    <%= f.collection_select :account_id, current_user.accounts, :id, :name %>
     </li>
 
     <li data-role="fieldcontain">
     <%= f.submit "Save Transaction" %>
     </li>
-    </div>
-      </ul>
-  <% end %>
+  </div>
+</ul>
+<% end %>
 </div>
 
 <div data-role="footer" data-position="fixed">

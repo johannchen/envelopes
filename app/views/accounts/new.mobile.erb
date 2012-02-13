@@ -1,0 +1,29 @@
+<div data-role="header">
+  <%= link_to 'Home', envelopes_path, "data-icon" => "home" %> 
+  <h1>New Account</h1>
+  <a data-rel="back" data-icon="back">Back</a>
+</div>
+
+<div data-role="content">
+  <%= form_for(@account) do |f| %>
+    <ul data-role="listview" class="ui-listview">
+    <li data-role="fieldcontain">
+      <%= f.label :name %>
+      <%= f.text_field :name, :required => "required" %>
+    </li>
+    <li data-role="fieldcontain">
+      <%= f.submit "Save Account" %>
+    </li>
+    </ul>
+  <% end %>
+</div>
+
+<div data-role="footer" data-position="fixed">
+  <div data-role="navbar">
+    <ul>
+      <li><%= link_to 'Envelopes', envelopes_path, class: "ui-btn-active" %></li>
+      <li><%= link_to 'Transactions', transactions_path %></li>
+      <li><%= link_to 'Accounts', accounts_path %></li>
+    </ul>
+  </div>
+</div>
