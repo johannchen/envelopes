@@ -25,7 +25,7 @@ class TransactionsController < ApplicationController
     end
   
     if params[:format] == "mobile"
-      @transactions = ts.order('date DESC')
+      @transactions = ts.months_ago_till_now(2).order('date DESC')
     else
       @transactions = ts.page(params[:page]).order('date DESC')
     end

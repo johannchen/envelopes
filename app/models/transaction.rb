@@ -18,8 +18,9 @@ class Transaction < ActiveRecord::Base
   scope :unallocated , where("allocated = false")
   scope :excluded , where("excluded = true")
   scope :period, lambda { |start_date, end_date| where("date >= :start_date and date < :end_date", {:start_date => start_date, :end_date => end_date}) }
-  scope :months_ago, lambda { |n| where("date >= :start_date and date < :end_date", {:start_date => n.months.ago.at_beginning_of_month, :end_date => Date.today.at_beginning_of_month}) }
   scope :current_month, lambda { where("date >= :start_date and date < :end_date", {:start_date => Date.today.at_beginning_of_month, :end_date => Date.today.at_beginning_of_month.next_month}) }
+  scope :months_ago, lambda { |n| where("date >= :start_date and date < :end_date", {:start_date => n.months.ago.at_beginning_of_month, :end_date => Date.today.at_beginning_of_month}) }
+  scope :months_ago_till_now, lambda { |n| where("date >= :start_date and date < :end_date", {:start_date => n.months.ago.at_beginning_of_month, :end_date => Date.today.at_beginning_of_month.next_month}) }
 
   def self.total_income
     income.sum("amount")
