@@ -3,7 +3,7 @@
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 
 jQuery ->
-  $(".alert-message").effect "fade", "", 4000 
+  $(".alert").effect "fade", "", 4000 
   $("#transfer_date").datepicker dateFormat: "yy-mm-dd"
 
   $("#monthly_envelopes").find("span[id$=budget]").bind "ajax:success", ->

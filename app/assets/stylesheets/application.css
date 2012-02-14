@@ -16,7 +16,7 @@ meter {
 }
 
 section {
-  padding-top: 80px;
+  margin-top: 90px;
 }
 /* Layout ---------*/
 #main {
@@ -24,6 +24,9 @@ section {
   min-height: 600px;
 }
 
+.alert {
+  margin-top: 80px;
+}
 /* Subheader ------*/
 .subhead {
   padding-bottom: 0;
