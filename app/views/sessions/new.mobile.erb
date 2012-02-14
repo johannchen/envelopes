@@ -1,0 +1,23 @@
+<div data-role="header">
+<%= link_to 'Full Site', new_session_path(:mobile => 0), :rel => "external", "data-icon" => "back" %> 
+  <h1>Budget Envelopes</h1>
+</div>
+
+<div data-role="content">
+  <%= form_tag sessions_path do %>
+    <ul data-role="listview" class="ui-listview">
+    <li data-role="fieldcontain">
+      <%= label_tag :email %>
+      <%= email_field_tag :email, params[:email], :required => "required" %>
+    </li>
+    <li data-role="fieldcontain">
+      <%= label_tag :password %>
+      <%= password_field_tag :password, :required => "required" %>
+    </li>
+   
+    <li data-role="fieldcontain">
+    <%= submit_tag "Log In" %>
+    </li>
+    </ul>
+  <% end %>
+</div>
