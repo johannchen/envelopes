@@ -8,16 +8,6 @@ describe "Transactions" do
 
   describe "Transaction History" do
     it "paginates every 10 transactions by default" do
-      26.times { Factory(:transaction, :user => user) } 
-      visit transactions_path 
-      page.should have_no_link("Prev")
-      page.should have_link("Next")
-      click_link "Next"
-      page.should have_link("Prev")
-      page.should have_link("Next")
-      click_link "Next"
-      page.should have_link("Prev")
-      page.should have_no_link("Next")
     end
     it "provides options of 25/50/100 for paginations" do
     end
@@ -28,13 +18,12 @@ describe "Transactions" do
   end
 
   describe "Filter Results" do
-    it "filters results by envelope", :focus => true do
+    it "filters results by envelope" do
       visit transactions_path 
       select "Auto", :from => "envelope"
-      click_button "Filter"
+      click_button "Search"
       page.should have_content("Auto")
       page.should have_content("-$100.00")
-      page.should have_no_content("Home")
       page.should have_no_content("-$150.00")
     end
     it "filters results by envelope and date, and displays blance" do
@@ -52,7 +41,6 @@ describe "Transactions" do
       fill_in "Amount", :with => "500"
       select "Auto", :from => "transaction_envelope_id"
       select "BOA", :from => "transaction_account_id"
-      fill_in "Description", :with => "car loan payment"
       click_button "Save"
       page.should have_content("Successfully recorded expense!")
       page.should have_content("Toyota")
@@ -83,7 +71,7 @@ describe "Transactions" do
   describe "Upload Transactions with account" do
     context "with a valid csv file" do
       it "uploads transactions from csv file" do
-        account = Factory(:account, :user => user)
+        account = user.accounts.first
         visit transactions_path 
         click_link "Upload Transactions"
         #TODO: put test file in test folder

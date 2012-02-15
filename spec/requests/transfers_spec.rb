@@ -11,7 +11,7 @@ describe "Transfers" do
       visit envelopes_path 
       click_link "Transfer"
       fill_in "transfer_date", :with => Date.today 
-      fill_in "description", :with => "Need more money for Home"
+      fill_in "name", :with => "Need more money for Home"
       fill_in "amount", :with => "250"
       select "Auto", :from => "from"
       select "Home", :from => "to"

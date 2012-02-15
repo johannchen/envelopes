@@ -9,7 +9,7 @@ describe "Envelopes" do
 
   describe "Overview" do
     context "with many envelopes" do
-      it "displays monthly envelopes", :focus => true do
+      it "displays monthly envelopes" do
         page.should have_content("Auto")
         page.should have_content("$250.00")
         page.should have_content("Current Amount")
@@ -19,10 +19,12 @@ describe "Envelopes" do
         page.should have_content("Total")
         page.should have_content("$650.00")
         page.should have_content("-$150.00")
-        page.should have_content("Current month income $2,600.00")
+        page.should have_content("Current month income $3,000.00")
+        page.should have_content("Current month expense $550.00")
+        page.should have_content("Current month saving $2,450.00")
         page.should have_content("Total unallocate money $2,600.00")
       end
-      it "displays annual/irregular envelopes", :focus => true do
+      it "displays annual/irregular envelopes" do
         click_link "Annual"
         page.should have_content("Tax")
         page.should have_content("$1,200.00")
