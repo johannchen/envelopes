@@ -1,39 +1,40 @@
 <%= render 'header' %>
 <section id="expense_breakdown">
 <%= form_tag reports_expense_breakdown_path, method: 'get' do %>
-        <%= text_field_tag "start_date", start_date, required: "required", class: "span2" %> to
-        <%= text_field_tag "end_date", end_date, required: "required", class: "span2" %>
-        <%= submit_tag "Filter", name: nil %>
-      <% end %> 
-    <div class="row">
-      <div class="span4">
-          <table class="table">
-            <thead>
-            <tr>
-              <th>Envelope</th>
-              <th class="money">Amount</th>
-              <th class="money">%</th>
-            </tr>
-          </thead>
-          <tbody>
-          <% @envelopes.each do |e| %>
-            <tr>
-              <td><%= link_to e.name, transactions_path(:envelope => e, :type => 0, :start_date => start_date, :end_date => end_date) %></td>
-              <td class="money"><%= number_to_currency(e.period_expense(@start_date, @end_date)) %></td>
-              <td class="money"><%= number_to_percentage(e.period_expense(@start_date, @end_date)/@total * 100, precision: 2) %></td>
-            </tr>
-          <% end %>
-            <tr>
-              <td><strong>Total</strong></td>
-              <td class="money"><%= number_to_currency(@total) %></td>
-              <td></td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-      <div class="span8">
-        <div id="chart"></div>
-        <%= render_chart @chart, 'chart' %>
-      </div>
-    </div>
-  </section>
+  <%= text_field_tag "start_date", start_date, required: "required", class: "span2" %> to
+  <%= text_field_tag "end_date", end_date, required: "required", class: "span2" %>
+  <%= submit_tag "Filter", name: nil %>
+<% end %> 
+<div class="row">
+  <div class="span4">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Envelope</th>
+          <th class="money">Amount</th>
+          <th class="money">%</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @envelopes.each do |e| %>
+          <% expense = e.period_expense(@start_date, @end_date) %>
+          <tr>
+            <td><%= link_to e.name, transactions_path(:envelope => e, :type => 0, :start_date => start_date, :end_date => end_date) %></td>
+            <td class="money"><%= number_to_currency(expense) %></td>
+            <td class="money"><%= number_to_percentage(expense/@total * 100, precision: 2) %></td>
+          </tr>
+        <% end %>
+        <tr>
+          <td><strong>Total</strong></td>
+          <td class="money"><%= number_to_currency(@total) %></td>
+          <td></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="span8">
+    <div id="chart"></div>
+    <%= render_chart @chart, 'chart' %>
+  </div>
+</div>
+</section>

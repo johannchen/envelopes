@@ -19,6 +19,9 @@ describe "Reports" do
       page.should have_content("54.55%")
       page.should have_content("$550.00")
     end
+    it "hides envelopes with no expense" do
+      page.should have_no_content("Tax")
+    end
     it "filters report by date" do
     end
   end

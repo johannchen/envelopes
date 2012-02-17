@@ -31,4 +31,8 @@ class Envelope < ActiveRecord::Base
   def months_expense(months=1)
     transactions.months_ago(months).where("amount < 0").sum("amount").to_f.abs
   end
+
+  def monthly_budget
+    monthly ? budget.to_f : budget.to_f / 12
+  end
 end
