@@ -39,7 +39,7 @@
     <div class="control-group">
       <%= t.label e.name %>
       <div class="controls">
-        <%= t.text_field e.name, :value => e.refill_amount %>
+        <%= t.text_field e.name, :value => 0 %>
         <span><%= number_to_currency(e.current_amount) %>/<%= number_to_currency(e.budget) %></span>
       </div>
     </div>
