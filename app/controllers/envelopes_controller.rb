@@ -1,6 +1,5 @@
 class EnvelopesController < ApplicationController
   load_and_authorize_resource
-  respond_to :json, :only => :update
 
   def index
     @monthly_envelopes = current_user.envelopes.where(:monthly => :true).order("name")
@@ -8,6 +7,9 @@ class EnvelopesController < ApplicationController
   end
 
   def new
+  end
+
+  def edit
   end
 
   def create
@@ -19,8 +21,14 @@ class EnvelopesController < ApplicationController
   end
 
   def update
-    @envelope.update_attributes(params[:envelope])
-    respond_with_bip(@envelope)
+    if @envelope.update_attributes(params[:envelope])
+      respond_to do |format|
+        format.json { respond_with_bip(@envelope) }
+        format.html { redirect_to envelopes_path, notice: 'Sucessfully updated envelope!' }
+      end
+    else
+      render 'edit'
+    end
   end
 
   def destroy
