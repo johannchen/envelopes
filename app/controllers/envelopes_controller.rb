@@ -32,6 +32,12 @@ class EnvelopesController < ApplicationController
   end
 
   def destroy
+    if @envelope.transactions.empty?
+      @envelope.destroy
+      redirect_to envelopes_path, notice: 'The envelope has been reomved successfully'
+    else
+      redirect_to envelopes_path, notice: "Envelope #{@envelope.name} cannot be removed. You need to clear all transactions associated with envelope before its removal."    
+    end 
   end
 
   def annual

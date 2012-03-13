@@ -6,8 +6,8 @@
         <th class="envelope_name">Envelopes</th>
         <th class="budget">Monthly Budget</th>
         <th class="current_amount">Current Amount</th>
-        <th>Meter</th>
-        <th>Edit</th>
+        <th class="meter">Meter</th>
+        <th>Action</th>
       </tr>
     </thead>
     <tbody>
@@ -21,7 +21,10 @@
             <div class="bar" style="width: <%= amount_percentage(envelope) %>;"></div>
           </div>
         </td>
-        <td><%= link_to 'Edit', edit_envelope_path(envelope) %> </td>
+        <td>
+            <%= link_to '', edit_envelope_path(envelope), class: 'icon-pencil', title: 'edit' %>
+            <%= link_to '', envelope, class: 'icon-trash', title: 'remove', confirm: 'Are you sure?', method: :delete if envelope.transactions.empty? %>
+          </td>
       </tr>
     <% end %>
     <tr>
