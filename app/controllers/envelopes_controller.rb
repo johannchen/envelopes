@@ -45,4 +45,9 @@ class EnvelopesController < ApplicationController
     @annual_total_budget = @annual_envelopes.sum("budget")
     @unallocated_amount = current_user.unallocated_amount.to_f
   end
+
+  def inactive
+    @inactive_envelopes = current_user.envelopes.inactive.order("name") 
+    @total_inactive_budget = @inactive_envelopes.sum("budget")
+  end
 end

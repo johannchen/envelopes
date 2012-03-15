@@ -3,6 +3,7 @@
   <ul class="nav nav-pills">
     <%= active_link_to "Monthly", envelopes_path, :active => [['envelopes'], ['index']], :wrap_tag => :li %>
     <%= active_link_to "Annual", annual_envelopes_path, :acctive => [['envelopes'], ['annual']], :wrap_tag => :li %>
+    <%= active_link_to "Inactive", inactive_envelopes_path, :acctive => [['envelopes'], ['inactive']], :wrap_tag => :li %>
     <%= active_link_to "Add Envelope", new_envelope_path, :active => [['envelopes'], ['new']], :wrap_tag => :li %>
     <%= active_link_to "New Distribution", new_distribution_path, :active => [['distributions'], ['new']], :wrap_tag => :li %>
     <%= active_link_to "Transfer Between Envelopes", new_transfer_path, :active => [['transfers'], ['new']], :wrap_tag => :li %>

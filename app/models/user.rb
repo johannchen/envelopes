@@ -35,6 +35,10 @@ class User < ActiveRecord::Base
     envelopes.annual.inject(0.0) { |sum, e| sum + e.current_amount }
   end
 
+  def total_inactive_current_amount
+    envelopes.inactive.inject(0.0) { |sum, e| sum + e.current_amount }
+  end
+
   def total_refill_amount
     envelopes.monthly.inject(0.0) { |sum, e| sum + e.refill_amount }
   end

@@ -5,10 +5,10 @@
   <%= f.label :budget%>
   <%= f.text_field :budget, :required => "required" %>
   <label class="radio">
-    <%= f.radio_button :monthly, 1, :checked => true %> monthly
+    <%= f.radio_button :monthly, true %> monthly
   </label>
   <label class="radio">
-  <%= f.radio_button :monthly, 0 %> annual
+  <%= f.radio_button :monthly, false %> annual
   </label>
   <label class="checkbox">
     <%= f.check_box :active %> active

@@ -9,6 +9,7 @@ class Envelope < ActiveRecord::Base
   validates_uniqueness_of :name, :scope => :user_id
   
   scope :active, where(:active => true)
+  scope :inactive, where(:active => false)
   scope :monthly, where(:monthly => true)
   scope :annual, where(:monthly => false)
 

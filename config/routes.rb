@@ -16,6 +16,7 @@ Envelopes::Application.routes.draw do
 
   resources :envelopes do
     get 'annual', :on => :collection
+    get 'inactive', :on => :collection
   end
 
   # The priority is based upon order of creation:

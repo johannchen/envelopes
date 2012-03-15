@@ -1,0 +1,39 @@
+<%= render 'header' %>
+<section id="inactive_envelopes">
+  <table class="table">
+      <thead>
+      <tr>
+        <th class="envelope_name">Envelopes</th>
+        <th class="budget">Budget</th>
+        <th class="current_amount">Current Amount</th>
+        <th class="meter">Meter</th>
+        <th class="monthly">Action</th>
+      </tr>
+    </thead>
+    <tbody>
+  <% @inactive_envelopes.each do |envelope| %>
+      <tr>
+        <td><%= best_in_place envelope, :name %></td>
+        <td class="money"><%= best_in_place envelope, :budget, :display_with => :number_to_currency %></td>
+        <td class="money"><%= link_to number_to_currency(envelope.current_amount), transactions_path(:envelope => envelope) %></td>
+        <td>
+          <div class="progress progress-success">
+            <div class="bar" style="width: <%= number_to_percentage(envelope.current_amount / envelope.budget * 100) %>;"></div>
+          </div>
+        </td>
+        <td>
+          <%= link_to '', edit_envelope_path(envelope), class: 'icon-pencil', title: 'edit' %>
+          <%= link_to '', envelope, class: 'icon-trash', title: 'remove', confirm: 'Are you sure?', method: :delete if envelope.transactions.empty? %>
+        </td>
+      </tr>
+    <% end %>
+    <tr>
+      <td><strong>Total</strong></td>
+      <td id="total_inactive_budget" class="money"><%= number_to_currency(@total_inactive_budget) %></td>
+      <td class="money"><%= number_to_currency(current_user.total_inactive_current_amount) %></td<>
+      <td></td>
+      <td></td>
+    </tr>
+  </tbody>
+</table>
+</section>
