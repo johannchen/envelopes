@@ -2,7 +2,7 @@ class EnvelopesController < ApplicationController
   load_and_authorize_resource
 
   def index
-    @monthly_envelopes = current_user.envelopes.where(:monthly => :true).order("name")
+    @monthly_envelopes = current_user.envelopes.monthly.active.order("name")
     @monthly_total_budget = @monthly_envelopes.sum("budget")
   end
 
@@ -41,7 +41,7 @@ class EnvelopesController < ApplicationController
   end
 
   def annual
-    @annual_envelopes = current_user.envelopes.where(:monthly => :false).order("name")
+    @annual_envelopes = current_user.envelopes.annual.active.order("name")
     @annual_total_budget = @annual_envelopes.sum("budget")
     @unallocated_amount = current_user.unallocated_amount.to_f
   end

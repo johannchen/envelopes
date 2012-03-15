@@ -8,6 +8,7 @@ class Envelope < ActiveRecord::Base
   validates_numericality_of :budget
   validates_uniqueness_of :name, :scope => :user_id
   
+  scope :active, where(:active => true)
   scope :monthly, where(:monthly => true)
   scope :annual, where(:monthly => false)
 
