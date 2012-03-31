@@ -40,7 +40,7 @@ class User < ActiveRecord::Base
   end
 
   def total_refill_amount
-    envelopes.monthly.inject(0.0) { |sum, e| sum + e.refill_amount }
+    envelopes.active.monthly.inject(0.0) { |sum, e| sum + e.refill_amount }
   end
 
   def total_accounts_balance

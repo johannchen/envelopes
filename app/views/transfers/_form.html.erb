@@ -1,31 +1,31 @@
 <%= form_tag transfers_path, :class => "form-horizontal" do %>
 <fieldset>
   <div class="control-group">
-  <%= label_tag "Date" %>
+  <%= label_tag "Date", nil, class: "control-label" %>
     <div class="controls">
       <%= text_field_tag "transfer_date", Date.today, required: "required" %>
     </div>
   </div>
   <div class="control-group">
-  <%= label_tag "Name" %>
+  <%= label_tag "Name", nil, class: "control-label" %>
     <div class="controls">
       <%= text_field_tag "name" %>
     </div>
   </div>
   <div class="control-group">
-  <%= label_tag "Amount" %>
+  <%= label_tag "Amount", nil, class: "control-label" %>
     <div class="controls">
       <%= text_field_tag "amount", nil, required: "required" %>
     </div>
   </div>
   <div class="control-group">
-  <%= label_tag "From" %>
+  <%= label_tag "From", nil, class: "control-label" %>
     <div class="controls">
       <%= select_tag "from", options_from_collection_for_select(@envelopes, :id, :name_amount) %>
     </div>
   </div>
   <div class="control-group">
-  <%= label_tag "To" %>
+  <%= label_tag "To", nil, class: "control-label" %>
     <div class="controls">
       <%= select_tag "to", options_from_collection_for_select(@envelopes, :id, :name_amount) %>
     </div>
