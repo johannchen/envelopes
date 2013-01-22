@@ -12,7 +12,8 @@ gem 'bootstrap-will_paginate'
 gem 'best_in_place', '~> 1.0.4'
 gem 'google_visualr', '~> 2.1'
 gem 'active_link_to'
-gem 'twitter-bootstrap-rails'
+#gem 'less-rails'
+#gem 'twitter-bootstrap-rails'
 
 
 # Gems used only for assets and not required
